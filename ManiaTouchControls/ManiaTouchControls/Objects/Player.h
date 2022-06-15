@@ -308,13 +308,14 @@ typedef struct {
 #if MANIA_USE_PLUS
     int32 uncurlTimer;
 #endif
+
+    uint8 touchJump;
+    uint8 touchPause;
+    uint8 touchSwap;
 } EntityPlayer;
 
 // Object Struct
 extern ObjectPlayer *Player;
-
-// Standard Entity Events
-void Player_StageLoad(void);
 
 // Extra Entity Functions
 bool32 Player_Input_P1_Hook(bool32 skippedState);

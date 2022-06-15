@@ -2,24 +2,32 @@
 #include "Announcer.h"
 #include "LottoMachine.h"
 
-void Player_Input_P1_Hook(void)
+ObjectPlayer *Player;
+
+void Player_StageLoad(void)
+{
+    Mod.Super(Player->classID, SUPER_STAGELOAD, NULL);
+
+    SceneInfo->debugMode = true;
+}
+
+bool32 Player_Input_P1_Hook(bool32 skippedState)
 {
     RSDK_THIS(Player);
 
     void (*Player_ChangeCharacter)(EntityPlayer * player, int32 character) = Mod.GetPublicFunction(NULL, "Player_ChangeCharacter");
     if (!Player_ChangeCharacter)
-        return;
+        return false;
 
     ObjectAnnouncer *announcer       = Mod.FindObject("Announcer");
     ObjectLottoMachine *lottoMachine = Mod.FindObject("LottoMachine");
     if (!announcer)
-        return;
-
+        return false;
 
     if (self->controllerID < PLAYER_COUNT) {
         if (globals->gameMode != MODE_COMPETITION || announcer->finishedCountdown) {
             RSDKControllerState *controller = &ControllerInfo[self->controllerID];
-            
+
             if (!lottoMachine || !((1 << self->playerID) & lottoMachine->activePlayers)) {
 #if MANIA_USE_PLUS
                 if (SKU->platform == PLATFORM_DEV && controller->keySelect.press) {
@@ -41,4 +49,6 @@ void Player_Input_P1_Hook(void)
             }
         }
     }
+
+    return false;
 }

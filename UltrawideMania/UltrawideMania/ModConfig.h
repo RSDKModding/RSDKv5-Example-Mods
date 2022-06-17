@@ -4,10 +4,6 @@
 #include "GameAPI/Game.h"
 
 typedef struct {
-    float vDPadSize;
-    float vDPadOpacity;
-    Vector2 moveDPadPos;
-    Vector2 jumpDPadPos;
 } ModConfig;
 
 extern ModConfig config;

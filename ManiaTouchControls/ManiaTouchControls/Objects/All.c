@@ -1,0 +1,7 @@
+#include "Objects/Player.c"
+#include "Objects/BSS_Player.c"
+#include "Objects/UFO_Player.c"
+#include "Objects/HUD.c"
+#include "Objects/BSS_HUD.c"
+#include "Objects/CreditsSetup.c"
+#include "Objects/CutsceneSeq.c"

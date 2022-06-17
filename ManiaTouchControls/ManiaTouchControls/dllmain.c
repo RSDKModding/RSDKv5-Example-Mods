@@ -1,5 +1,3 @@
-#include "../GameAPI/C/GameAPI/Game.h"
-
 #include "ModConfig.h"
 
 #include "Objects/Player.h"
@@ -19,48 +17,20 @@ DLLExport bool32 LinkModLogic(EngineInfo *info, const char *id);
 void InitModAPI(void)
 {
     // Setup Config
-    config.vDPadSize     = Mod.GetSettingsFloat("", "Config:vDPadSize", -1);
-    config.vDPadOpacity  = Mod.GetSettingsFloat("", "Config:vDPadOpacity", -1);
-    config.moveDPadPos.x = Mod.GetSettingsInteger("", "Config:moveDPadPosX", 0x7FFFFFFF);
-    config.moveDPadPos.y = Mod.GetSettingsInteger("", "Config:moveDPadPosY", 0x7FFFFFFF);
-    config.jumpDPadPos.x = Mod.GetSettingsInteger("", "Config:jumpDPadPosX", 0x7FFFFFFF);
-    config.jumpDPadPos.y = Mod.GetSettingsInteger("", "Config:jumpDPadPosY", 0x7FFFFFFF);
+    config.vDPadSize     = Mod.GetSettingsFloat("", "Config:vDPadSize", 1.0);
+    config.vDPadOpacity  = Mod.GetSettingsFloat("", "Config:vDPadOpacity", .625);
+    config.moveDPadPos.x = Mod.GetSettingsInteger("", "Config:moveDPadPosX", 56);
+    config.moveDPadPos.y = Mod.GetSettingsInteger("", "Config:moveDPadPosY", 184);
+    config.jumpDPadPos.x = Mod.GetSettingsInteger("", "Config:jumpDPadPosX", -56);
+    config.jumpDPadPos.y = Mod.GetSettingsInteger("", "Config:jumpDPadPosY", 188);
 
-    if (config.vDPadSize <= -1) {
-        config.vDPadSize = 1.0;
-        Mod.SetSettingsFloat("Config:vDPadSize", config.vDPadSize);
-        Mod.SaveSettings();
-    }
-
-    if (config.vDPadOpacity <= -1) {
-        config.vDPadOpacity = 0.625;
-        Mod.SetSettingsFloat("Config:vDPadOpacity", config.vDPadOpacity);
-        Mod.SaveSettings();
-    }
-
-    if (config.moveDPadPos.x == 0x7FFFFFFF) {
-        config.moveDPadPos.x = 56;
-        Mod.SetSettingsInteger("Config:moveDPadPosX", config.moveDPadPos.x);
-        Mod.SaveSettings();
-    }
-
-    if (config.moveDPadPos.y == 0x7FFFFFFF) {
-        config.moveDPadPos.y = 184;
-        Mod.SetSettingsInteger("Config:moveDPadPosY", config.moveDPadPos.y);
-        Mod.SaveSettings();
-    }
-
-    if (config.jumpDPadPos.x == 0x7FFFFFFF) {
-        config.jumpDPadPos.x = -56;
-        Mod.SetSettingsInteger("Config:jumpDPadPosX", config.jumpDPadPos.x);
-        Mod.SaveSettings();
-    }
-
-    if (config.jumpDPadPos.y == 0x7FFFFFFF) {
-        config.jumpDPadPos.y = 188;
-        Mod.SetSettingsInteger("Config:jumpDPadPosY", config.jumpDPadPos.y);
-        Mod.SaveSettings();
-    }
+    Mod.SetSettingsFloat("Config:vDPadSize", config.vDPadSize);
+    Mod.SetSettingsFloat("Config:vDPadOpacity", config.vDPadOpacity);
+    Mod.SetSettingsInteger("Config:moveDPadPosX", config.moveDPadPos.x);
+    Mod.SetSettingsInteger("Config:moveDPadPosY", config.moveDPadPos.y);
+    Mod.SetSettingsInteger("Config:jumpDPadPosX", config.jumpDPadPos.x);
+    Mod.SetSettingsInteger("Config:jumpDPadPosY", config.jumpDPadPos.y);
+    Mod.SaveSettings();
 
     // Register State Hooks
     Mod.RegisterStateHook(Mod.GetPublicFunction(NULL, "Player_Input_P1"), Player_Input_P1_Hook, false);

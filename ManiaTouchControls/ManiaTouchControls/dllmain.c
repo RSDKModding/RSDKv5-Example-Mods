@@ -38,16 +38,16 @@ void InitModAPI(void)
     Mod.RegisterStateHook(Mod.GetPublicFunction(NULL, "UFO_Player_Input_P1"), UFO_Player_Input_P1_Hook, false);
 
     // Register Modded Objects
-    // Mod.RegisterObject((Object **)&BSS_HUD, "BSS_HUD", sizeof(EntityBSS_HUD), sizeof(ObjectBSS_HUD), NULL, NULL, NULL, BSS_HUD_Draw, NULL, NULL, NULL,
+    // Mod.RegisterObject((Object **)&BSS_HUD, "BSS_HUD", sizeof(EntityBSS_HUD), sizeof(ObjectBSS_HUD), NULL, NULL, NULL, BSS_HUD_Draw, NULL, NULL,
+    // NULL,
     //                    NULL, NULL, "BSS_HUD");
-    // Mod.RegisterObject((Object **)&HUD, "HUD", sizeof(EntityHUD), sizeof(ObjectHUD), NULL, NULL, NULL, HUD_Draw, NULL, NULL, NULL, NULL, NULL, "HUD");
-    
-    Mod.RegisterObject((Object **)&CreditsSetup, "CreditsSetup", sizeof(EntityCreditsSetup), sizeof(ObjectCreditsSetup), NULL, NULL,
-                       CreditsSetup_StaticUpdate, NULL, NULL, NULL, NULL, NULL, NULL, "CreditsSetup");
+    // Mod.RegisterObject((Object **)&HUD, "HUD", sizeof(EntityHUD), sizeof(ObjectHUD), NULL, NULL, NULL, HUD_Draw, NULL, NULL, NULL, NULL, NULL,
+    // "HUD");
+
+    MOD_REGISTER_OBJ_OVERLOAD(CreditsSetup, NULL, NULL, CreditsSetup_StaticUpdate, NULL, NULL, NULL, NULL, NULL, NULL);
 
 #if MANIA_USE_PLUS
-    Mod.RegisterObject(NULL, "CutsceneSeq", sizeof(EntityCutsceneSeq), 0, CutsceneSeq_Update, NULL, NULL, NULL,
-                       CutsceneSeq_Create, NULL, NULL, NULL, NULL, "CutsceneSeq");
+    MOD_REGISTER_OBJ_OVERLOAD_NOCLASS(CutsceneSeq, CutsceneSeq_Update, NULL, NULL, NULL, CutsceneSeq_Create, NULL, NULL, NULL, NULL);
 #endif
 }
 

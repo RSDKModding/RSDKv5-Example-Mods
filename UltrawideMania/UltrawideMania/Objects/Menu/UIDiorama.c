@@ -1,12 +1,18 @@
 #include "All.h"
 
+ObjectUIDiorama *UIDiorama;
+
+void UIDiorama_Update(void) {
+    Mod.Super(UIDiorama->classID, SUPER_UPDATE, NULL);    
+
+    RSDK_THIS(UIDiorama);
+}
 
 void UIDiorama_Create(void* data)
 {
     RSDK_THIS(UIDiorama);
 
-    Object *uiDiorama = Mod.FindObject("UIDiorama");
-    Mod.Super(uiDiorama->classID, SUPER_CREATE, data);
+    Mod.Super(UIDiorama->classID, SUPER_CREATE, data);
 
-    self->position.x -= (ScreenInfo->width - 424) / 2;
+    self->position.x -= extraWidth << 16;
 }

@@ -1,7 +1,7 @@
 #ifndef OBJ_UFO_PLAYER_H
 #define OBJ_UFO_PLAYER_H
 
-#include "../../GameAPI/C/GameAPI/Game.h"
+#include "GameAPI/Game.h"
 
 // Object Class
 typedef struct {
@@ -24,6 +24,12 @@ typedef struct {
     uint16 tumbleModel;
     uint16 sceneIndex;
 } ObjectUFO_Player;
+
+// Modded Object Class
+typedef struct {
+    uint8 touchJump;
+    uint8 touchPause;
+} ModObjectUFO_Player;
 
 // Entity Class
 typedef struct {
@@ -58,10 +64,11 @@ typedef struct {
     bool32 jumpPress;
     bool32 jumpHold;
     Animator animator;
-
-    uint8 touchJump;
-    uint8 touchPause;
 } EntityUFO_Player;
+
+// Object Struct
+extern ObjectUFO_Player *UFO_Player;
+extern ModObjectUFO_Player *Mod_UFO_Player;
 
 // Extra Entity Functions
 bool32 UFO_Player_Input_P1_Hook(bool32 skippedState);

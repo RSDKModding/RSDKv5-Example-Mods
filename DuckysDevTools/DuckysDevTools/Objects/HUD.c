@@ -3,14 +3,14 @@
 
 ObjectHUD *HUD;
 
+void (*HUD_DrawNumbersBase16)(Vector2 *drawPos, int32 value) = NULL;
+
 void HUD_Draw(void)
 {
     RSDK_THIS(HUD);
     EntityPlayer *player = RSDK_GET_ENTITY(SceneInfo->currentScreenID, Player);
 
     Object *debugMode = Mod.FindObject("DebugMode");
-    void (*HUD_DrawNumbersBase16)(Vector2 * drawPos, int32 value) = Mod.GetPublicFunction(NULL, "HUD_DrawNumbersBase16");
-
 
     if (debugMode && HUD_DrawNumbersBase16) {
         if (player->camera) {

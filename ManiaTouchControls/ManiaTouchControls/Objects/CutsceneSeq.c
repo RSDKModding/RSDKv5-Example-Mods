@@ -1,6 +1,9 @@
 #include "CutsceneSeq.h"
 
 #if MANIA_USE_PLUS
+
+void (*CutsceneSeq_CheckSkip)(uint8 skipType, EntityCutsceneSeq *seq, void (*skipCallback)(void)) = NULL;
+
 void CutsceneSeq_Update(void)
 {
     RSDK_THIS(CutsceneSeq);
@@ -22,9 +25,6 @@ void CutsceneSeq_Create(void *data)
 void CutsceneSeq_CheckSkip_Hook(uint8 skipType, EntityCutsceneSeq *seq, void (*skipCallback)(void))
 {
     ControllerInfo->keyStart.press |= TouchInfo->count;
-
-    void (*CutsceneSeq_CheckSkip)(uint8 skipType, EntityCutsceneSeq * seq, void (*skipCallback)(void)) =
-        Mod.GetPublicFunction(NULL, "CutsceneSeq_CheckSkip");
 
     if (CutsceneSeq_CheckSkip)
         CutsceneSeq_CheckSkip(skipType, seq, skipCallback);

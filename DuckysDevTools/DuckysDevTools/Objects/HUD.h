@@ -1,7 +1,7 @@
 #ifndef OBJ_HUD_H
 #define OBJ_HUD_H
 
-#include "../../GameAPI/C/GameAPI/Game.h"
+#include "GameAPI/Game.h"
 
 // Object Class
 typedef struct {
@@ -72,11 +72,10 @@ typedef struct {
 // Object Struct
 extern ObjectHUD *HUD;
 
+// Public Functions
+extern void (*HUD_DrawNumbersBase16)(Vector2 *drawPos, int32 value);
+
 // Standard Entity Events
 void HUD_Draw(void);
-
-// Extra Entity Functions
-void HUD_DrawNumbersBase10(Vector2 *drawPos, int32 value, int32 digitCount);
-void HUD_DrawNumbersBase16(Vector2 *drawPos, int32 value);
 
 #endif //! OBJ_HUD_H

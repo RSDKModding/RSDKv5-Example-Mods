@@ -4,6 +4,8 @@
 
 ObjectPlayer *Player;
 
+void (*Player_ChangeCharacter)(EntityPlayer *player, int32 character) = NULL;
+
 void Player_StageLoad(void)
 {
     Mod.Super(Player->classID, SUPER_STAGELOAD, NULL);
@@ -15,7 +17,6 @@ bool32 Player_Input_P1_Hook(bool32 skippedState)
 {
     RSDK_THIS(Player);
 
-    void (*Player_ChangeCharacter)(EntityPlayer * player, int32 character) = Mod.GetPublicFunction(NULL, "Player_ChangeCharacter");
     if (!Player_ChangeCharacter)
         return false;
 

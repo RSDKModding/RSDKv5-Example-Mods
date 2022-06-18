@@ -1,7 +1,7 @@
 #ifndef OBJ_CUTSCENESEQ_H
 #define OBJ_CUTSCENESEQ_H
 
-#include "../../GameAPI/C/GameAPI/Game.h"
+#include "GameAPI/Game.h"
 
 #define CUTSCENESEQ_POINT_COUNT (8)
 
@@ -36,6 +36,10 @@ typedef struct {
 } EntityCutsceneSeq;
 
 #if MANIA_USE_PLUS
+
+// Public Functions
+extern void (*CutsceneSeq_CheckSkip)(uint8 skipType, EntityCutsceneSeq *seq, void (*skipCallback)(void));
+
 // Standard Entity Events
 void CutsceneSeq_Update(void);
 void CutsceneSeq_Create(void *data);

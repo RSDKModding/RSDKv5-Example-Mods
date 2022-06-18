@@ -1,7 +1,7 @@
 #ifndef OBJ_BSS_HUD_H
 #define OBJ_BSS_HUD_H
 
-#include "../../GameAPI/C/GameAPI/Game.h"
+#include "GameAPI/Game.h"
 
 // Object Class
 typedef struct {

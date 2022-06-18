@@ -14,11 +14,14 @@ void InitModAPI(void)
     Mod.RegisterStateHook(Mod.GetPublicFunction(NULL, "Player_Input_P1"), Player_Input_P1_Hook, true);
 
     // Register Modded Objects
-    Mod.RegisterObject((Object **)&BSS_HUD, "BSS_HUD", sizeof(EntityBSS_HUD), sizeof(ObjectBSS_HUD), NULL, NULL, BSS_HUD_StaticUpdate, BSS_HUD_Draw,
-                       NULL, NULL, NULL, NULL, NULL, "BSS_HUD");
-    Mod.RegisterObject((Object **)&Player, "Player", sizeof(EntityPlayer), sizeof(ObjectPlayer), NULL, NULL, NULL, NULL, NULL, Player_StageLoad, NULL,
-                       NULL, NULL, "Player");
-    Mod.RegisterObject((Object **)&HUD, "HUD", sizeof(EntityHUD), sizeof(ObjectHUD), NULL, NULL, NULL, HUD_Draw, NULL, NULL, NULL, NULL, NULL, "HUD");
+    MOD_REGISTER_OBJ_OVERLOAD(BSS_HUD, NULL, NULL, BSS_HUD_StaticUpdate, BSS_HUD_Draw, NULL, NULL, NULL, NULL, NULL);
+    MOD_REGISTER_OBJ_OVERLOAD(HUD, NULL, NULL, NULL, HUD_Draw, NULL, NULL, NULL, NULL, NULL);
+    MOD_REGISTER_OBJ_OVERLOAD(Player, NULL, NULL, NULL, NULL, NULL, Player_StageLoad, NULL, NULL, NULL);
+
+    // Get Public Funcs
+    Player_ChangeCharacter = Mod.GetPublicFunction(NULL, "Player_ChangeCharacter");
+
+    HUD_DrawNumbersBase16 = Mod.GetPublicFunction(NULL, "HUD_DrawNumbersBase16");
 }
 
 #if RETRO_USE_MOD_LOADER

@@ -1,7 +1,7 @@
 #ifndef OBJ_FXFADE_H
 #define OBJ_FXFADE_H
 
-#include "../../GameAPI/C/GameAPI/Game.h"
+#include "GameAPI/Game.h"
 
 // Object Class
 typedef struct {

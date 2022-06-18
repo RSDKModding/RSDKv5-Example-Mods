@@ -2,7 +2,6 @@
 
 #include "Objects/Player.h"
 #include "Objects/HUD.h"
-#include "Objects/Music.h"
 
 #if RETRO_USE_MOD_LOADER
 DLLExport bool32 LinkModLogic(EngineInfo *info, const char *id);
@@ -10,16 +9,12 @@ DLLExport bool32 LinkModLogic(EngineInfo *info, const char *id);
 
 void InitModAPI(void)
 {
-    // Register Object Hooks
-    Mod.RegisterObjectHook((Object **)&Music, "Music");
-
     // Register State Hooks
     Mod.RegisterStateHook(Mod.GetPublicFunction(NULL, "Player_State_Die"), Player_State_Die_Hook, false);
     Mod.RegisterStateHook(Mod.GetPublicFunction(NULL, "Player_State_Drown"), Player_State_Drown_Hook, false);
 
     // Register Modded Objects
-    Mod.RegisterObject((Object **)&HUD, "HUD", sizeof(EntityHUD), sizeof(ObjectHUD), NULL, NULL, NULL, HUD_Draw, NULL, NULL, NULL, NULL, NULL, "HUD");
-    Mod.RegisterObject(NULL, "Music", 0, 0, NULL, NULL, Music_StaticUpdate, NULL, NULL, NULL, NULL, NULL, NULL, "Music");
+    MOD_REGISTER_OBJ_OVERLOAD(HUD, NULL, NULL, NULL, HUD_Draw, NULL, NULL, NULL, NULL, NULL);
 }
 
 #if RETRO_USE_MOD_LOADER

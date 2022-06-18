@@ -98,6 +98,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>$(SolutionDir)GameAPI/C/</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -117,6 +118,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>$(SolutionDir)GameAPI/C/</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -136,6 +138,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>$(SolutionDir)GameAPI/C/</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -155,6 +158,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>$(SolutionDir)GameAPI/C/</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -169,29 +173,63 @@
   <ItemGroup>
     <ClCompile Include="..\GameAPI\C\GameAPI\Game.c" />
     <ClCompile Include="dllmain.c" />
+    <ClCompile Include="Helpers.c" />
+    <ClCompile Include="Objects\ActClear.c" />
     <ClCompile Include="Objects\BSS_HUD.c" />
     <ClCompile Include="Objects\BSS_Player.c" />
+    <ClCompile Include="Objects\CPZBoss.c" />
     <ClCompile Include="Objects\CreditsSetup.c" />
     <ClCompile Include="Objects\CutsceneSeq.c" />
+    <ClCompile Include="Objects\DASetup.c" />
     <ClCompile Include="Objects\FXFade.c" />
     <ClCompile Include="Objects\HUD.c" />
+    <ClCompile Include="Objects\PBL_Crane.c" />
+    <ClCompile Include="Objects\PBL_Flipper.c" />
+    <ClCompile Include="Objects\PBL_Player.c" />
+    <ClCompile Include="Objects\PBL_Setup.c" />
     <ClCompile Include="Objects\Player.c" />
+    <ClCompile Include="Objects\PuyoBean.c" />
+    <ClCompile Include="Objects\PuyoGame.c" />
+    <ClCompile Include="Objects\PuyoLevelSelect.c" />
+    <ClCompile Include="Objects\Summary.c" />
+    <ClCompile Include="Objects\TitleSetup.c" />
+    <ClCompile Include="Objects\TryAgain.c" />
+    <ClCompile Include="Objects\TryAgainE.c" />
     <ClCompile Include="Objects\UFO_Player.c" />
+    <ClCompile Include="Objects\UIControl.c" />
+    <ClCompile Include="Objects\UIVideo.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\GameAPI\C\GameAPI\Game.h" />
     <ClInclude Include="..\GameAPI\C\GameAPI\GameLink.h" />
     <ClInclude Include="..\GameAPI\C\GameAPI\GameObjects.h" />
     <ClInclude Include="..\GameAPI\C\GameAPI\GameVariables.h" />
+    <ClInclude Include="Helpers.h" />
     <ClInclude Include="ModConfig.h" />
+    <ClInclude Include="Objects\ActClear.h" />
     <ClInclude Include="Objects\BSS_HUD.h" />
     <ClInclude Include="Objects\BSS_Player.h" />
+    <ClInclude Include="Objects\CPZBoss.h" />
     <ClInclude Include="Objects\CreditsSetup.h" />
     <ClInclude Include="Objects\CutsceneSeq.h" />
+    <ClInclude Include="Objects\DASetup.h" />
     <ClInclude Include="Objects\FXFade.h" />
     <ClInclude Include="Objects\HUD.h" />
+    <ClInclude Include="Objects\PBL_Crane.h" />
+    <ClInclude Include="Objects\PBL_Flipper.h" />
+    <ClInclude Include="Objects\PBL_Player.h" />
+    <ClInclude Include="Objects\PBL_Setup.h" />
     <ClInclude Include="Objects\Player.h" />
+    <ClInclude Include="Objects\PuyoBean.h" />
+    <ClInclude Include="Objects\PuyoGame.h" />
+    <ClInclude Include="Objects\PuyoLevelSelect.h" />
+    <ClInclude Include="Objects\Summary.h" />
+    <ClInclude Include="Objects\TitleSetup.h" />
+    <ClInclude Include="Objects\TryAgain.h" />
+    <ClInclude Include="Objects\TryAgainE.h" />
     <ClInclude Include="Objects\UFO_Player.h" />
+    <ClInclude Include="Objects\UIControl.h" />
+    <ClInclude Include="Objects\UIVideo.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,7 +1,7 @@
 #ifndef OBJ_PLAYER_H
 #define OBJ_PLAYER_H
 
-#include "../../GameAPI/C/GameAPI/Game.h"
+#include "GameAPI/Game.h"
 
 // Object Class
 #if MANIA_USE_PLUS

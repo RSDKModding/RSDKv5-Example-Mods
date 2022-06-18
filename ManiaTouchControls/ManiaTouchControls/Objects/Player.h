@@ -1,7 +1,7 @@
 #ifndef OBJ_PLAYER_H
 #define OBJ_PLAYER_H
 
-#include "../../GameAPI/C/GameAPI/Game.h"
+#include "GameAPI/Game.h"
 
 // Object Class
 #if MANIA_USE_PLUS
@@ -210,6 +210,13 @@ typedef struct {
 } ObjectPlayer;
 #endif
 
+// Modded Object Class
+typedef struct {
+    uint8 touchJump;
+    uint8 touchPause;
+    uint8 touchSwap;
+} ModObjectPlayer;
+
 // Entity Class
 typedef struct {
     RSDK_ENTITY
@@ -308,14 +315,11 @@ typedef struct {
 #if MANIA_USE_PLUS
     int32 uncurlTimer;
 #endif
-
-    uint8 touchJump;
-    uint8 touchPause;
-    uint8 touchSwap;
 } EntityPlayer;
 
 // Object Struct
 extern ObjectPlayer *Player;
+extern ModObjectPlayer *Mod_Player;
 
 // Extra Entity Functions
 bool32 Player_Input_P1_Hook(bool32 skippedState);

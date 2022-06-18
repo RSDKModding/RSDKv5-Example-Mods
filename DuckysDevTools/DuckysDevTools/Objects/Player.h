@@ -1,7 +1,7 @@
 #ifndef OBJ_PLAYER_H
 #define OBJ_PLAYER_H
 
-#include "../../GameAPI/C/GameAPI/Game.h"
+#include "GameAPI/Game.h"
 
 // Object Class
 #if MANIA_USE_PLUS
@@ -312,6 +312,9 @@ typedef struct {
 
 // Object Struct
 extern ObjectPlayer *Player;
+
+// Public Functions
+extern void (*Player_ChangeCharacter)(EntityPlayer *player, int32 character);
 
 // Standard Entity Events
 void Player_StageLoad(void);

@@ -3,10 +3,26 @@
 #include "Objects/Player.h"
 #include "Objects/BSS_Player.h"
 #include "Objects/UFO_Player.h"
+#include "Objects/PBL_Player.h"
 #include "Objects/HUD.h"
+#include "Objects/ActClear.h"
 #include "Objects/BSS_HUD.h"
+#include "Objects/PBL_Crane.h"
+#include "Objects/PBL_Flipper.h"
+#include "Objects/PBL_Setup.h"
+#include "Objects/DASetup.h"
+#include "Objects/PuyoLevelSelect.h"
+#include "Objects/PuyoBean.h"
+#include "Objects/PuyoGame.h"
+#include "Objects/CPZBoss.h"
 #include "Objects/CreditsSetup.h"
 #include "Objects/CutsceneSeq.h"
+#include "Objects/Summary.h"
+#include "Objects/TryAgain.h"
+#include "Objects/TryAgainE.h"
+#include "Objects/TitleSetup.h"
+#include "Objects/UIVideo.h"
+#include "Objects/UIControl.h"
 
 ModConfig config;
 
@@ -34,21 +50,70 @@ void InitModAPI(void)
 
     // Register State Hooks
     Mod.RegisterStateHook(Mod.GetPublicFunction(NULL, "Player_Input_P1"), Player_Input_P1_Hook, false);
+
     Mod.RegisterStateHook(Mod.GetPublicFunction(NULL, "BSS_Player_Input_P1"), BSS_Player_Input_P1_Hook, false);
+
     Mod.RegisterStateHook(Mod.GetPublicFunction(NULL, "UFO_Player_Input_P1"), UFO_Player_Input_P1_Hook, false);
 
-    // Register Modded Objects
-    // Mod.RegisterObject((Object **)&BSS_HUD, "BSS_HUD", sizeof(EntityBSS_HUD), sizeof(ObjectBSS_HUD), NULL, NULL, NULL, BSS_HUD_Draw, NULL, NULL,
-    // NULL,
-    //                    NULL, NULL, "BSS_HUD");
-    // Mod.RegisterObject((Object **)&HUD, "HUD", sizeof(EntityHUD), sizeof(ObjectHUD), NULL, NULL, NULL, HUD_Draw, NULL, NULL, NULL, NULL, NULL,
-    // "HUD");
+    Mod.RegisterStateHook(Mod.GetPublicFunction(NULL, "ActClear_State_TallyScore"), ActClear_State_TallyScore_Hook, false);
 
+    Mod.RegisterStateHook(Mod.GetPublicFunction(NULL, "PuyoBean_Input_Player"), PuyoBean_Input_Player_Hook, false);
+
+    Mod.RegisterStateHook(Mod.GetPublicFunction(NULL, "PuyoGame_State_ShowMatchResults"), PuyoGame_State_ShowMatchResults_Hook, false);
+    Mod.RegisterStateHook(Mod.GetPublicFunction(NULL, "PuyoGame_State_ShowRoundResults"), PuyoGame_State_ShowRoundResults_Hook, false);
+
+    Mod.RegisterStateHook(Mod.GetPublicFunction(NULL, "CPZBoss_State_HandleMatch_Player"), CPZBoss_State_HandleMatch_Player_Hook, false);
+
+    Mod.RegisterStateHook(Mod.GetPublicFunction(NULL, "TryAgain_State_Stinger"), TryAgain_State_Stinger_Hook, false);
+
+    Mod.RegisterStateHook(Mod.GetPublicFunction(NULL, "DASetup_State_ManageControl"), DASetup_State_ManageControl_Hook, false);
+
+#if MANIA_USE_PLUS
+    Mod.RegisterStateHook(Mod.GetPublicFunction(NULL, "PBL_Player_Input_P1"), PBL_Player_Input_P1_Hook, false);
+
+    Mod.RegisterStateHook(Mod.GetPublicFunction(NULL, "ActClear_State_ShowResultsTA"), ActClear_State_ShowResultsTA_Hook, false);
+
+    Mod.RegisterStateHook(Mod.GetPublicFunction(NULL, "TryAgainE_State_Stinger"), TryAgainE_State_Stinger_Hook, false);
+
+    Mod.RegisterStateHook(Mod.GetPublicFunction(NULL, "Summary_State_Wait"), Summary_State_Wait_Hook, false);
+#endif
+
+    // Register Object Hooks
+    MOD_REGISTER_OBJECT_HOOK(UIControl);
+
+
+    // Register Modded Objects
+    MOD_REGISTER_OBJ_OVERLOAD(PuyoGame, PuyoGame_Update, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+    MOD_REGISTER_OBJ_OVERLOAD(PuyoLevelSelect, PuyoLevelSelect_Update, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
     MOD_REGISTER_OBJ_OVERLOAD(CreditsSetup, NULL, NULL, CreditsSetup_StaticUpdate, NULL, NULL, NULL, NULL, NULL, NULL);
+
+    MOD_REGISTER_OBJ_OVERLOAD_MSV(BSS_Player, Mod_BSS_Player, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+    MOD_REGISTER_OBJ_OVERLOAD_MSV(DASetup, Mod_DASetup, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+    MOD_REGISTER_OBJ_OVERLOAD_MSV(Player, Mod_Player, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+    MOD_REGISTER_OBJ_OVERLOAD_MSV(PuyoBean, Mod_PuyoBean, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+    MOD_REGISTER_OBJ_OVERLOAD_MSV(PuyoLevelSelect, Mod_PuyoLevelSelect, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+    MOD_REGISTER_OBJ_OVERLOAD_MSV(UFO_Player, Mod_UFO_Player, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+
+    
+#if MANIA_USE_PLUS
+    MOD_REGISTER_OBJ_OVERLOAD_MSV(PBL_Player, Mod_PBL_Player, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+    MOD_REGISTER_OBJ_OVERLOAD_MSV(PBL_Crane, Mod_PBL_Crane, PBL_Crane_Update, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+    MOD_REGISTER_OBJ_OVERLOAD_MSV(PBL_Flipper, Mod_PBL_Flipper, NULL, NULL, PBL_Flipper_StaticUpdate, NULL, NULL, NULL, NULL, NULL, NULL);
+    MOD_REGISTER_OBJ_OVERLOAD_MSV(PBL_Setup, Mod_PBL_Setup, NULL, NULL, PBL_Setup_StaticUpdate, NULL, NULL, NULL, NULL, NULL, NULL);
+#endif
 
 #if MANIA_USE_PLUS
     MOD_REGISTER_OBJ_OVERLOAD_NOCLASS(CutsceneSeq, CutsceneSeq_Update, NULL, NULL, NULL, CutsceneSeq_Create, NULL, NULL, NULL, NULL);
 #endif
+
+    // Register Mod Callbacks
+    Mod.AddModCallback(MODCB_ONVIDEOSKIPCB, TitleSetup_ModCB_VideoSkip);
+    Mod.AddModCallback(MODCB_ONVIDEOSKIPCB, UIVideo_ModCB_VideoSkip);
+
+    // Get Public Functions
+    CutsceneSeq_CheckSkip  = Mod.GetPublicFunction(NULL, "CutsceneSeq_CheckSkip");
+    TitleSetup_VideoSkipCB = Mod.GetPublicFunction(NULL, "TitleSetup_VideoSkipCB");
+    UIVideo_SkipCB         = Mod.GetPublicFunction(NULL, "UIVideo_SkipCB");
 }
 
 #if RETRO_USE_MOD_LOADER

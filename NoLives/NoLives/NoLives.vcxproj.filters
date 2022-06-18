@@ -28,9 +28,6 @@
     <ClCompile Include="Objects\CompeitionSession.c">
       <Filter>Source Files\Objects</Filter>
     </ClCompile>
-    <ClCompile Include="Objects\Music.c">
-      <Filter>Source Files\Objects</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Objects\Player.h">
@@ -52,9 +49,6 @@
       <Filter>Source Files\Objects</Filter>
     </ClInclude>
     <ClInclude Include="Objects\CompetitionSession.h">
-      <Filter>Source Files\Objects</Filter>
-    </ClInclude>
-    <ClInclude Include="Objects\Music.h">
       <Filter>Source Files\Objects</Filter>
     </ClInclude>
   </ItemGroup>

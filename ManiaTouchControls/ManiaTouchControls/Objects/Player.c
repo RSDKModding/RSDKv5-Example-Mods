@@ -55,6 +55,15 @@ bool32 Player_Input_P1_Hook(bool32 skippedState)
             controller->keyStart.down = true;
             touchedPause              = true;
         }
+        
+        bool32 touchedDebug = false;
+        if (SceneInfo->debugMode) {
+            if (CheckTouchRect(0, 0, 112, 56, NULL, NULL) >= 0) {
+                ControllerInfo->keyX.down |= true;
+                controller->keyX.down = true;
+                touchedDebug          = true;
+            }
+        }
 
 #if MANIA_USE_PLUS
         bool32 touchedSwap = false;
@@ -78,6 +87,12 @@ bool32 Player_Input_P1_Hook(bool32 skippedState)
             controller->keyA.press |= controller->keyA.down;
         }
         Mod_Player->touchJump = controller->keyA.down;
+
+        if (!Mod_Player->touchDebug && touchedDebug) {
+            ControllerInfo->keyX.press |= ControllerInfo->keyX.down;
+            controller->keyX.press |= controller->keyX.down;
+        }
+        Mod_Player->touchDebug = controller->keyX.down;
 
         if (!Mod_Player->touchPause && touchedPause) {
             ControllerInfo->keyStart.press |= ControllerInfo->keyStart.down;

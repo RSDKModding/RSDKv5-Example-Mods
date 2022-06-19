@@ -6,6 +6,7 @@
 #include "Objects/PBL_Player.h"
 #include "Objects/HUD.h"
 #include "Objects/ActClear.h"
+#include "Objects/DebugMode.h"
 #include "Objects/BSS_HUD.h"
 #include "Objects/PBL_Crane.h"
 #include "Objects/PBL_Flipper.h"
@@ -89,6 +90,7 @@ void InitModAPI(void)
 
     MOD_REGISTER_OBJ_OVERLOAD_MSV(BSS_Player, Mod_BSS_Player, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
     MOD_REGISTER_OBJ_OVERLOAD_MSV(DASetup, Mod_DASetup, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+    MOD_REGISTER_OBJ_OVERLOAD(DebugMode, DebugMode_Update, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
     MOD_REGISTER_OBJ_OVERLOAD_MSV(Player, Mod_Player, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
     MOD_REGISTER_OBJ_OVERLOAD_MSV(PuyoBean, Mod_PuyoBean, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
     MOD_REGISTER_OBJ_OVERLOAD_MSV(PuyoLevelSelect, Mod_PuyoLevelSelect, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);

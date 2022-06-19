@@ -94,6 +94,9 @@
     <ClCompile Include="Objects\UIVideo.c">
       <Filter>Source Files\Objects</Filter>
     </ClCompile>
+    <ClCompile Include="Objects\DebugMode.c">
+      <Filter>Source Files\Objects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Objects\Player.h">
@@ -184,6 +187,9 @@
       <Filter>Source Files\Objects</Filter>
     </ClInclude>
     <ClInclude Include="Objects\UIVideo.h">
+      <Filter>Source Files\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\DebugMode.h">
       <Filter>Source Files\Objects</Filter>
     </ClInclude>
   </ItemGroup>

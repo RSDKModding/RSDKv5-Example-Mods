@@ -181,6 +181,7 @@
     <ClCompile Include="Objects\CreditsSetup.c" />
     <ClCompile Include="Objects\CutsceneSeq.c" />
     <ClCompile Include="Objects\DASetup.c" />
+    <ClCompile Include="Objects\DebugMode.c" />
     <ClCompile Include="Objects\FXFade.c" />
     <ClCompile Include="Objects\HUD.c" />
     <ClCompile Include="Objects\PBL_Crane.c" />
@@ -213,6 +214,7 @@
     <ClInclude Include="Objects\CreditsSetup.h" />
     <ClInclude Include="Objects\CutsceneSeq.h" />
     <ClInclude Include="Objects\DASetup.h" />
+    <ClInclude Include="Objects\DebugMode.h" />
     <ClInclude Include="Objects\FXFade.h" />
     <ClInclude Include="Objects\HUD.h" />
     <ClInclude Include="Objects\PBL_Crane.h" />

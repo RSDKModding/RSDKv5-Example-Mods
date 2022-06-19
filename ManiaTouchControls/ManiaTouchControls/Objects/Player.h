@@ -213,6 +213,7 @@ typedef struct {
 // Modded Object Class
 typedef struct {
     uint8 touchJump;
+    uint8 touchDebug;
     uint8 touchPause;
     uint8 touchSwap;
 } ModObjectPlayer;

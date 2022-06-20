@@ -4,3 +4,6 @@
 #include "Menu/MainMenu.c"
 #include "Menu/UIDiorama.c"
 #endif
+
+#include "Bosses/SpiderMobile.c"
+#include "Bosses/HeavyShinobi.c"

@@ -3,7 +3,7 @@ MOD_PATH := $(LOCAL_PATH)
 include $(CLEAR_VARS)
 
 # Change this or pass to ndk-build manually
-MOD_NAME := ManiaTouchControls
+MOD_NAME := DuckysDevTools
 
 LOCAL_MODULE := $(MOD_NAME)
 
@@ -15,7 +15,6 @@ LOCAL_C_INCLUDES := \
 LOCAL_SRC_FILES := \
     $(MOD_PATH)/GameAPI/C/GameAPI/Game.c \
     $(MOD_PATH)/$(MOD_NAME)/dllmain.c \
-    $(MOD_PATH)/$(MOD_NAME)/Helpers.c \
     $(MOD_PATH)/$(MOD_NAME)/Objects/All.c
 
 LOCAL_LDLIBS := -llog

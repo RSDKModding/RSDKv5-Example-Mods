@@ -31,7 +31,7 @@ void BSS_HUD_Draw(void)
                     int32 playFieldPos = (x * BSS_PLAYFIELD_H) + y;
                     uint16 type        = playFields[p][playFieldPos] & 0x7F;
     
-                    RSDK.DrawRect((ScreenInfo->width - 64) + (x << 1), (ScreenInfo->height - (3 * 64)) + (p * 64) + (y << 1), 2, 2, colors[type],
+                    RSDK.DrawRect((ScreenInfo->size.x - 64) + (x << 1), (ScreenInfo->size.y - (3 * 64)) + (p * 64) + (y << 1), 2, 2, colors[type],
                                   0xFF, INK_NONE, true);
                 }
             }

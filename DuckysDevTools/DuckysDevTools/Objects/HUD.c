@@ -19,7 +19,7 @@ void HUD_Draw(void)
             // Draw this (its drawn when debug mode is on by default
             if (RSDK_GET_ENTITY(SLOT_PLAYER1, Player)->classID != debugMode->classID) {
                 // Draw Camera YPos
-                debugPos.x = (ScreenInfo[SceneInfo->currentScreenID].width - 16) << 16;
+                debugPos.x = (ScreenInfo[SceneInfo->currentScreenID].size.x - 16) << 16;
                 debugPos.y = 0x180000;
                 HUD_DrawNumbersBase16(&debugPos, ScreenInfo[SceneInfo->currentScreenID].position.y);
 
@@ -28,7 +28,7 @@ void HUD_Draw(void)
                 HUD_DrawNumbersBase16(&debugPos, ScreenInfo[SceneInfo->currentScreenID].position.x);
 
                 // Draw Player YPos
-                debugPos.x = (ScreenInfo[SceneInfo->currentScreenID].width - 16) << 16;
+                debugPos.x = (ScreenInfo[SceneInfo->currentScreenID].size.x - 16) << 16;
                 debugPos.y += 0x100000;
                 HUD_DrawNumbersBase16(&debugPos, (player->position.y >> 0x10));
 
@@ -38,7 +38,7 @@ void HUD_Draw(void)
             }
 
             // Draw Player YVel
-            debugPos.x = (ScreenInfo[SceneInfo->currentScreenID].width - 16) << 16;
+            debugPos.x = (ScreenInfo[SceneInfo->currentScreenID].size.x - 16) << 16;
             debugPos.y = 0x380000;
             HUD_DrawNumbersBase16(&debugPos, (player->velocity.y >> 0x10));
 
@@ -47,7 +47,7 @@ void HUD_Draw(void)
             HUD_DrawNumbersBase16(&debugPos, player->onGround ? (player->groundVel >> 0x10) : (player->velocity.x >> 0x10));
 
             // Draw Player collision layers
-            debugPos.x = (ScreenInfo[SceneInfo->currentScreenID].width - 16) << 16;
+            debugPos.x = (ScreenInfo[SceneInfo->currentScreenID].size.x - 16) << 16;
             debugPos.y += 0x100000;
             HUD_DrawNumbersBase16(&debugPos, player->collisionLayers);
 
@@ -56,7 +56,7 @@ void HUD_Draw(void)
             HUD_DrawNumbersBase16(&debugPos, player->angle);
 
             // Draw Player collision plane
-            debugPos.x = (ScreenInfo[SceneInfo->currentScreenID].width - 16) << 16;
+            debugPos.x = (ScreenInfo[SceneInfo->currentScreenID].size.x - 16) << 16;
             debugPos.y += 0x100000;
             HUD_DrawNumbersBase16(&debugPos, player->collisionPlane);
 

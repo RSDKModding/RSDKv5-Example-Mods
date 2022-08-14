@@ -1,2 +1,2 @@
 # RSDKv5-Example-Mods
-A set of example mods using RSDKv5
+A collection of example mods using RSDKv5's GameAPI

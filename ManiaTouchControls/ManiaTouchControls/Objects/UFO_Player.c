@@ -14,7 +14,7 @@ bool32 UFO_Player_Input_P1_Hook(bool32 skippedState)
         RSDKControllerState *controller = &ControllerInfo[self->controllerID];
 
         int32 tx = 0, ty = 0;
-        if (CheckTouchRect(0, 96, ScreenInfo->centerX, ScreenInfo->height, &tx, &ty) >= 0) {
+        if (CheckTouchRect(0, 96, ScreenInfo->center.x, ScreenInfo->size.y, &tx, &ty) >= 0) {
             tx -= config.moveDPadPos.x;
             ty -= config.moveDPadPos.y;
 
@@ -43,14 +43,14 @@ bool32 UFO_Player_Input_P1_Hook(bool32 skippedState)
 
         // fixes a bug with button vs touch
         bool32 touchedJump = false;
-        if (CheckTouchRect(ScreenInfo->centerX, 96, ScreenInfo->width, ScreenInfo->height, NULL, NULL) >= 0) {
+        if (CheckTouchRect(ScreenInfo->center.x, 96, ScreenInfo->size.x, ScreenInfo->size.y, NULL, NULL) >= 0) {
             ControllerInfo->keyA.down |= true;
             controller->keyA.down = true;
             touchedJump           = true;
         }
 
         bool32 touchedPause = false;
-        if (CheckTouchRect(ScreenInfo->width - 0x80, 0, ScreenInfo->width, 0x40, NULL, NULL) >= 0) {
+        if (CheckTouchRect(ScreenInfo->size.x - 0x80, 0, ScreenInfo->size.x, 0x40, NULL, NULL) >= 0) {
             ControllerInfo->keyStart.down |= true;
             controller->keyStart.down = true;
             touchedPause              = true;

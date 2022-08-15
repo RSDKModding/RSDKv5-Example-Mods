@@ -1,4 +1,4 @@
-#include "All.h"
+#include "../../ModConfig.h"
 
 ObjectUIDiorama *UIDiorama;
 

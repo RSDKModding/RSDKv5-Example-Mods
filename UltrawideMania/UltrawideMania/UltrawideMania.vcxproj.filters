@@ -11,43 +11,37 @@
     <Filter Include="GameAPI">
       <UniqueIdentifier>{c2e2d1aa-1805-487f-9beb-763e5b22492c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Objects\Bosses">
+      <UniqueIdentifier>{45fb54b5-1861-46cb-b8a5-69c0235e11f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Objects\Menu">
+      <UniqueIdentifier>{69de7ba3-5439-4c24-a90b-567c9a4cc8f3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Objects\Player.c">
-      <Filter>Source Files\Objects</Filter>
-    </ClCompile>
     <ClCompile Include="..\GameAPI\C\GameAPI\Game.c">
       <Filter>GameAPI</Filter>
     </ClCompile>
-    <ClCompile Include="Objects\BSS_HUD.c">
+    <ClCompile Include="Objects\All.c">
       <Filter>Source Files\Objects</Filter>
     </ClCompile>
-    <ClCompile Include="Objects\HUD.c">
-      <Filter>Source Files\Objects</Filter>
+    <ClCompile Include="Objects\Bosses\HeavyShinobi.c">
+      <Filter>Source Files\Objects\Bosses</Filter>
     </ClCompile>
-    <ClCompile Include="Objects\BSS_Player.c">
-      <Filter>Source Files\Objects</Filter>
+    <ClCompile Include="Objects\Bosses\SpiderMobile.c">
+      <Filter>Source Files\Objects\Bosses</Filter>
     </ClCompile>
-    <ClCompile Include="Objects\UFO_Player.c">
-      <Filter>Source Files\Objects</Filter>
+    <ClCompile Include="Objects\Menu\MainMenu.c">
+      <Filter>Source Files\Objects\Menu</Filter>
     </ClCompile>
-    <ClCompile Include="Objects\CreditsSetup.c">
-      <Filter>Source Files\Objects</Filter>
-    </ClCompile>
-    <ClCompile Include="Objects\FXFade.c">
-      <Filter>Source Files\Objects</Filter>
-    </ClCompile>
-    <ClCompile Include="Objects\CutsceneSeq.c">
-      <Filter>Source Files\Objects</Filter>
+    <ClCompile Include="Objects\Menu\UIDiorama.c">
+      <Filter>Source Files\Objects\Menu</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Objects\Player.h">
-      <Filter>Source Files\Objects</Filter>
-    </ClInclude>
     <ClInclude Include="..\GameAPI\C\GameAPI\Game.h">
       <Filter>GameAPI</Filter>
     </ClInclude>
@@ -60,29 +54,29 @@
     <ClInclude Include="..\GameAPI\C\GameAPI\GameVariables.h">
       <Filter>GameAPI</Filter>
     </ClInclude>
-    <ClInclude Include="Objects\BSS_HUD.h">
-      <Filter>Source Files\Objects</Filter>
-    </ClInclude>
-    <ClInclude Include="Objects\HUD.h">
-      <Filter>Source Files\Objects</Filter>
-    </ClInclude>
-    <ClInclude Include="Objects\BSS_Player.h">
-      <Filter>Source Files\Objects</Filter>
-    </ClInclude>
-    <ClInclude Include="Objects\UFO_Player.h">
-      <Filter>Source Files\Objects</Filter>
-    </ClInclude>
     <ClInclude Include="ModConfig.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="Objects\CreditsSetup.h">
+    <ClInclude Include="Objects\All.h">
       <Filter>Source Files\Objects</Filter>
     </ClInclude>
-    <ClInclude Include="Objects\FXFade.h">
+    <ClInclude Include="Objects\Zone.h">
       <Filter>Source Files\Objects</Filter>
     </ClInclude>
-    <ClInclude Include="Objects\CutsceneSeq.h">
-      <Filter>Source Files\Objects</Filter>
+    <ClInclude Include="Objects\Bosses\HeavyShinobi.h">
+      <Filter>Source Files\Objects\Bosses</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Bosses\SpiderMobile.h">
+      <Filter>Source Files\Objects\Bosses</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Menu\MainMenu.h">
+      <Filter>Source Files\Objects\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Menu\UIControl.h">
+      <Filter>Source Files\Objects\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Menu\UIDiorama.h">
+      <Filter>Source Files\Objects\Menu</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

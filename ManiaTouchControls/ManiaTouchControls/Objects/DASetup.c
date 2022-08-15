@@ -12,7 +12,7 @@ bool32 DASetup_State_ManageControl_Hook(bool32 skippedState) {
     uint8 dir = -1;
 
     int32 tx = 0, ty = 0;
-    if (CheckTouchRect(0, 96, ScreenInfo->centerX, ScreenInfo->height, &tx, &ty) >= 0) {
+    if (CheckTouchRect(0, 96, ScreenInfo->center.x, ScreenInfo->size.y, &tx, &ty) >= 0) {
         tx -= config.moveDPadPos.x;
         ty -= config.moveDPadPos.y;
 
@@ -41,13 +41,13 @@ bool32 DASetup_State_ManageControl_Hook(bool32 skippedState) {
 
     // fixes a bug with button vs touch
     bool32 touchedConfirm = false;
-    if (CheckTouchRect(ScreenInfo->centerX, 96, ScreenInfo->width, ScreenInfo->height, NULL, NULL) >= 0) {
+    if (CheckTouchRect(ScreenInfo->center.x, 96, ScreenInfo->size.x, ScreenInfo->size.y, NULL, NULL) >= 0) {
         ControllerInfo->keyA.down |= true;
         touchedConfirm = true;
     }
 
     bool32 touchedBack = false;
-    if (CheckTouchRect(ScreenInfo->centerX, 0, ScreenInfo->width, 96, NULL, NULL) >= 0) {
+    if (CheckTouchRect(ScreenInfo->center.x, 0, ScreenInfo->size.x, 96, NULL, NULL) >= 0) {
         ControllerInfo->keyB.down |= true;
         touchedBack = true;
     }

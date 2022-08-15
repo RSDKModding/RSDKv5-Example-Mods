@@ -21,7 +21,7 @@ void PuyoLevelSelect_Update(void)
         bool32 touched = false;
 
         int32 tx = 0, ty = 0;
-        if (CheckTouchRect(0, 96, ScreenInfo->centerX, ScreenInfo->height, &tx, &ty) >= 0) {
+        if (CheckTouchRect(0, 96, ScreenInfo->center.x, ScreenInfo->size.y, &tx, &ty) >= 0) {
             tx -= config.moveDPadPos.x;
             ty -= config.moveDPadPos.y;
 
@@ -56,17 +56,17 @@ void PuyoLevelSelect_Update(void)
         setBit(Mod_PuyoLevelSelect->touchFlags, controller->keyUp.down, 0);
         setBit(Mod_PuyoLevelSelect->touchFlags, controller->keyDown.down, 1);
 
-        int32 halfX = ScreenInfo->centerX / 2;
+        int32 halfX = ScreenInfo->center.x / 2;
 
         bool32 touchedJump = false;
-        if (CheckTouchRect(ScreenInfo->centerX, 96, ScreenInfo->centerX + halfX, ScreenInfo->height, NULL, NULL) >= 0) {
+        if (CheckTouchRect(ScreenInfo->center.x, 96, ScreenInfo->center.x + halfX, ScreenInfo->size.y, NULL, NULL) >= 0) {
             ControllerInfo->keyB.down |= true;
             controller->keyB.down = true;
             touched               = true;
         }
 
         bool32 touchedPause = false;
-        if (CheckTouchRect(ScreenInfo->centerX + halfX, 96, ScreenInfo->width, ScreenInfo->height, NULL, NULL) >= 0) {
+        if (CheckTouchRect(ScreenInfo->center.x + halfX, 96, ScreenInfo->size.x, ScreenInfo->size.y, NULL, NULL) >= 0) {
             ControllerInfo->keyA.down |= true;
             controller->keyA.down = true;
             touched               = true;

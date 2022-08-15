@@ -8,7 +8,7 @@ void PuyoGame_Update(void)
 {
     RSDK_THIS(PuyoGame);
 
-    if (CheckTouchRect(ScreenInfo->width - 0x80, 0, ScreenInfo->width, 0x40, NULL, NULL) >= 0) {
+    if (CheckTouchRect(ScreenInfo->size.x - 0x80, 0, ScreenInfo->size.x, 0x40, NULL, NULL) >= 0) {
         if (!ControllerInfo->keyStart.down)
             ControllerInfo->keyStart.press = true;
     }

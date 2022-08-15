@@ -2,8 +2,10 @@
 #define MOD_CONFIG_H
 
 #include "GameAPI/Game.h"
+#include "Objects/All.h"
 
 typedef struct {
+    uint8 temp;
 } ModConfig;
 
 extern ModConfig config;

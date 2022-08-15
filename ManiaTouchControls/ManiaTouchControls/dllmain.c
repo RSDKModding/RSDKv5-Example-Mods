@@ -50,33 +50,33 @@ void InitModAPI(void)
     Mod.SaveSettings();
 
     // Register State Hooks
-    Mod.RegisterStateHook(Mod.GetPublicFunction(NULL, "Player_Input_P1"), Player_Input_P1_Hook, false);
+    Mod.RegisterStateHook(Mod.GetPublicFunction(NULL, "Player_Input_P1"), Player_Input_P1_Hook, true);
 
-    Mod.RegisterStateHook(Mod.GetPublicFunction(NULL, "BSS_Player_Input_P1"), BSS_Player_Input_P1_Hook, false);
+    Mod.RegisterStateHook(Mod.GetPublicFunction(NULL, "BSS_Player_Input_P1"), BSS_Player_Input_P1_Hook, true);
 
-    Mod.RegisterStateHook(Mod.GetPublicFunction(NULL, "UFO_Player_Input_P1"), UFO_Player_Input_P1_Hook, false);
+    Mod.RegisterStateHook(Mod.GetPublicFunction(NULL, "UFO_Player_Input_P1"), UFO_Player_Input_P1_Hook, true);
 
-    Mod.RegisterStateHook(Mod.GetPublicFunction(NULL, "ActClear_State_TallyScore"), ActClear_State_TallyScore_Hook, false);
+    Mod.RegisterStateHook(Mod.GetPublicFunction(NULL, "ActClear_State_TallyScore"), ActClear_State_TallyScore_Hook, true);
 
-    Mod.RegisterStateHook(Mod.GetPublicFunction(NULL, "PuyoBean_Input_Player"), PuyoBean_Input_Player_Hook, false);
+    Mod.RegisterStateHook(Mod.GetPublicFunction(NULL, "PuyoBean_Input_Player"), PuyoBean_Input_Player_Hook, true);
 
-    Mod.RegisterStateHook(Mod.GetPublicFunction(NULL, "PuyoGame_State_ShowMatchResults"), PuyoGame_State_ShowMatchResults_Hook, false);
-    Mod.RegisterStateHook(Mod.GetPublicFunction(NULL, "PuyoGame_State_ShowRoundResults"), PuyoGame_State_ShowRoundResults_Hook, false);
+    Mod.RegisterStateHook(Mod.GetPublicFunction(NULL, "PuyoGame_State_ShowMatchResults"), PuyoGame_State_ShowMatchResults_Hook, true);
+    Mod.RegisterStateHook(Mod.GetPublicFunction(NULL, "PuyoGame_State_ShowRoundResults"), PuyoGame_State_ShowRoundResults_Hook, true);
 
-    Mod.RegisterStateHook(Mod.GetPublicFunction(NULL, "CPZBoss_State_HandleMatch_Player"), CPZBoss_State_HandleMatch_Player_Hook, false);
+    Mod.RegisterStateHook(Mod.GetPublicFunction(NULL, "CPZBoss_State_HandleMatch_Player"), CPZBoss_State_HandleMatch_Player_Hook, true);
 
-    Mod.RegisterStateHook(Mod.GetPublicFunction(NULL, "TryAgain_State_Stinger"), TryAgain_State_Stinger_Hook, false);
+    Mod.RegisterStateHook(Mod.GetPublicFunction(NULL, "TryAgain_State_Stinger"), TryAgain_State_Stinger_Hook, true);
 
-    Mod.RegisterStateHook(Mod.GetPublicFunction(NULL, "DASetup_State_ManageControl"), DASetup_State_ManageControl_Hook, false);
+    Mod.RegisterStateHook(Mod.GetPublicFunction(NULL, "DASetup_State_ManageControl"), DASetup_State_ManageControl_Hook, true);
 
 #if MANIA_USE_PLUS
-    Mod.RegisterStateHook(Mod.GetPublicFunction(NULL, "PBL_Player_Input_P1"), PBL_Player_Input_P1_Hook, false);
+    Mod.RegisterStateHook(Mod.GetPublicFunction(NULL, "PBL_Player_Input_P1"), PBL_Player_Input_P1_Hook, true);
 
-    Mod.RegisterStateHook(Mod.GetPublicFunction(NULL, "ActClear_State_ShowResultsTA"), ActClear_State_ShowResultsTA_Hook, false);
+    Mod.RegisterStateHook(Mod.GetPublicFunction(NULL, "ActClear_State_ShowResultsTA"), ActClear_State_ShowResultsTA_Hook, true);
 
-    Mod.RegisterStateHook(Mod.GetPublicFunction(NULL, "TryAgainE_State_Stinger"), TryAgainE_State_Stinger_Hook, false);
+    Mod.RegisterStateHook(Mod.GetPublicFunction(NULL, "TryAgainE_State_Stinger"), TryAgainE_State_Stinger_Hook, true);
 
-    Mod.RegisterStateHook(Mod.GetPublicFunction(NULL, "Summary_State_Wait"), Summary_State_Wait_Hook, false);
+    Mod.RegisterStateHook(Mod.GetPublicFunction(NULL, "Summary_State_Wait"), Summary_State_Wait_Hook, true);
 #endif
 
     // Register Object Hooks

@@ -16,7 +16,7 @@ DLLExport bool32 LinkModLogic(EngineInfo *info, const char *id);
 void SetExtraWidth(void *d)
 {
     (void)d;
-    extraWidth = (ScreenInfo->width - 424) / 2;
+    extraWidth = (ScreenInfo->size.x - 424) / 2;
 }
 
 void InitModAPI(void)
@@ -27,7 +27,7 @@ void InitModAPI(void)
     MOD_REGISTER_OBJ_OVERLOAD(UIDiorama, UIDiorama_Update, NULL, NULL, NULL, UIDiorama_Create, NULL, NULL, NULL, NULL);
     MOD_REGISTER_OBJ_OVERLOAD(MainMenu, NULL, NULL, MainMenu_StaticUpdate, NULL, NULL, NULL, NULL, NULL, NULL);
 
-    MathHelpers_PointInHitbox          = Mod.GetPublicFunction(NULL, "MathHelpers_PointInHitbox");
+    MathHelpers_PointInHitbox = Mod.GetPublicFunction(NULL, "MathHelpers_PointInHitbox");
 
     SpiderMobile_StateBody_AwaitPlayer = Mod.GetPublicFunction(NULL, "SpiderMobile_StateBody_AwaitPlayer");
     Mod.RegisterStateHook(SpiderMobile_StateBody_AwaitPlayer, SpiderMobile_StateBody_AwaitPlayer_Pre, true);

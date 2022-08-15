@@ -12,24 +12,24 @@ void PBL_Flipper_StaticUpdate(void)
     if (!Mod_PBL_Crane->active) {
         RSDKControllerState *controller = &ControllerInfo[CONT_P1];
 
-        int32 div = ScreenInfo->centerX / 3;
+        int32 div = ScreenInfo->center.x / 3;
 
         bool32 touchedL = true;
-        if (CheckTouchRect(ScreenInfo->centerX, 96, ScreenInfo->centerX + div, ScreenInfo->height, NULL, NULL) >= 0) {
+        if (CheckTouchRect(ScreenInfo->center.x, 96, ScreenInfo->center.x + div, ScreenInfo->size.y, NULL, NULL) >= 0) {
             TriggerInfoL[CONT_P1].keyBumper.down |= true;
             TriggerInfoL->keyBumper.down = true;
             touchedL                     = true;
         }
 
         bool32 touchedB = true;
-        if (CheckTouchRect(ScreenInfo->centerX + div, 96, ScreenInfo->centerX + (div * 2), ScreenInfo->height, NULL, NULL) >= 0) {
+        if (CheckTouchRect(ScreenInfo->center.x + div, 96, ScreenInfo->center.x + (div * 2), ScreenInfo->size.y, NULL, NULL) >= 0) {
             ControllerInfo[CONT_P1].keyA.down |= true;
             ControllerInfo->keyA.down = true;
             touchedB                  = true;
         }
 
         bool32 touchedR = true;
-        if (CheckTouchRect(ScreenInfo->centerX + (div * 2), 96, ScreenInfo->width, ScreenInfo->height, NULL, NULL) >= 0) {
+        if (CheckTouchRect(ScreenInfo->center.x + (div * 2), 96, ScreenInfo->size.x, ScreenInfo->size.y, NULL, NULL) >= 0) {
             TriggerInfoR[CONT_P1].keyBumper.down |= true;
             TriggerInfoR->keyBumper.down = true;
             touchedR                     = true;

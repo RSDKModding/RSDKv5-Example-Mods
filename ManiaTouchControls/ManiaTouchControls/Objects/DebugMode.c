@@ -13,7 +13,7 @@ void DebugMode_Update(void)
     RSDKControllerState *controller = &ControllerInfo[CONT_P1];
 
     int32 tx = 0, ty = 0;
-    if (CheckTouchRect(0, 96, ScreenInfo->centerX, ScreenInfo->height, &tx, &ty) >= 0) {
+    if (CheckTouchRect(0, 96, ScreenInfo->center.x, ScreenInfo->size.y, &tx, &ty) >= 0) {
         tx -= config.moveDPadPos.x;
         ty -= config.moveDPadPos.y;
 
@@ -76,8 +76,8 @@ void DebugMode_Update(void)
         DebugMode->itemType = DebugMode->itemTypeCount ? (DebugMode->itemTypeCount - 1) : 0;
 
     tx = 0, ty = 0;
-    if (CheckTouchRect(ScreenInfo->centerX - 48, 0, ScreenInfo->centerX + 48, 56, &tx, &ty) >= 0) {
-        if (tx > ScreenInfo->centerX) {
+    if (CheckTouchRect(ScreenInfo->center.x - 48, 0, ScreenInfo->center.x + 48, 56, &tx, &ty) >= 0) {
+        if (tx > ScreenInfo->center.x) {
             if (!Mod_Player->touchJump) {
                 DebugMode->itemType++;
                 if (DebugMode->itemType >= DebugMode->itemTypeCount) {
@@ -109,7 +109,7 @@ void DebugMode_Update(void)
         }
     }
     else {
-        switch (CheckTouchRect(ScreenInfo->centerX, 96, ScreenInfo->width, SCREEN_YSIZE, NULL, NULL)) {
+        switch (CheckTouchRect(ScreenInfo->center.x, 96, ScreenInfo->size.x, SCREEN_YSIZE, NULL, NULL)) {
             case -1: Mod_Player->touchJump = false; break;
 
             case 0:
@@ -151,7 +151,7 @@ void DebugMode_Update(void)
     Mod_Player->touchDebug = controller->keyY.down;
 #endif
 
-    if (CheckTouchRect(ScreenInfo->width - 88, 0, ScreenInfo->width, 40, NULL, NULL) >= 0 || controller->keyStart.press || Unknown_pausePress) {
+    if (CheckTouchRect(ScreenInfo->size.x - 88, 0, ScreenInfo->size.x, 40, NULL, NULL) >= 0 || controller->keyStart.press || Unknown_pausePress) {
         if (SceneInfo->state == ENGINESTATE_REGULAR) {
             // fuck it, TODO: this
             // EntityPauseMenu *pauseMenu = RSDK_GET_ENTITY(SLOT_PAUSEMENU);

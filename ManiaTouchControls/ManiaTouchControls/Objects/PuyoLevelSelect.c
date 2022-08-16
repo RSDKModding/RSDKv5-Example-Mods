@@ -44,17 +44,17 @@ void PuyoLevelSelect_Update(void)
             }
         }
 
-        if (!getBit(Mod_PuyoLevelSelect->touchFlags, 0) && touched) {
+        if (!GET_BIT(Mod_PuyoLevelSelect->touchFlags, 0) && touched) {
             ControllerInfo->keyUp.press |= ControllerInfo->keyUp.down;
             controller->keyUp.press |= controller->keyUp.down;
         }
 
-        if (!getBit(Mod_PuyoLevelSelect->touchFlags, 1) && touched) {
+        if (!GET_BIT(Mod_PuyoLevelSelect->touchFlags, 1) && touched) {
             ControllerInfo->keyDown.press |= ControllerInfo->keyDown.down;
             controller->keyDown.press |= controller->keyDown.down;
         }
-        setBit(Mod_PuyoLevelSelect->touchFlags, controller->keyUp.down, 0);
-        setBit(Mod_PuyoLevelSelect->touchFlags, controller->keyDown.down, 1);
+        SET_BIT(Mod_PuyoLevelSelect->touchFlags, controller->keyUp.down, 0);
+        SET_BIT(Mod_PuyoLevelSelect->touchFlags, controller->keyDown.down, 1);
 
         int32 halfX = ScreenInfo->center.x / 2;
 
@@ -72,18 +72,18 @@ void PuyoLevelSelect_Update(void)
             touched               = true;
         }
 
-        if (!getBit(Mod_PuyoLevelSelect->touchFlags, 2) && touched) {
+        if (!GET_BIT(Mod_PuyoLevelSelect->touchFlags, 2) && touched) {
             ControllerInfo->keyA.press |= ControllerInfo->keyA.down;
             controller->keyA.press |= controller->keyA.down;
         }
 
-        if (!getBit(Mod_PuyoLevelSelect->touchFlags, 3) && touched) {
+        if (!GET_BIT(Mod_PuyoLevelSelect->touchFlags, 3) && touched) {
             ControllerInfo->keyB.press |= ControllerInfo->keyB.down;
             controller->keyB.press |= controller->keyB.down;
         }
 
-        setBit(Mod_PuyoLevelSelect->touchFlags, controller->keyA.down, 2);
-        setBit(Mod_PuyoLevelSelect->touchFlags, controller->keyB.down, 3);
+        SET_BIT(Mod_PuyoLevelSelect->touchFlags, controller->keyA.down, 2);
+        SET_BIT(Mod_PuyoLevelSelect->touchFlags, controller->keyB.down, 3);
     }
 
     Mod.Super(PuyoLevelSelect->classID, SUPER_UPDATE, NULL);

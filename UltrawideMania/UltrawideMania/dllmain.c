@@ -65,3 +65,9 @@ bool32 LinkModLogic(EngineInfo *info, const char *id)
     return true;
 }
 #endif
+
+#ifdef __vita__
+void main() __attribute__ ((weak, alias ("module_start")));
+int module_start(int argc, const void *args) {};
+int module_stop(int argc, const void *args) {};
+#endif

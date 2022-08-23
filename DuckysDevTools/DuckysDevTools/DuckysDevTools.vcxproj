@@ -176,6 +176,7 @@
     <ClCompile Include="Objects\Announcer.c" />
     <ClCompile Include="Objects\BSS_HUD.c" />
     <ClCompile Include="Objects\BSS_Setup.c" />
+    <ClCompile Include="Objects\COverlay.c" />
     <ClCompile Include="Objects\HUD.c" />
     <ClCompile Include="Objects\LottoMachine.c" />
     <ClCompile Include="Objects\Player.c" />
@@ -188,9 +189,11 @@
     <ClInclude Include="Objects\Announcer.h" />
     <ClInclude Include="Objects\BSS_HUD.h" />
     <ClInclude Include="Objects\BSS_Setup.h" />
+    <ClInclude Include="Objects\COverlay.h" />
     <ClInclude Include="Objects\HUD.h" />
     <ClInclude Include="Objects\LottoMachine.h" />
     <ClInclude Include="Objects\Player.h" />
+    <ClInclude Include="Objects\Zone.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

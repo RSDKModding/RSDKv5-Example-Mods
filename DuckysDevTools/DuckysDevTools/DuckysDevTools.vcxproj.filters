@@ -37,6 +37,9 @@
     <ClCompile Include="Objects\BSS_Setup.c">
       <Filter>Source Files\Objects</Filter>
     </ClCompile>
+    <ClCompile Include="Objects\COverlay.c">
+      <Filter>Source Files\Objects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Objects\Player.h">
@@ -67,6 +70,12 @@
       <Filter>Source Files\Objects</Filter>
     </ClInclude>
     <ClInclude Include="Objects\BSS_Setup.h">
+      <Filter>Source Files\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\COverlay.h">
+      <Filter>Source Files\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Zone.h">
       <Filter>Source Files\Objects</Filter>
     </ClInclude>
   </ItemGroup>

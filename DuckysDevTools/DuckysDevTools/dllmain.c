@@ -3,6 +3,7 @@
 #include "Objects/Player.h"
 #include "Objects/HUD.h"
 #include "Objects/BSS_HUD.h"
+#include "Objects/COverlay.h"
 
 #if RETRO_USE_MOD_LOADER
 DLLExport bool32 LinkModLogic(EngineInfo *info, const char *id);
@@ -17,6 +18,7 @@ void InitModAPI(void)
     MOD_REGISTER_OBJ_OVERLOAD(BSS_HUD, NULL, NULL, BSS_HUD_StaticUpdate, BSS_HUD_Draw, NULL, NULL, NULL, NULL, NULL);
     MOD_REGISTER_OBJ_OVERLOAD(HUD, NULL, NULL, NULL, HUD_Draw, NULL, NULL, NULL, NULL, NULL);
     MOD_REGISTER_OBJ_OVERLOAD(Player, NULL, NULL, NULL, NULL, NULL, Player_StageLoad, NULL, NULL, NULL);
+    MOD_REGISTER_OBJ_OVERLOAD(COverlay, NULL, NULL, NULL, COverlay_Draw, NULL, NULL, NULL, NULL, NULL);
 
     // Get Public Funcs
     Player_ChangeCharacter = Mod.GetPublicFunction(NULL, "Player_ChangeCharacter");

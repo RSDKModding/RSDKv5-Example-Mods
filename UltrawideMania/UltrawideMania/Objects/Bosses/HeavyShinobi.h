@@ -48,8 +48,8 @@ struct EntityHeavyShinobi {
 
 extern ObjectHeavyShinobi *HeavyShinobi;
 
-extern StateMachine(HeavyShinobi_State_Setup);
+extern StateMachine(HeavyShinobi_State_Init);
 
-bool32 HeavyShinobi_State_Setup_Hook(bool32);
+bool32 HeavyShinobi_State_Init_Hook(bool32);
 
 #endif

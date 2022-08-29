@@ -33,8 +33,8 @@ void InitModAPI(void)
     Mod.RegisterStateHook(SpiderMobile_StateBody_AwaitPlayer, SpiderMobile_StateBody_AwaitPlayer_Pre, true);
     Mod.RegisterStateHook(SpiderMobile_StateBody_AwaitPlayer, SpiderMobile_StateBody_AwaitPlayer_Hook, false);
 
-    HeavyShinobi_State_Setup = Mod.GetPublicFunction(NULL, "HeavyShinobi_State_Setup");
-    Mod.RegisterStateHook(HeavyShinobi_State_Setup, HeavyShinobi_State_Setup_Hook, false);
+    HeavyShinobi_State_Init = Mod.GetPublicFunction(NULL, "HeavyShinobi_State_Init");
+    Mod.RegisterStateHook(HeavyShinobi_State_Init, HeavyShinobi_State_Init_Hook, false);
 
     MOD_REGISTER_OBJECT_HOOK(SpiderMobile);
     MOD_REGISTER_OBJECT_HOOK(Zone);

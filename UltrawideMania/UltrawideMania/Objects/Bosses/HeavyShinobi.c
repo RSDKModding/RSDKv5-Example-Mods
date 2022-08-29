@@ -1,9 +1,9 @@
 #include "../../ModConfig.h"
 ObjectHeavyShinobi *HeavyShinobi;
 
-StateMachine(HeavyShinobi_State_Setup);
+StateMachine(HeavyShinobi_State_Init);
 
-bool32 HeavyShinobi_State_Setup_Hook(bool32 skip)
+bool32 HeavyShinobi_State_Init_Hook(bool32 skip)
 {
     RSDK_THIS(HeavyShinobi);
 

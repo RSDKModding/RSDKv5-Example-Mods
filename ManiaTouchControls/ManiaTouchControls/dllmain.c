@@ -5,12 +5,17 @@
 #include "Objects/UFO_Player.h"
 #include "Objects/PBL_Player.h"
 #include "Objects/HUD.h"
-#include "Objects/ActClear.h"
-#include "Objects/DebugMode.h"
 #include "Objects/BSS_HUD.h"
+#include "Objects/UFO_HUD.h"
+#include "Objects/PBL_HUD.h"
+#include "Objects/ActClear.h"
+#include "Objects/SpecialClear.h"
+#include "Objects/DebugMode.h"
+#include "Objects/SaveGame.h"
 #include "Objects/PBL_Crane.h"
 #include "Objects/PBL_Flipper.h"
 #include "Objects/PBL_Setup.h"
+#include "Objects/LevelSelect.h"
 #include "Objects/DASetup.h"
 #include "Objects/PuyoLevelSelect.h"
 #include "Objects/PuyoBean.h"
@@ -49,14 +54,46 @@ void InitModAPI(void)
     Mod.SetSettingsInteger("Config:jumpDPadPosY", config.jumpDPadPos.y);
     Mod.SaveSettings();
 
+    // Get Public Functions
+    Player_Input_P1                          = Mod.GetPublicFunction(NULL, "Player_Input_P1");
+    Player_CheckValidState                   = Mod.GetPublicFunction(NULL, "Player_CheckValidState");
+    MegaChopper_Input_GrabbedP1              = Mod.GetPublicFunction(NULL, "MegaChopper_Input_GrabbedP1");
+    Gachapandora_Player_StateInput_P1Grabbed = Mod.GetPublicFunction(NULL, "Gachapandora_Player_StateInput_P1Grabbed");
+#if MANIA_USE_PLUS
+    EncoreIntro_PlayerInput_BuddySel = Mod.GetPublicFunction(NULL, "EncoreIntro_PlayerInput_BuddySel");
+#endif
+
+    BSS_Player_Input_P1   = Mod.GetPublicFunction(NULL, "BSS_Player_Input_P1");
+    UFO_Player_Input_P1   = Mod.GetPublicFunction(NULL, "UFO_Player_Input_P1");
+    HUD_DrawNumbersBase16 = Mod.GetPublicFunction(NULL, "HUD_DrawNumbersBase16");
+    SaveGame_GetDataPtr   = Mod.GetPublicFunction(NULL, "SaveGame_GetDataPtr");
+#if MANIA_USE_PLUS
+    PBL_Player_Input_P1 = Mod.GetPublicFunction(NULL, "PBL_Player_Input_P1");
+#endif
+
+#if MANIA_USE_PLUS
+    Player_State_Death         = Mod.GetPublicFunction(NULL, "Player_State_Death");
+    Player_State_Drown         = Mod.GetPublicFunction(NULL, "Player_State_Drown");
+    Player_State_EncoreRespawn = Mod.GetPublicFunction(NULL, "Player_State_EncoreRespawn");
+    Player_State_Static        = Mod.GetPublicFunction(NULL, "Player_State_Static");
+    Player_State_Ground        = Mod.GetPublicFunction(NULL, "Player_State_Ground");
+    Player_State_Roll          = Mod.GetPublicFunction(NULL, "Player_State_Roll");
+#endif
+
     // Register State Hooks
-    Mod.RegisterStateHook(Mod.GetPublicFunction(NULL, "Player_Input_P1"), Player_Input_P1_Hook, true);
+    Mod.RegisterStateHook(Player_Input_P1, Player_Input_P1_Hook, true);
+    Mod.RegisterStateHook(MegaChopper_Input_GrabbedP1, Player_Input_P1_Hook, true);
+    Mod.RegisterStateHook(Gachapandora_Player_StateInput_P1Grabbed, Player_Input_P1_Hook, true);
+#if MANIA_USE_PLUS
+    Mod.RegisterStateHook(EncoreIntro_PlayerInput_BuddySel, Player_Input_P1_Hook, true);
+#endif
 
-    Mod.RegisterStateHook(Mod.GetPublicFunction(NULL, "BSS_Player_Input_P1"), BSS_Player_Input_P1_Hook, true);
+    Mod.RegisterStateHook(BSS_Player_Input_P1, BSS_Player_Input_P1_Hook, true);
 
-    Mod.RegisterStateHook(Mod.GetPublicFunction(NULL, "UFO_Player_Input_P1"), UFO_Player_Input_P1_Hook, true);
+    Mod.RegisterStateHook(UFO_Player_Input_P1, UFO_Player_Input_P1_Hook, true);
 
     Mod.RegisterStateHook(Mod.GetPublicFunction(NULL, "ActClear_State_TallyScore"), ActClear_State_TallyScore_Hook, true);
+    Mod.RegisterStateHook(Mod.GetPublicFunction(NULL, "SpecialClear_State_TallyScore"), SpecialClear_State_TallyScore_Hook, true);
 
     Mod.RegisterStateHook(Mod.GetPublicFunction(NULL, "PuyoBean_Input_Player"), PuyoBean_Input_Player_Hook, true);
 
@@ -67,10 +104,12 @@ void InitModAPI(void)
 
     Mod.RegisterStateHook(Mod.GetPublicFunction(NULL, "TryAgain_State_Stinger"), TryAgain_State_Stinger_Hook, true);
 
+    Mod.RegisterStateHook(Mod.GetPublicFunction(NULL, "LevelSelect_State_Navigate"), LevelSelect_State_Navigate_Hook, true);
+
     Mod.RegisterStateHook(Mod.GetPublicFunction(NULL, "DASetup_State_ManageControl"), DASetup_State_ManageControl_Hook, true);
 
 #if MANIA_USE_PLUS
-    Mod.RegisterStateHook(Mod.GetPublicFunction(NULL, "PBL_Player_Input_P1"), PBL_Player_Input_P1_Hook, true);
+    Mod.RegisterStateHook(PBL_Player_Input_P1, PBL_Player_Input_P1_Hook, true);
 
     Mod.RegisterStateHook(Mod.GetPublicFunction(NULL, "ActClear_State_ShowResultsTA"), ActClear_State_ShowResultsTA_Hook, true);
 
@@ -88,16 +127,21 @@ void InitModAPI(void)
     MOD_REGISTER_OBJ_OVERLOAD(PuyoLevelSelect, PuyoLevelSelect_Update, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
     MOD_REGISTER_OBJ_OVERLOAD(CreditsSetup, NULL, NULL, CreditsSetup_StaticUpdate, NULL, NULL, NULL, NULL, NULL, NULL);
 
+    MOD_REGISTER_OBJ_OVERLOAD_MSV(BSS_HUD, Mod_BSS_HUD, NULL, NULL, NULL, BSS_HUD_Draw, NULL, BSS_HUD_StageLoad, NULL, NULL, NULL);
     MOD_REGISTER_OBJ_OVERLOAD_MSV(BSS_Player, Mod_BSS_Player, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-    MOD_REGISTER_OBJ_OVERLOAD_MSV(DASetup, Mod_DASetup, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+    MOD_REGISTER_OBJ_OVERLOAD_MSV(DASetup, Mod_DASetup, NULL, NULL, NULL, NULL, NULL, DASetup_StageLoad, NULL, NULL, NULL);
     MOD_REGISTER_OBJ_OVERLOAD(DebugMode, DebugMode_Update, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+    MOD_REGISTER_OBJ_OVERLOAD_MSV(HUD, Mod_HUD, NULL, NULL, NULL, HUD_Draw, NULL, HUD_StageLoad, NULL, NULL, NULL);
+    MOD_REGISTER_OBJ_OVERLOAD_MSV(LevelSelect, Mod_LevelSelect, NULL, NULL, NULL, LevelSelect_Draw, NULL, LevelSelect_StageLoad, NULL, NULL, NULL);
     MOD_REGISTER_OBJ_OVERLOAD_MSV(Player, Mod_Player, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
     MOD_REGISTER_OBJ_OVERLOAD_MSV(PuyoBean, Mod_PuyoBean, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
     MOD_REGISTER_OBJ_OVERLOAD_MSV(PuyoLevelSelect, Mod_PuyoLevelSelect, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+    MOD_REGISTER_OBJ_OVERLOAD_MSV(UFO_HUD, Mod_UFO_HUD, NULL, NULL, NULL, UFO_HUD_Draw, NULL, UFO_HUD_StageLoad, NULL, NULL, NULL);
     MOD_REGISTER_OBJ_OVERLOAD_MSV(UFO_Player, Mod_UFO_Player, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
     
 #if MANIA_USE_PLUS
+    MOD_REGISTER_OBJ_OVERLOAD_MSV(PBL_HUD, Mod_PBL_HUD, NULL, NULL, NULL, PBL_HUD_Draw, NULL, PBL_HUD_StageLoad, NULL, NULL, NULL);
     MOD_REGISTER_OBJ_OVERLOAD_MSV(PBL_Player, Mod_PBL_Player, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
     MOD_REGISTER_OBJ_OVERLOAD_MSV(PBL_Crane, Mod_PBL_Crane, PBL_Crane_Update, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
     MOD_REGISTER_OBJ_OVERLOAD_MSV(PBL_Flipper, Mod_PBL_Flipper, NULL, NULL, PBL_Flipper_StaticUpdate, NULL, NULL, NULL, NULL, NULL, NULL);
@@ -111,6 +155,7 @@ void InitModAPI(void)
     // Register Mod Callbacks
     Mod.AddModCallback(MODCB_ONVIDEOSKIPCB, TitleSetup_ModCB_VideoSkip);
     Mod.AddModCallback(MODCB_ONVIDEOSKIPCB, UIVideo_ModCB_VideoSkip);
+    Mod.AddModCallback(MODCB_ONDRAW, DASetup_ModCB_OnDraw);
 
     // Get Public Functions
     CutsceneSeq_CheckSkip  = Mod.GetPublicFunction(NULL, "CutsceneSeq_CheckSkip");

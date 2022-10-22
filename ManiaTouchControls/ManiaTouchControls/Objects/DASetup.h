@@ -22,10 +22,17 @@ typedef struct {
     uint16 sfxScoreTotal;
 } ObjectDASetup;
 
+// Mod Object Class
 typedef struct {
     uint8 touchDir;
     uint8 touchConfirm;
-    uint8 touchBack;
+    uint16 dpadFrames;
+    Animator dpadAnimator;
+    Animator dpadTouchAnimator;
+    Vector2 dpadPos;
+    int32 dpadAlpha;
+    Vector2 playPos;
+    int32 playAlpha;
 } ModObjectDASetup;
 
 // Entity Class
@@ -38,19 +45,13 @@ extern ObjectDASetup *DASetup;
 extern ModObjectDASetup *Mod_DASetup;
 
 // Standard Entity Events
-void DASetup_Update(void);
-void DASetup_LateUpdate(void);
-void DASetup_StaticUpdate(void);
-void DASetup_Draw(void);
-void DASetup_Create(void* data);
 void DASetup_StageLoad(void);
-#if RETRO_INCLUDE_EDITOR
-void DASetup_EditorDraw(void);
-void DASetup_EditorLoad(void);
-#endif
-void DASetup_Serialize(void);
 
 // Extra Entity Functions
 bool32 DASetup_State_ManageControl_Hook(bool32 skippedState);
+void DASetup_DrawUI(void);
+
+// Mod Callbacks
+void DASetup_ModCB_OnDraw(void *data);
 
 #endif //!OBJ_DASETUP_H

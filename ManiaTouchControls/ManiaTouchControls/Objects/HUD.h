@@ -21,29 +21,46 @@ typedef struct {
 #endif
 } ObjectHUD;
 
+// Modded Object Class
+typedef struct {
+    uint16 dpadFrames;
+    Animator dpadAnimator;
+    Animator dpadTouchAnimator;
+    Vector2 dpadPos;
+    int32 dpadAlpha[PLAYER_COUNT];
+    Vector2 actionPos;
+    int32 jumpAlpha[PLAYER_COUNT];
+    Vector2 superPos;
+    int32 superAlpha[PLAYER_COUNT];
+    Vector2 swapPos;
+    int32 swapAlpha[PLAYER_COUNT];
+    Vector2 pausePos;
+    int32 pauseAlpha[PLAYER_COUNT];
+} ModObjectHUD;
+
 // Entity Class
 typedef struct {
     RSDK_ENTITY
     StateMachine(state);
-    Vector2 scoreOffset;
-    Vector2 timeOffset;
-    Vector2 ringsOffset;
-    Vector2 lifeOffset;
+    Vector2 scorePos;
+    Vector2 timePos;
+    Vector2 ringsPos;
+    Vector2 lifePos;
 #if MANIA_USE_PLUS
     int32 lifeFrameIDs[PLAYER_COUNT];
     int32 lives[PLAYER_COUNT];
 #endif
-    int32 maxOffset;
+    int32 targetPos;
 #if GAME_VERSION != VER_100
-    int32 superButtonPos;
+    int32 actionPromptPos;
 #endif
 #if MANIA_USE_PLUS
     StateMachine(vsStates[PLAYER_COUNT]);
-    Vector2 vsScoreOffsets[PLAYER_COUNT];
-    Vector2 vsTimeOffsets[PLAYER_COUNT];
-    Vector2 vsRingsOffsets[PLAYER_COUNT];
-    Vector2 vsLifeOffsets[PLAYER_COUNT];
-    int32 vsMaxOffsets[PLAYER_COUNT];
+    Vector2 vsScorePos[PLAYER_COUNT];
+    Vector2 vsTimePos[PLAYER_COUNT];
+    Vector2 vsRingsPos[PLAYER_COUNT];
+    Vector2 vsLifePos[PLAYER_COUNT];
+    int32 vsTargetPos[PLAYER_COUNT];
     int32 screenID;
 #endif
 #if GAME_VERSION != VER_100
@@ -71,8 +88,17 @@ typedef struct {
 
 // Object Struct
 extern ObjectHUD *HUD;
+extern ModObjectHUD *Mod_HUD;
 
 // Standard Entity Events
 void HUD_Draw(void);
+void HUD_StageLoad(void);
+
+// Extra Entity Functions
+void HUD_DrawTouchControls(void);
+void HUD_DrawMobileHUD(void);
+
+// Entity States
+extern void (*HUD_DrawNumbersBase16)(Vector2 *drawPos, int32 value);
 
 #endif //! OBJ_HUD_H

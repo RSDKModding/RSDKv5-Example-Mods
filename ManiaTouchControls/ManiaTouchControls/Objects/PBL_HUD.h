@@ -1,5 +1,5 @@
-#ifndef OBJ_BSS_HUD_H
-#define OBJ_BSS_HUD_H
+#ifndef OBJ_PBL_HUD_H
+#define OBJ_PBL_HUD_H
 
 #include "GameAPI/Game.h"
 
@@ -8,7 +8,7 @@ typedef struct {
     RSDK_OBJECT
     uint16 aniFrames;
     uint8 debugEnabled;
-} ObjectBSS_HUD;
+} ObjectPBL_HUD;
 
 // Modded Object Class
 typedef struct {
@@ -20,7 +20,7 @@ typedef struct {
     Vector2 actionPos;
     Vector2 pausePos;
     int32 pauseAlpha;
-} ModObjectBSS_HUD;
+} ModObjectPBL_HUD;
 
 // Entity Class
 typedef struct {
@@ -28,17 +28,17 @@ typedef struct {
     Animator sphereAnimator;
     Animator ringAnimator;
     Animator numbersAnimator;
-} EntityBSS_HUD;
+} EntityPBL_HUD;
 
 // Object Struct
-extern ObjectBSS_HUD *BSS_HUD;
-extern ModObjectBSS_HUD *Mod_BSS_HUD;
+extern ObjectPBL_HUD *PBL_HUD;
+extern ModObjectPBL_HUD *Mod_PBL_HUD;
 
 // Standard Entity Events
-void BSS_HUD_Draw(void);
-void BSS_HUD_StageLoad(void);
+void PBL_HUD_Draw(void);
+void PBL_HUD_StageLoad(void);
 
 // Extra Entity Functions
-void BSS_HUD_DrawTouchControls(void);
+void PBL_HUD_DrawTouchControls(void);
 
-#endif //! OBJ_BSS_HUD_H
+#endif //! OBJ_PBL_HUD_H

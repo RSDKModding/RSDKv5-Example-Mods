@@ -13,7 +13,7 @@ void CreditsSetup_StaticUpdate(void)
 
             EntityFXFade *fade = CreditsSetup->fxFade;
 
-            fade->state    = Mod.GetPublicFunction(NULL, "FXFade_State_FadeIn");
+            fade->state    = Mod.GetPublicFunction(NULL, "FXFade_State_FadeOut");
             fade->speedIn  = 8;
             fade->wait     = 64;
             fade->speedOut = 8;

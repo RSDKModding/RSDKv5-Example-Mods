@@ -4,8 +4,12 @@
 #include "../ModConfig.h"
 #include "../Helpers.h"
 
+#if MANIA_USE_PLUS
 ObjectPBL_Player *PBL_Player;
 ModObjectPBL_Player *Mod_PBL_Player;
+
+// Public Functions
+StateMachine(PBL_Player_Input_P1) = NULL;
 
 bool32 PBL_Player_Input_P1_Hook(bool32 skippedState)
 {
@@ -72,3 +76,4 @@ bool32 PBL_Player_Input_P1_Hook(bool32 skippedState)
 
     return false;
 }
+#endif

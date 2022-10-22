@@ -70,6 +70,9 @@ typedef struct {
 extern ObjectUFO_Player *UFO_Player;
 extern ModObjectUFO_Player *Mod_UFO_Player;
 
+// Public Functions
+extern StateMachine(UFO_Player_Input_P1);
+
 // Extra Entity Functions
 bool32 UFO_Player_Input_P1_Hook(bool32 skippedState);
 

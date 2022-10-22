@@ -52,6 +52,9 @@ extern ModObjectPBL_Player *Mod_PBL_Player;
 
 // Standard Entity Events
 
+// Public Functions
+extern StateMachine(PBL_Player_Input_P1);
+
 // Extra Entity Functions
 bool32 PBL_Player_Input_P1_Hook(bool32 skippedState);
 

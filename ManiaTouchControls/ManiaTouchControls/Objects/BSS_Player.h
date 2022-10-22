@@ -43,6 +43,9 @@ typedef struct {
 extern ObjectBSS_Player *BSS_Player;
 extern ModObjectBSS_Player *Mod_BSS_Player;
 
+// Public Functions
+extern StateMachine(BSS_Player_Input_P1);
+
 // Extra Entity Functions
 bool32 BSS_Player_Input_P1_Hook(bool32 skippedState);
 

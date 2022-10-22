@@ -6,6 +6,9 @@
 ObjectUFO_Player *UFO_Player;
 ModObjectUFO_Player *Mod_UFO_Player;
 
+// Public Functions
+StateMachine(UFO_Player_Input_P1) = NULL;
+
 bool32 UFO_Player_Input_P1_Hook(bool32 skippedState)
 {
     RSDK_THIS(UFO_Player);

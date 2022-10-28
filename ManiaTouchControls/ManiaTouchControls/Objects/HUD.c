@@ -66,7 +66,9 @@ void HUD_DrawTouchControls(void)
     bool32 canPause = canMove;
 
     Vector2 superPos = Mod_HUD->superPos;
+#if MANIA_USE_PLUS
     Vector2 swapPos  = Mod_HUD->swapPos;
+#endif
 
     if (canMove) {
         if (Mod_HUD->dpadAlpha[playerID] < opacity) 

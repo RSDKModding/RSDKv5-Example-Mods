@@ -47,12 +47,6 @@ typedef struct {
 #endif
 } SaveRAM;
 
-#if MANIA_USE_PLUS
-extern int32 (*SaveGame_GetDataPtr)(int32 slot, bool32 encore);
-#else
-extern int32 (*SaveGame_GetDataPtr)(int32 slot);
-#endif
-
 SaveRAM *SaveGame_GetSaveRAM();
 
 

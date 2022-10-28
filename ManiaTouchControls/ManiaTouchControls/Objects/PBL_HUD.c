@@ -2,6 +2,7 @@
 #include "PBL_Player.h"
 #include "../ModConfig.h"
 
+#if MANIA_USE_PLUS
 ObjectPBL_HUD *PBL_HUD;
 ModObjectPBL_HUD *Mod_PBL_HUD;
 
@@ -165,3 +166,4 @@ void PBL_HUD_StageLoad(void)
     RSDK.SetSpriteAnimation(Mod_PBL_HUD->dpadFrames, 0, &Mod_PBL_HUD->dpadAnimator, true, 0);
     RSDK.SetSpriteAnimation(Mod_PBL_HUD->dpadFrames, 1, &Mod_PBL_HUD->dpadTouchAnimator, true, 0);
 }
+#endif

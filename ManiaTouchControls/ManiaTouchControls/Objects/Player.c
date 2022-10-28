@@ -31,7 +31,11 @@ bool32 Player_CanTransform(EntityPlayer *player)
     if (!SceneInfo->timeEnabled /*&& !ERZStart && (!PhantomEgg || PhantomEgg->disableSuperForm)*/)
         return false;
 
-    uint8 emeralds = SaveGame_GetSaveRAM()->chaosEmeralds;
+    SaveRAM *saveRAM = SaveGame_GetSaveRAM();
+    if (!saveRAM)
+        return false;
+
+    uint8 emeralds   = saveRAM->chaosEmeralds;
 
 #if MANIA_USE_PLUS
     if (Player->canSuperCB && !Player->canSuperCB(false))

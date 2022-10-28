@@ -1,19 +1,15 @@
 #include "SaveGame.h"
 
-#if MANIA_USE_PLUS
-int32 (*SaveGame_GetDataPtr)(int32 slot, bool32 encore) = NULL;
-#else
-int32 (*SaveGame_GetDataPtr)(int32 slot) = NULL;
-#endif
-
+// Ported from Mania's SaveGame_GetDataPtr
 SaveRAM *SaveGame_GetSaveRAM()
 {
-    if (!SaveGame_GetDataPtr)
-        return NULL;
+    if (globals->saveSlotID == NO_SAVE_SLOT)
+        return (SaveRAM *)globals->noSaveSlot;
 
 #if MANIA_USE_PLUS
-    return (SaveRAM *)SaveGame_GetDataPtr(globals->saveSlotID, globals->gameMode == MODE_ENCORE);
-#else
-    return (SaveRAM *)SaveGame_GetDataPtr(globals->saveSlotID);
+    if (globals->gameMode == MODE_ENCORE)
+        return (SaveRAM *)&globals->saveRAM[0x100 * (globals->saveSlotID % 3 + 10)];
+    else
 #endif
+        return (SaveRAM *)&globals->saveRAM[0x100 * (globals->saveSlotID % 8)];
 }

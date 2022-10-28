@@ -27,3 +27,4 @@
 #include "Objects/UFO_HUD.c"
 #include "Objects/LevelSelect.c"
 #include "Objects/SpecialClear.c"
+#include "Objects/FXFade.c"

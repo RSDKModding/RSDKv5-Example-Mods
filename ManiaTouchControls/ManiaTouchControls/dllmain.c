@@ -66,7 +66,6 @@ void InitModAPI(void)
     BSS_Player_Input_P1   = Mod.GetPublicFunction(NULL, "BSS_Player_Input_P1");
     UFO_Player_Input_P1   = Mod.GetPublicFunction(NULL, "UFO_Player_Input_P1");
     HUD_DrawNumbersBase16 = Mod.GetPublicFunction(NULL, "HUD_DrawNumbersBase16");
-    SaveGame_GetDataPtr   = Mod.GetPublicFunction(NULL, "SaveGame_GetDataPtr");
 #if MANIA_USE_PLUS
     PBL_Player_Input_P1 = Mod.GetPublicFunction(NULL, "PBL_Player_Input_P1");
 #endif
@@ -158,7 +157,9 @@ void InitModAPI(void)
     Mod.AddModCallback(MODCB_ONDRAW, DASetup_ModCB_OnDraw);
 
     // Get Public Functions
+#if MANIA_USE_PLUS
     CutsceneSeq_CheckSkip  = Mod.GetPublicFunction(NULL, "CutsceneSeq_CheckSkip");
+#endif
     TitleSetup_VideoSkipCB = Mod.GetPublicFunction(NULL, "TitleSetup_VideoSkipCB");
     UIVideo_SkipCB         = Mod.GetPublicFunction(NULL, "UIVideo_SkipCB");
 }

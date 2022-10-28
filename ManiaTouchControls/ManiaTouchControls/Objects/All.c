@@ -22,3 +22,8 @@
 #include "Objects/UIVideo.c"
 #include "Objects/UIControl.c"
 #include "Objects/DebugMode.c"
+#include "Objects/SaveGame.c"
+#include "Objects/PBL_HUD.c"
+#include "Objects/UFO_HUD.c"
+#include "Objects/LevelSelect.c"
+#include "Objects/SpecialClear.c"

@@ -98,9 +98,9 @@ void PBL_HUD_DrawTouchControls(void)
                 RSDK.DrawSprite(&Mod_PBL_HUD->dpadAnimator, &Mod_PBL_HUD->dpadPos, true);
             }
             if (!player->up && !player->down && !player->left && !player->right) {
-                self->alpha                   = Mod_HUD->dpadAlpha[playerID];
-                Mod_HUD->dpadAnimator.frameID = 11;
-                RSDK.DrawSprite(&Mod_HUD->dpadAnimator, &Mod_HUD->dpadPos, true);
+                self->alpha                   = Mod_PBL_HUD->dpadAlpha;
+                Mod_PBL_HUD->dpadAnimator.frameID = 11;
+                RSDK.DrawSprite(&Mod_PBL_HUD->dpadAnimator, &Mod_PBL_HUD->dpadPos, true);
             }
 
             if (player->jumpHold) {

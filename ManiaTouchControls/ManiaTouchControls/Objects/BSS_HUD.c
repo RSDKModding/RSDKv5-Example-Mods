@@ -89,9 +89,9 @@ void BSS_HUD_DrawTouchControls(void)
                 RSDK.DrawSprite(&Mod_BSS_HUD->dpadAnimator, &Mod_BSS_HUD->dpadPos, true);
             }
             if (!player->up && !player->down && !player->left && !player->right) {
-                self->alpha                   = Mod_HUD->dpadAlpha[playerID];
-                Mod_HUD->dpadAnimator.frameID = 11;
-                RSDK.DrawSprite(&Mod_HUD->dpadAnimator, &Mod_HUD->dpadPos, true);
+                 self->alpha                   = Mod_BSS_HUD->dpadAlpha;
+                Mod_BSS_HUD->dpadAnimator.frameID = 11;
+                RSDK.DrawSprite(&Mod_BSS_HUD->dpadAnimator, &Mod_BSS_HUD->dpadPos, true);
             }
 
             RSDKControllerState *controller = &ControllerInfo[player->controllerID];

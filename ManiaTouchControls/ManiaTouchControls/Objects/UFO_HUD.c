@@ -89,9 +89,9 @@ void UFO_HUD_DrawTouchControls(void)
                 RSDK.DrawSprite(&Mod_UFO_HUD->dpadAnimator, &Mod_UFO_HUD->dpadPos, true);
             }
             if (!player->up && !player->down && !player->left && !player->right) {
-                self->alpha                   = Mod_HUD->dpadAlpha[playerID];
-                Mod_HUD->dpadAnimator.frameID = 11;
-                RSDK.DrawSprite(&Mod_HUD->dpadAnimator, &Mod_HUD->dpadPos, true);
+                self->alpha                   = Mod_UFO_HUD->dpadAlpha;
+                Mod_UFO_HUD->dpadAnimator.frameID = 11;
+                RSDK.DrawSprite(&Mod_UFO_HUD->dpadAnimator, &Mod_UFO_HUD->dpadPos, true);
             }
 
             if (player->jumpHold) {

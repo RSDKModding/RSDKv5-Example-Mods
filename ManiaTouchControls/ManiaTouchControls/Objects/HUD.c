@@ -122,6 +122,11 @@ void HUD_DrawTouchControls(void)
             Mod_HUD->dpadAnimator.frameID = 8;
             RSDK.DrawSprite(&Mod_HUD->dpadAnimator, &Mod_HUD->dpadPos, true);
         }
+        if (!player->up && !player->down && !player->left && !player->right) {
+            self->alpha                   = Mod_HUD->dpadAlpha[playerID];
+            Mod_HUD->dpadAnimator.frameID = 11;
+            RSDK.DrawSprite(&Mod_HUD->dpadAnimator, &Mod_HUD->dpadPos, true);
+        }
     }
     else {
         if (Mod_HUD->dpadAlpha[playerID] > 0) {

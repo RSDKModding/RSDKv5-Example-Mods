@@ -271,7 +271,7 @@ void HUD_DrawMobileHUD(void) {
         if (player->camera) {
             // Draw Camera YPos
             drawPos.x = TO_FIXED(ScreenInfo[player->camera->screenID].size.x - 16);
-            drawPos.y = TO_FIXED(48);
+            drawPos.y = TO_FIXED(42);
             HUD_DrawNumbersBase16(&drawPos, ScreenInfo[player->camera->screenID].position.y);
 
             // Draw Camera XPos
@@ -288,6 +288,20 @@ void HUD_DrawMobileHUD(void) {
             HUD_DrawNumbersBase16(&drawPos, FROM_FIXED(player->position.x));
         }
     }
+#if MANIA_USE_PLUS
+    else if (self->actionPromptPos > -TO_FIXED(64) && globals->gameMode == MODE_TIMEATTACK) {
+        drawPos.x = TO_FIXED(ScreenInfo[SceneInfo->currentScreenID].size.x) - self->actionPromptPos;
+        drawPos.y = TO_FIXED(48);
+
+        if (API.CheckDLC(DLC_PLUS)) {
+            // Draw Replay Save Icon
+            RSDK.DrawSprite(&self->replayClapAnimator, &drawPos, true);
+            drawPos.y += TO_FIXED(28);
+        }
+        // Draw Thumbs Up Icon
+        RSDK.DrawSprite(&self->thumbsUpIconAnimator, &drawPos, true);
+    }
+#endif
 }
 
 void HUD_Draw(void)
@@ -306,7 +320,7 @@ void HUD_Draw(void)
         player->classID = debugModeSVars->classID;
     else
         player->classID = TYPE_BLANK;
-    player->camera      = NULL;
+    player->camera = NULL;
 
     Vector2 lifePos = self->lifePos;
 #if MANIA_USE_PLUS
@@ -331,11 +345,11 @@ void HUD_Draw(void)
     // Draw HUD stuff
     Mod.Super(HUD->classID, SUPER_DRAW, NULL);
 
-    // Draw Mobile HUD bits
-    HUD_DrawMobileHUD();
-
     player->classID = playerClassID;
     player->camera  = playerCamera;
+
+    // Draw Mobile HUD bits
+    HUD_DrawMobileHUD();
 
 #if MANIA_USE_PLUS
     if (globals->gameMode == MODE_COMPETITION) 

@@ -24,7 +24,7 @@ void InitModAPI(void)
     // Setup Config
     Mod.SaveSettings();
 
-    MOD_REGISTER_OBJ_OVERLOAD(UIDiorama, UIDiorama_Update, NULL, NULL, NULL, UIDiorama_Create, NULL, NULL, NULL, NULL);
+    MOD_REGISTER_OBJ_OVERLOAD(UIDiorama, NULL, NULL, NULL, NULL, UIDiorama_Create, NULL, NULL, NULL, NULL);
     MOD_REGISTER_OBJ_OVERLOAD(MainMenu, NULL, NULL, MainMenu_StaticUpdate, NULL, NULL, NULL, NULL, NULL, NULL);
 
     MathHelpers_PointInHitbox = Mod.GetPublicFunction(NULL, "MathHelpers_PointInHitbox");

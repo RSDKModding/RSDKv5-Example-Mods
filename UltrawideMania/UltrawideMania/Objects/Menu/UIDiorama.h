@@ -44,7 +44,6 @@ struct EntityUIDiorama {
 // Object Struct
 extern ObjectUIDiorama *UIDiorama;
 
-void UIDiorama_Update(void);
 void UIDiorama_Create(void* data);
 
 #endif

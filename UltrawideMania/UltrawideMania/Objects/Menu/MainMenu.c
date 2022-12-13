@@ -3,7 +3,7 @@ ObjectMainMenu *MainMenu;
 
 void MainMenu_StaticUpdate(void)
 {
-    if (MainMenu->menuControl && MainMenu->menuControl->active) {
+    if (MainMenu->menuControl) {
         foreach_all(UIDiorama, diorama)
         {
             int32 x = MainMenu->menuControl->startPos.x - MainMenu->menuControl->cameraOffset.x;

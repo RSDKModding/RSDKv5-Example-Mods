@@ -7,3 +7,5 @@
 
 #include "Bosses/SpiderMobile.c"
 #include "Bosses/HeavyShinobi.c"
+
+#include "Cutscenes/CutsceneSeq.c"

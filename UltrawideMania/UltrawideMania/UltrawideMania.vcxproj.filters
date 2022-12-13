@@ -17,6 +17,9 @@
     <Filter Include="Source Files\Objects\Menu">
       <UniqueIdentifier>{69de7ba3-5439-4c24-a90b-567c9a4cc8f3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Objects\Cutscenes">
+      <UniqueIdentifier>{38736b48-c67d-4def-ad0f-ff8e4532dde4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.c">
@@ -39,6 +42,9 @@
     </ClCompile>
     <ClCompile Include="Objects\Menu\UIDiorama.c">
       <Filter>Source Files\Objects\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\Cutscenes\CutsceneSeq.c">
+      <Filter>Source Files\Objects\Cutscenes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -77,6 +83,9 @@
     </ClInclude>
     <ClInclude Include="Objects\Menu\UIDiorama.h">
       <Filter>Source Files\Objects\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Cutscenes\CutsceneSeq.h">
+      <Filter>Source Files\Objects\Cutscenes</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

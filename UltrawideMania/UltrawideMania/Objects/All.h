@@ -1,4 +1,4 @@
-#include "ModConfig.h"
+#include "../ModConfig.h"
 
 typedef struct ObjectUIControl ObjectUIControl;
 typedef struct EntityUIControl EntityUIControl;
@@ -12,6 +12,9 @@ typedef struct EntitySpiderMobile EntitySpiderMobile;
 typedef struct ObjectHeavyShinobi ObjectHeavyShinobi;
 typedef struct EntityHeavyShinobi EntityHeavyShinobi;
 
+typedef struct ObjectCutsceneSeq ObjectCutsceneSeq;
+typedef struct EntityCutsceneSeq EntityCutsceneSeq;
+
 typedef struct ObjectZone ObjectZone;
 typedef struct EntityPlayer EntityPlayer;
 
@@ -23,4 +26,7 @@ typedef struct EntityPlayer EntityPlayer;
 
 #include "Bosses/SpiderMobile.h"
 #include "Bosses/HeavyShinobi.h"
+
+#include "Cutscenes/CutsceneSeq.h"
+
 #include "Zone.h"

@@ -181,6 +181,7 @@
     </ClCompile>
     <ClCompile Include="Objects\Bosses\HeavyShinobi.c" />
     <ClCompile Include="Objects\Bosses\SpiderMobile.c" />
+    <ClCompile Include="Objects\Cutscenes\CutsceneSeq.c" />
     <ClCompile Include="Objects\Menu\MainMenu.c" />
     <ClCompile Include="Objects\Menu\UIDiorama.c" />
   </ItemGroup>
@@ -198,6 +199,7 @@
     </ClInclude>
     <ClInclude Include="Objects\Bosses\HeavyShinobi.h" />
     <ClInclude Include="Objects\Bosses\SpiderMobile.h" />
+    <ClInclude Include="Objects\Cutscenes\CutsceneSeq.h" />
     <ClInclude Include="Objects\Menu\MainMenu.h" />
     <ClInclude Include="Objects\Menu\UIControl.h" />
     <ClInclude Include="Objects\Menu\UIDiorama.h" />

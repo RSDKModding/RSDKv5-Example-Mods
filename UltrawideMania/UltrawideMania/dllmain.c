@@ -15,7 +15,7 @@ DLLExport bool32 LinkModLogic(EngineInfo *info, const char *id);
 
 void SetExtraWidth(void *d)
 {
-    (void)d;
+    UNUSED(d);
     extraWidth = (ScreenInfo->size.x - 424) / 2;
 }
 
@@ -26,6 +26,7 @@ void InitModAPI(void)
 
     MOD_REGISTER_OBJ_OVERLOAD(UIDiorama, UIDiorama_Update, NULL, NULL, NULL, UIDiorama_Create, NULL, NULL, NULL, NULL);
     MOD_REGISTER_OBJ_OVERLOAD(MainMenu, NULL, NULL, MainMenu_StaticUpdate, NULL, NULL, NULL, NULL, NULL, NULL);
+    MOD_REGISTER_OBJ_OVERLOAD(CutsceneSeq, NULL, CutsceneSeq_LateUpdate, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
     MathHelpers_PointInHitbox = Mod.GetPublicFunction(NULL, "MathHelpers_PointInHitbox");
 
@@ -35,6 +36,8 @@ void InitModAPI(void)
 
     HeavyShinobi_State_Init = Mod.GetPublicFunction(NULL, "HeavyShinobi_State_Init");
     Mod.RegisterStateHook(HeavyShinobi_State_Init, HeavyShinobi_State_Init_Hook, false);
+
+    FBZ1Outro_Cutscene_PrepareFBZ2 = Mod.GetPublicFunction(NULL, "FBZ1Outro_Cutscene_PrepareFBZ2");
 
     MOD_REGISTER_OBJECT_HOOK(SpiderMobile);
     MOD_REGISTER_OBJECT_HOOK(Zone);

@@ -35,5 +35,5 @@ extern ObjectCutsceneSeq *CutsceneSeq;
 void CutsceneSeq_LateUpdate(void);
 
 // Cutscene State Functions
-bool32 (*FBZ1Outro_Cutscene_PrepareFBZ2)(EntityCutsceneSeq *host);
+extern bool32 (*FBZ1Outro_Cutscene_PrepareFBZ2)(EntityCutsceneSeq *host);
 #endif

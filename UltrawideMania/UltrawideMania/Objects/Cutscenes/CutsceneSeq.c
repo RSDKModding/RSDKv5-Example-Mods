@@ -1,6 +1,8 @@
 #include "../../ModConfig.h"
 ObjectCutsceneSeq *CutsceneSeq;
 
+bool32 (*FBZ1Outro_Cutscene_PrepareFBZ2)(EntityCutsceneSeq *host);
+
 void CutsceneSeq_LateUpdate(void)
 {
     RSDK_THIS(CutsceneSeq);

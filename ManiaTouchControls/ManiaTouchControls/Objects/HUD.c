@@ -11,8 +11,8 @@ void HUD_DrawTouchControls(void)
 {
     RSDK_THIS(HUD);
 
-    int32 playerID       = SceneInfo->currentScreenID;
-    EntityPlayer *player = RSDK_GET_ENTITY(playerID, Player);
+    int32 playerID                  = SceneInfo->currentScreenID;
+    EntityPlayer *player            = RSDK_GET_ENTITY(playerID, Player);
 
     int32 alphaStore   = self->alpha;
     int32 inkStore     = self->inkEffect;
@@ -24,14 +24,16 @@ void HUD_DrawTouchControls(void)
 
     Mod_HUD->actionPos.x = TO_FIXED(ScreenInfo[SceneInfo->currentScreenID].size.x + config.jumpDPadPos.x);
     Mod_HUD->actionPos.y = TO_FIXED(config.jumpDPadPos.y);
-
+    
+#if GAME_VERSION != VER_100
     Mod_HUD->superPos.x = Mod_HUD->actionPos.x - TO_FIXED(64);
     Mod_HUD->superPos.y = Mod_HUD->actionPos.y;
+#endif
 
+#if MANIA_USE_PLUS
     Mod_HUD->swapPos.x = Mod_HUD->actionPos.x;
     Mod_HUD->swapPos.y = Mod_HUD->actionPos.y - TO_FIXED(64);
 
-#if MANIA_USE_PLUS
     if (globals->gameMode == MODE_ENCORE) 
         Mod_HUD->pausePos.x = TO_FIXED(ScreenInfo[SceneInfo->currentScreenID].size.x - 100);
     else 
@@ -57,18 +59,23 @@ void HUD_DrawTouchControls(void)
     canJump |= player->stateInput == MegaChopper_Input_GrabbedP1;
     canJump |= player->stateInput == Gachapandora_Player_StateInput_P1Grabbed;
 
+#if GAME_VERSION != VER_100
     bool32 canSuper = canJump && Player_CanTransform(player);
-
+#endif
 #if MANIA_USE_PLUS
     bool32 canSwap = canJump && globals->gameMode == MODE_ENCORE && !HUD->swapCooldown && Player_CheckValidState(player) && Player_CanSwap(player);
 #endif
 
     bool32 canPause = canMove;
 
+#if GAME_VERSION != VER_100
     Vector2 superPos = Mod_HUD->superPos;
+#endif
 #if MANIA_USE_PLUS
     Vector2 swapPos  = Mod_HUD->swapPos;
 #endif
+
+    RSDKControllerState *controller = &ControllerInfo[player->controllerID];
 
     if (canMove) {
         if (Mod_HUD->dpadAlpha[playerID] < opacity) 
@@ -79,7 +86,7 @@ void HUD_DrawTouchControls(void)
         Mod_HUD->dpadAnimator.frameID = 10;
         RSDK.DrawSprite(&Mod_HUD->dpadAnimator, &Mod_HUD->dpadPos, true);
 
-        if (player->left) {
+        if (player->classID == Player->classID ? player->left : controller->keyLeft.down) {
             self->alpha                        = opacity;
             Mod_HUD->dpadTouchAnimator.frameID = 6;
             RSDK.DrawSprite(&Mod_HUD->dpadTouchAnimator, &Mod_HUD->dpadPos, true);
@@ -90,10 +97,19 @@ void HUD_DrawTouchControls(void)
             RSDK.DrawSprite(&Mod_HUD->dpadAnimator, &Mod_HUD->dpadPos, true);
         }
 
-        if (player->down) {
+        if (player->classID == Player->classID ? player->down : controller->keyDown.down) {
             self->alpha                        = opacity;
             Mod_HUD->dpadTouchAnimator.frameID = 9;
             RSDK.DrawSprite(&Mod_HUD->dpadTouchAnimator, &Mod_HUD->dpadPos, true);
+
+            if (player->classID == Player->classID ? player->left : controller->keyLeft.down) {
+                Mod_HUD->dpadTouchAnimator.frameID = 14;
+                RSDK.DrawSprite(&Mod_HUD->dpadTouchAnimator, &Mod_HUD->dpadPos, true);
+            }
+            else if (player->classID == Player->classID ? player->right : controller->keyRight.down) {
+                Mod_HUD->dpadTouchAnimator.frameID = 15;
+                RSDK.DrawSprite(&Mod_HUD->dpadTouchAnimator, &Mod_HUD->dpadPos, true);
+            }
         }
         else {
             self->alpha                   = Mod_HUD->dpadAlpha[playerID];
@@ -101,7 +117,7 @@ void HUD_DrawTouchControls(void)
             RSDK.DrawSprite(&Mod_HUD->dpadAnimator, &Mod_HUD->dpadPos, true);
         }
 
-        if (player->right) {
+        if (player->classID == Player->classID ? player->right : controller->keyRight.down) {
             self->alpha                        = opacity;
             Mod_HUD->dpadTouchAnimator.frameID = 7;
             RSDK.DrawSprite(&Mod_HUD->dpadTouchAnimator, &Mod_HUD->dpadPos, true);
@@ -112,17 +128,27 @@ void HUD_DrawTouchControls(void)
             RSDK.DrawSprite(&Mod_HUD->dpadAnimator, &Mod_HUD->dpadPos, true);
         }
 
-        if (player->up) {
+        if (player->classID == Player->classID ? player->up : controller->keyUp.down) {
             self->alpha                        = opacity;
             Mod_HUD->dpadTouchAnimator.frameID = 8;
             RSDK.DrawSprite(&Mod_HUD->dpadTouchAnimator, &Mod_HUD->dpadPos, true);
+
+            if (player->classID == Player->classID ? player->left : controller->keyLeft.down) {
+                Mod_HUD->dpadTouchAnimator.frameID = 12;
+                RSDK.DrawSprite(&Mod_HUD->dpadTouchAnimator, &Mod_HUD->dpadPos, true);
+            }
+            else if (player->classID == Player->classID ? player->right : controller->keyRight.down) {
+                Mod_HUD->dpadTouchAnimator.frameID = 13;
+                RSDK.DrawSprite(&Mod_HUD->dpadTouchAnimator, &Mod_HUD->dpadPos, true);
+            }
         }
         else {
             self->alpha                   = Mod_HUD->dpadAlpha[playerID];
             Mod_HUD->dpadAnimator.frameID = 8;
             RSDK.DrawSprite(&Mod_HUD->dpadAnimator, &Mod_HUD->dpadPos, true);
         }
-        if (!player->up && !player->down && !player->left && !player->right) {
+
+        if (player->classID == Player->classID ? (!player->up && !player->down && !player->left && !player->right) : (!controller->keyUp.down && !controller->keyDown.down && !controller->keyLeft.down && !controller->keyRight.down)) {
             self->alpha                   = Mod_HUD->dpadAlpha[playerID];
             Mod_HUD->dpadAnimator.frameID = 11;
             RSDK.DrawSprite(&Mod_HUD->dpadAnimator, &Mod_HUD->dpadPos, true);
@@ -145,7 +171,7 @@ void HUD_DrawTouchControls(void)
             if (Mod_HUD->jumpAlpha[playerID] < opacity)
                 Mod_HUD->jumpAlpha[playerID] += 4;
 
-            if (player->jumpHold) {
+            if (player->classID == Player->classID ? player->jumpHold : controller->keyC.down) {
                 self->alpha                        = opacity;
                 Mod_HUD->dpadTouchAnimator.frameID = 1;
                 RSDK.DrawSprite(&Mod_HUD->dpadTouchAnimator, &Mod_HUD->actionPos, true);
@@ -171,6 +197,7 @@ void HUD_DrawTouchControls(void)
         }
     }
 
+#if GAME_VERSION != VER_100
     if (canSuper) {
         if ((SceneInfo->state & 3) == ENGINESTATE_REGULAR) {
             if (Mod_HUD->superAlpha[playerID] < opacity)
@@ -201,6 +228,7 @@ void HUD_DrawTouchControls(void)
             RSDK.DrawSprite(&Mod_HUD->dpadAnimator, &superPos, true);
         }
     }
+#endif
 
 #if MANIA_USE_PLUS
     if (canSwap) {

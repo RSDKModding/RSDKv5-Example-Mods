@@ -41,55 +41,74 @@ void BSS_HUD_DrawTouchControls(void)
             }
 
             // Draw DPad
-            self->alpha                   = Mod_BSS_HUD->dpadAlpha;
+            self->alpha                       = Mod_BSS_HUD->dpadAlpha;
             Mod_BSS_HUD->dpadAnimator.frameID = 10;
             RSDK.DrawSprite(&Mod_BSS_HUD->dpadAnimator, &Mod_BSS_HUD->dpadPos, true);
 
             if (player->left) {
-                self->alpha                        = opacity;
+                self->alpha                            = opacity;
                 Mod_BSS_HUD->dpadTouchAnimator.frameID = 6;
                 RSDK.DrawSprite(&Mod_BSS_HUD->dpadTouchAnimator, &Mod_BSS_HUD->dpadPos, true);
             }
             else {
-                self->alpha                   = Mod_BSS_HUD->dpadAlpha;
+                self->alpha                       = Mod_BSS_HUD->dpadAlpha;
                 Mod_BSS_HUD->dpadAnimator.frameID = 6;
                 RSDK.DrawSprite(&Mod_BSS_HUD->dpadAnimator, &Mod_BSS_HUD->dpadPos, true);
             }
 
             if (player->down) {
-                self->alpha                        = opacity;
+                self->alpha                            = opacity;
                 Mod_BSS_HUD->dpadTouchAnimator.frameID = 9;
                 RSDK.DrawSprite(&Mod_BSS_HUD->dpadTouchAnimator, &Mod_BSS_HUD->dpadPos, true);
+
+                if (player->left) {
+                    Mod_BSS_HUD->dpadTouchAnimator.frameID = 14;
+                    RSDK.DrawSprite(&Mod_BSS_HUD->dpadTouchAnimator, &Mod_BSS_HUD->dpadPos, true);
+                }
+                else if (player->right) {
+                    Mod_BSS_HUD->dpadTouchAnimator.frameID = 15;
+                    RSDK.DrawSprite(&Mod_BSS_HUD->dpadTouchAnimator, &Mod_BSS_HUD->dpadPos, true);
+                }
             }
             else {
-                self->alpha                   = Mod_BSS_HUD->dpadAlpha;
+                self->alpha                       = Mod_BSS_HUD->dpadAlpha;
                 Mod_BSS_HUD->dpadAnimator.frameID = 9;
                 RSDK.DrawSprite(&Mod_BSS_HUD->dpadAnimator, &Mod_BSS_HUD->dpadPos, true);
             }
 
             if (player->right) {
-                self->alpha                        = opacity;
+                self->alpha                            = opacity;
                 Mod_BSS_HUD->dpadTouchAnimator.frameID = 7;
                 RSDK.DrawSprite(&Mod_BSS_HUD->dpadTouchAnimator, &Mod_BSS_HUD->dpadPos, true);
             }
             else {
-                self->alpha                   = Mod_BSS_HUD->dpadAlpha;
+                self->alpha                       = Mod_BSS_HUD->dpadAlpha;
                 Mod_BSS_HUD->dpadAnimator.frameID = 7;
                 RSDK.DrawSprite(&Mod_BSS_HUD->dpadAnimator, &Mod_BSS_HUD->dpadPos, true);
             }
 
             if (player->up) {
-                self->alpha                        = opacity;
+                self->alpha                            = opacity;
                 Mod_BSS_HUD->dpadTouchAnimator.frameID = 8;
                 RSDK.DrawSprite(&Mod_BSS_HUD->dpadTouchAnimator, &Mod_BSS_HUD->dpadPos, true);
+
+                if (player->left) {
+                    Mod_BSS_HUD->dpadTouchAnimator.frameID = 12;
+                    RSDK.DrawSprite(&Mod_BSS_HUD->dpadTouchAnimator, &Mod_BSS_HUD->dpadPos, true);
+                }
+                else if (player->right) {
+                    Mod_BSS_HUD->dpadTouchAnimator.frameID = 13;
+                    RSDK.DrawSprite(&Mod_BSS_HUD->dpadTouchAnimator, &Mod_BSS_HUD->dpadPos, true);
+                }
             }
             else {
-                self->alpha                   = Mod_BSS_HUD->dpadAlpha;
+                self->alpha                       = Mod_BSS_HUD->dpadAlpha;
                 Mod_BSS_HUD->dpadAnimator.frameID = 8;
                 RSDK.DrawSprite(&Mod_BSS_HUD->dpadAnimator, &Mod_BSS_HUD->dpadPos, true);
             }
+
             if (!player->up && !player->down && !player->left && !player->right) {
-                 self->alpha                   = Mod_BSS_HUD->dpadAlpha;
+                self->alpha                       = Mod_BSS_HUD->dpadAlpha;
                 Mod_BSS_HUD->dpadAnimator.frameID = 11;
                 RSDK.DrawSprite(&Mod_BSS_HUD->dpadAnimator, &Mod_BSS_HUD->dpadPos, true);
             }

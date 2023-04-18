@@ -41,66 +41,85 @@ void UFO_HUD_DrawTouchControls(void)
             }
 
             // Draw DPad
-            self->alpha                   = Mod_UFO_HUD->dpadAlpha;
+            self->alpha                       = Mod_UFO_HUD->dpadAlpha;
             Mod_UFO_HUD->dpadAnimator.frameID = 10;
             RSDK.DrawSprite(&Mod_UFO_HUD->dpadAnimator, &Mod_UFO_HUD->dpadPos, true);
 
             if (player->left) {
-                self->alpha                        = opacity;
+                self->alpha                            = opacity;
                 Mod_UFO_HUD->dpadTouchAnimator.frameID = 6;
                 RSDK.DrawSprite(&Mod_UFO_HUD->dpadTouchAnimator, &Mod_UFO_HUD->dpadPos, true);
             }
             else {
-                self->alpha                   = Mod_UFO_HUD->dpadAlpha;
+                self->alpha                       = Mod_UFO_HUD->dpadAlpha;
                 Mod_UFO_HUD->dpadAnimator.frameID = 6;
                 RSDK.DrawSprite(&Mod_UFO_HUD->dpadAnimator, &Mod_UFO_HUD->dpadPos, true);
             }
 
             if (player->down) {
-                self->alpha                        = opacity;
+                self->alpha                            = opacity;
                 Mod_UFO_HUD->dpadTouchAnimator.frameID = 9;
                 RSDK.DrawSprite(&Mod_UFO_HUD->dpadTouchAnimator, &Mod_UFO_HUD->dpadPos, true);
+
+                if (player->left) {
+                    Mod_UFO_HUD->dpadTouchAnimator.frameID = 14;
+                    RSDK.DrawSprite(&Mod_UFO_HUD->dpadTouchAnimator, &Mod_UFO_HUD->dpadPos, true);
+                }
+                else if (player->right) {
+                    Mod_UFO_HUD->dpadTouchAnimator.frameID = 15;
+                    RSDK.DrawSprite(&Mod_UFO_HUD->dpadTouchAnimator, &Mod_UFO_HUD->dpadPos, true);
+                }
             }
             else {
-                self->alpha                   = Mod_UFO_HUD->dpadAlpha;
+                self->alpha                       = Mod_UFO_HUD->dpadAlpha;
                 Mod_UFO_HUD->dpadAnimator.frameID = 9;
                 RSDK.DrawSprite(&Mod_UFO_HUD->dpadAnimator, &Mod_UFO_HUD->dpadPos, true);
             }
 
             if (player->right) {
-                self->alpha                        = opacity;
+                self->alpha                            = opacity;
                 Mod_UFO_HUD->dpadTouchAnimator.frameID = 7;
                 RSDK.DrawSprite(&Mod_UFO_HUD->dpadTouchAnimator, &Mod_UFO_HUD->dpadPos, true);
             }
             else {
-                self->alpha                   = Mod_UFO_HUD->dpadAlpha;
+                self->alpha                       = Mod_UFO_HUD->dpadAlpha;
                 Mod_UFO_HUD->dpadAnimator.frameID = 7;
                 RSDK.DrawSprite(&Mod_UFO_HUD->dpadAnimator, &Mod_UFO_HUD->dpadPos, true);
             }
 
             if (player->up) {
-                self->alpha                        = opacity;
+                self->alpha                            = opacity;
                 Mod_UFO_HUD->dpadTouchAnimator.frameID = 8;
                 RSDK.DrawSprite(&Mod_UFO_HUD->dpadTouchAnimator, &Mod_UFO_HUD->dpadPos, true);
+
+                if (player->left) {
+                    Mod_UFO_HUD->dpadTouchAnimator.frameID = 12;
+                    RSDK.DrawSprite(&Mod_UFO_HUD->dpadTouchAnimator, &Mod_UFO_HUD->dpadPos, true);
+                }
+                else if (player->right) {
+                    Mod_UFO_HUD->dpadTouchAnimator.frameID = 13;
+                    RSDK.DrawSprite(&Mod_UFO_HUD->dpadTouchAnimator, &Mod_UFO_HUD->dpadPos, true);
+                }
             }
             else {
-                self->alpha                   = Mod_UFO_HUD->dpadAlpha;
+                self->alpha                       = Mod_UFO_HUD->dpadAlpha;
                 Mod_UFO_HUD->dpadAnimator.frameID = 8;
                 RSDK.DrawSprite(&Mod_UFO_HUD->dpadAnimator, &Mod_UFO_HUD->dpadPos, true);
             }
+
             if (!player->up && !player->down && !player->left && !player->right) {
-                self->alpha                   = Mod_UFO_HUD->dpadAlpha;
+                self->alpha                       = Mod_UFO_HUD->dpadAlpha;
                 Mod_UFO_HUD->dpadAnimator.frameID = 11;
                 RSDK.DrawSprite(&Mod_UFO_HUD->dpadAnimator, &Mod_UFO_HUD->dpadPos, true);
             }
 
             if (player->jumpHold) {
-                self->alpha                        = opacity;
+                self->alpha                            = opacity;
                 Mod_UFO_HUD->dpadTouchAnimator.frameID = 1;
                 RSDK.DrawSprite(&Mod_UFO_HUD->dpadTouchAnimator, &Mod_UFO_HUD->actionPos, true);
             }
             else {
-                self->alpha                   = Mod_UFO_HUD->dpadAlpha;
+                self->alpha                       = Mod_UFO_HUD->dpadAlpha;
                 Mod_UFO_HUD->dpadAnimator.frameID = 1;
                 RSDK.DrawSprite(&Mod_UFO_HUD->dpadAnimator, &Mod_UFO_HUD->actionPos, true);
             }

@@ -10,6 +10,8 @@ ModObjectPlayer *Mod_Player;
 StateMachine(Player_Input_P1)                          = NULL;
 bool32 (*Player_CheckValidState)(EntityPlayer *player) = NULL;
 
+StateMachine(Player_State_Transform) = NULL;
+
 #if MANIA_USE_PLUS
 StateMachine(Player_State_Death)         = NULL;
 StateMachine(Player_State_Drown)         = NULL;
@@ -30,6 +32,15 @@ bool32 Player_CanTransform(EntityPlayer *player)
 {
     if (!SceneInfo->timeEnabled /*&& !ERZStart && (!PhantomEgg || PhantomEgg->disableSuperForm)*/)
         return false;
+
+#if RETRO_USE_MOD_LOADER
+    // Support for MegAmi's Super Cancel mod
+    ObjectERZSetup *ERZSetup = Mod.FindObject("ERZSetup");
+    bool32 superCancel = false;
+    Mod.LoadModInfo("SuperCancel", NULL, NULL, NULL, &superCancel);
+    if (superCancel && !ERZSetup && (player->state == Player_State_Transform || player->superState == SUPERSTATE_SUPER))
+        return true;
+#endif
 
     SaveRAM *saveRAM = SaveGame_GetSaveRAM();
     if (!saveRAM)
@@ -62,13 +73,6 @@ bool32 Player_CanSwap(EntityPlayer *player)
         Player->respawnTimer = 240;
         return false;
     }
-
-    Player_State_Death         = Mod.GetPublicFunction(NULL, "Player_State_Death");
-    Player_State_Drown         = Mod.GetPublicFunction(NULL, "Player_State_Drown");
-    Player_State_EncoreRespawn = Mod.GetPublicFunction(NULL, "Player_State_EncoreRespawn");
-    Player_State_Static        = Mod.GetPublicFunction(NULL, "Player_State_Static");
-    Player_State_Ground        = Mod.GetPublicFunction(NULL, "Player_State_Ground");
-    Player_State_Roll          = Mod.GetPublicFunction(NULL, "Player_State_Roll");
 
     if (player->state == Player_State_Death || player->state == Player_State_Drown) {
         if (sidekick->state == Player_State_Death || sidekick->state == Player_State_Drown || sidekick->state == Player_State_EncoreRespawn
@@ -122,19 +126,24 @@ bool32 Player_Input_P1_Hook(bool32 skippedState)
             }
         }
 
+#if GAME_VERSION != VER_100
         bool32 canSuper = Player_CanTransform(self) && !self->onGround;
-        bool32 canSwap = false;
+#endif
 #if MANIA_USE_PLUS
-        canSwap = Player_CanSwap(self) && globals->gameMode == MODE_ENCORE;
+        bool32 canSwap = Player_CanSwap(self) && globals->gameMode == MODE_ENCORE;
 #endif
 
         int32 jumpX = ScreenInfo->center.x;
         int32 jumpY = 96;
 
+#if GAME_VERSION != VER_100
         if (canSuper)
             jumpX = ScreenInfo[self->playerID].size.x + config.jumpDPadPos.x - 48;
+#endif
+#if MANIA_USE_PLUS
         if (canSwap)
             jumpY = config.jumpDPadPos.y - 48;
+#endif
 
         // fixes a bug with button vs touch
         bool32 touchedJump = false;

@@ -33,14 +33,12 @@ bool32 Player_CanTransform(EntityPlayer *player)
     if (!SceneInfo->timeEnabled /*&& !ERZStart && (!PhantomEgg || PhantomEgg->disableSuperForm)*/)
         return false;
 
-#if RETRO_USE_MOD_LOADER
     // Support for MegAmi's Super Cancel mod
     ObjectERZSetup *ERZSetup = Mod.FindObject("ERZSetup");
     bool32 superCancel = false;
     Mod.LoadModInfo("SuperCancel", NULL, NULL, NULL, &superCancel);
     if (superCancel && !ERZSetup && (player->state == Player_State_Transform || player->superState == SUPERSTATE_SUPER))
         return true;
-#endif
 
     SaveRAM *saveRAM = SaveGame_GetSaveRAM();
     if (!saveRAM)

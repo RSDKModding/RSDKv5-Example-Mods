@@ -30,10 +30,14 @@ typedef struct {
     int32 dpadAlpha[PLAYER_COUNT];
     Vector2 actionPos;
     int32 jumpAlpha[PLAYER_COUNT];
+#if GAME_VERSION != VER_100
     Vector2 superPos;
     int32 superAlpha[PLAYER_COUNT];
+#endif
+#if MANIA_USE_PLUS
     Vector2 swapPos;
     int32 swapAlpha[PLAYER_COUNT];
+#endif
     Vector2 pausePos;
     int32 pauseAlpha[PLAYER_COUNT];
 } ModObjectHUD;

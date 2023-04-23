@@ -226,9 +226,21 @@ typedef struct {
     uint8 touchJump;
     uint8 touchDebug;
     uint8 touchPause;
+#if GAME_VERSION != VER_100
     uint8 touchSuper;
+#endif
+#if MANIA_USE_PLUS
     uint8 touchSwap;
+#endif
 } ModObjectPlayer;
+
+// Used for Super Cancel compatibility
+typedef struct {
+    RSDK_OBJECT
+    int32 aniTileTimer;
+    int32 timer;
+    uint16 aniTiles;
+} ObjectERZSetup;
 
 // Entity Class
 typedef struct {
@@ -337,6 +349,8 @@ extern ModObjectPlayer *Mod_Player;
 // Public Functions
 extern StateMachine(Player_Input_P1);
 extern bool32 (*Player_CheckValidState)(EntityPlayer *player);
+
+extern StateMachine(Player_State_Transform);
 
 #if MANIA_USE_PLUS
 extern StateMachine(Player_State_Death);

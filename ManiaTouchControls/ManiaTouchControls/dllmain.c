@@ -70,6 +70,8 @@ void InitModAPI(void)
     PBL_Player_Input_P1 = Mod.GetPublicFunction(NULL, "PBL_Player_Input_P1");
 #endif
 
+    Player_State_Transform = Mod.GetPublicFunction(NULL, "Player_State_Transform");
+
 #if MANIA_USE_PLUS
     Player_State_Death         = Mod.GetPublicFunction(NULL, "Player_State_Death");
     Player_State_Drown         = Mod.GetPublicFunction(NULL, "Player_State_Drown");

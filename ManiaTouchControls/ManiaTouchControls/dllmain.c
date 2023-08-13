@@ -29,6 +29,7 @@
 #include "Objects/TitleSetup.h"
 #include "Objects/UIVideo.h"
 #include "Objects/UIControl.h"
+#include "Objects/OOZ2Outro.h"
 
 ModConfig config;
 
@@ -61,6 +62,8 @@ void InitModAPI(void)
     Gachapandora_Player_StateInput_P1Grabbed = Mod.GetPublicFunction(NULL, "Gachapandora_Player_StateInput_P1Grabbed");
 #if MANIA_USE_PLUS
     EncoreIntro_PlayerInput_BuddySel = Mod.GetPublicFunction(NULL, "EncoreIntro_PlayerInput_BuddySel");
+    OOZ2Outro_State_BoardSub         = Mod.GetPublicFunction(NULL, "OOZ2Outro_State_BoardSub");
+    OOZ2Outro_State_SubActivate      = Mod.GetPublicFunction(NULL, "OOZ2Outro_State_SubActivate");
 #endif
 
     BSS_Player_Input_P1   = Mod.GetPublicFunction(NULL, "BSS_Player_Input_P1");
@@ -87,6 +90,8 @@ void InitModAPI(void)
     Mod.RegisterStateHook(Gachapandora_Player_StateInput_P1Grabbed, Player_Input_P1_Hook, true);
 #if MANIA_USE_PLUS
     Mod.RegisterStateHook(EncoreIntro_PlayerInput_BuddySel, Player_Input_P1_Hook, true);
+    Mod.RegisterStateHook(OOZ2Outro_State_BoardSub, OOZ2Outro_State_BoardSub_Hook, true);
+    Mod.RegisterStateHook(OOZ2Outro_State_SubActivate, OOZ2Outro_State_SubActivate_Hook, true);
 #endif
 
     Mod.RegisterStateHook(BSS_Player_Input_P1, BSS_Player_Input_P1_Hook, true);
@@ -147,10 +152,8 @@ void InitModAPI(void)
     MOD_REGISTER_OBJ_OVERLOAD_MSV(PBL_Crane, Mod_PBL_Crane, PBL_Crane_Update, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
     MOD_REGISTER_OBJ_OVERLOAD_MSV(PBL_Flipper, Mod_PBL_Flipper, NULL, NULL, PBL_Flipper_StaticUpdate, NULL, NULL, NULL, NULL, NULL, NULL);
     MOD_REGISTER_OBJ_OVERLOAD_MSV(PBL_Setup, Mod_PBL_Setup, NULL, NULL, PBL_Setup_StaticUpdate, NULL, NULL, NULL, NULL, NULL, NULL);
-#endif
 
-#if MANIA_USE_PLUS
-    MOD_REGISTER_OBJ_OVERLOAD_NOCLASS(CutsceneSeq, CutsceneSeq_Update, NULL, NULL, NULL, CutsceneSeq_Create, NULL, NULL, NULL, NULL);
+    MOD_REGISTER_OBJ_OVERLOAD(CutsceneSeq, CutsceneSeq_Update, NULL, NULL, NULL, CutsceneSeq_Create, NULL, NULL, NULL, NULL);
 #endif
 
     // Register Mod Callbacks
@@ -159,9 +162,6 @@ void InitModAPI(void)
     Mod.AddModCallback(MODCB_ONDRAW, DASetup_ModCB_OnDraw);
 
     // Get Public Functions
-#if MANIA_USE_PLUS
-    CutsceneSeq_CheckSkip  = Mod.GetPublicFunction(NULL, "CutsceneSeq_CheckSkip");
-#endif
     TitleSetup_VideoSkipCB = Mod.GetPublicFunction(NULL, "TitleSetup_VideoSkipCB");
     UIVideo_SkipCB         = Mod.GetPublicFunction(NULL, "UIVideo_SkipCB");
 }

@@ -28,3 +28,4 @@
 #include "Objects/LevelSelect.c"
 #include "Objects/SpecialClear.c"
 #include "Objects/FXFade.c"
+#include "Objects/OOZ2Outro.c"

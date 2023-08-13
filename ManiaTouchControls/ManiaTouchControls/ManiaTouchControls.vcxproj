@@ -185,6 +185,7 @@
     <ClCompile Include="Objects\FXFade.c" />
     <ClCompile Include="Objects\HUD.c" />
     <ClCompile Include="Objects\LevelSelect.c" />
+    <ClCompile Include="Objects\OOZ2Outro.c" />
     <ClCompile Include="Objects\PBL_Crane.c" />
     <ClCompile Include="Objects\PBL_Flipper.c" />
     <ClCompile Include="Objects\PBL_HUD.c" />
@@ -224,6 +225,7 @@
     <ClInclude Include="Objects\FXFade.h" />
     <ClInclude Include="Objects\HUD.h" />
     <ClInclude Include="Objects\LevelSelect.h" />
+    <ClInclude Include="Objects\OOZ2Outro.h" />
     <ClInclude Include="Objects\PBL_Crane.h" />
     <ClInclude Include="Objects\PBL_Flipper.h" />
     <ClInclude Include="Objects\PBL_HUD.h" />

@@ -14,6 +14,11 @@ typedef enum {
 } SkipTypes;
 #endif
 
+// Object Class
+typedef struct {
+    RSDK_OBJECT
+} ObjectCutsceneSeq;
+
 // Entity Class
 typedef struct {
     RSDK_ENTITY
@@ -35,17 +40,12 @@ typedef struct {
 #endif
 } EntityCutsceneSeq;
 
+extern ObjectCutsceneSeq *CutsceneSeq;
+
 #if MANIA_USE_PLUS
-
-// Public Functions
-extern void (*CutsceneSeq_CheckSkip)(uint8 skipType, EntityCutsceneSeq *seq, void (*skipCallback)(void));
-
 // Standard Entity Events
 void CutsceneSeq_Update(void);
 void CutsceneSeq_Create(void *data);
-
-// Extra Entity Functions
-void CutsceneSeq_CheckSkip_Hook(uint8 skipType, EntityCutsceneSeq *seq, void (*skipCallback)(void));
 #endif
 
 #endif //! OBJ_CUTSCENESEQ_H

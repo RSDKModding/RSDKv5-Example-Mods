@@ -29,6 +29,8 @@ bin/
 [Bb]in/
 [Oo]bj/
 cmake/
+build/
+!/build/mod.ini
 
 .github/
 

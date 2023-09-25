@@ -34,17 +34,16 @@ bool32 Player_CanTransform(EntityPlayer *player)
         return false;
 
     // Support for MegAmi's Super Cancel mod
-    ObjectERZSetup *ERZSetup = Mod.FindObject("ERZSetup");
     bool32 superCancel = false;
     Mod.LoadModInfo("SuperCancel", NULL, NULL, NULL, &superCancel);
-    if (superCancel && !ERZSetup && (player->state == Player_State_Transform || player->superState == SUPERSTATE_SUPER))
+    if (superCancel && !RSDK.FindObject("ERZSetup") && (player->state == Player_State_Transform || player->superState == SUPERSTATE_SUPER))
         return true;
 
     SaveRAM *saveRAM = SaveGame_GetSaveRAM();
     if (!saveRAM)
         return false;
 
-    uint8 emeralds   = saveRAM->chaosEmeralds;
+    uint8 emeralds = saveRAM->chaosEmeralds;
 
 #if MANIA_USE_PLUS
     if (Player->canSuperCB && !Player->canSuperCB(false))

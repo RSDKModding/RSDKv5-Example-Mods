@@ -234,14 +234,6 @@ typedef struct {
 #endif
 } ModObjectPlayer;
 
-// Used for Super Cancel compatibility
-typedef struct {
-    RSDK_OBJECT
-    int32 aniTileTimer;
-    int32 timer;
-    uint16 aniTiles;
-} ObjectERZSetup;
-
 // Entity Class
 typedef struct {
     RSDK_ENTITY

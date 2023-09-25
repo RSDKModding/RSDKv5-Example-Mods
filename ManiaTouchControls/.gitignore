@@ -31,6 +31,7 @@ bin/
 cmake/
 build/
 !/build/mod.ini
+!/build/Data/
 
 .github/
 

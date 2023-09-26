@@ -1,10 +1,10 @@
 # Basic CMake that uses All.c
 cmake_minimum_required(VERSION 3.7)
 
-project(ExampleMod_CPP)
+project(ExampleMod)
 
-set(MOD_NAME ExampleMod_CPP CACHE STRING "The mod directory to look into")
-set(OUTPUT_NAME "ExampleMod_CPP" CACHE STRING "The name of the built library")
+set(MOD_NAME ExampleMod CACHE STRING "The mod directory to look into")
+set(OUTPUT_NAME "ExampleMod" CACHE STRING "The name of the built library")
 
 set(RETRO_REVISION 3 CACHE STRING "What revision to compile for. Defaults to Origins = 3")
 set(RETRO_MOD_LOADER_VER 2 CACHE STRING "Sets the mod loader version. Defaults to latest")
@@ -24,19 +24,19 @@ endif()
 
 option(MOD_INCLUDE_EDITOR "Whether or not to include editor functions. Defaults to true" ON)
 
-add_library(ExampleMod_CPP SHARED
-    GameAPI/C/GameAPI/Game.c
-    ${MOD_NAME}/dllmain.c
+add_library(ExampleMod SHARED
+    GameAPI/CPP/GameAPI/Game.cpp
+    ${MOD_NAME}/dllmain.cpp
 )
 
-target_include_directories(ExampleMod_CPP PRIVATE
+target_include_directories(ExampleMod PRIVATE
     ${MOD_NAME}/
-    GameAPI/C/
+    GameAPI/CPP/
 )
 
-set_target_properties(ExampleMod_CPP PROPERTIES OUTPUT_NAME ${OUTPUT_NAME})
+set_target_properties(ExampleMod PROPERTIES OUTPUT_NAME ${OUTPUT_NAME})
 
-target_compile_definitions(ExampleMod_CPP PRIVATE
+target_compile_definitions(ExampleMod PRIVATE
 	RSDK_REVISION=${RETRO_REVISION}
 	RETRO_USE_MOD_LOADER=1
 	RETRO_MOD_LOADER_VER=${RETRO_MOD_LOADER_VER}

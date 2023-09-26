@@ -1,6 +1,7 @@
 #include "Announcer.c"
 #include "BSS_HUD.c"
 #include "BSS_Setup.c"
+#include "COverlay.c"
 #include "HUD.c"
 #include "LottoMachine.c"
 #include "Player.c"

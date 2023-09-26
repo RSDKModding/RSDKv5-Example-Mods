@@ -1,10 +1,10 @@
 # Basic CMake that uses All.c
 cmake_minimum_required(VERSION 3.7)
 
-project(PerZoneTitleCards)
+project(ExampleMod)
 
-set(MOD_NAME PerZoneTitleCards CACHE STRING "The mod directory to look into")
-set(OUTPUT_NAME "PerZoneTitleCards" CACHE STRING "The name of the built library")
+set(MOD_NAME ExampleMod CACHE STRING "The mod directory to look into")
+set(OUTPUT_NAME "ExampleMod" CACHE STRING "The name of the built library")
 
 set(RETRO_REVISION 3 CACHE STRING "What revision to compile for. Defaults to Origins = 3")
 set(RETRO_MOD_LOADER_VER 2 CACHE STRING "Sets the mod loader version. Defaults to latest")
@@ -24,19 +24,19 @@ endif()
 
 option(MOD_INCLUDE_EDITOR "Whether or not to include editor functions. Defaults to true" ON)
 
-add_library(PerZoneTitleCards SHARED
+add_library(ExampleMod SHARED
     GameAPI/C/GameAPI/Game.c
     ${MOD_NAME}/dllmain.c
 )
 
-target_include_directories(PerZoneTitleCards PRIVATE
+target_include_directories(ExampleMod PRIVATE
     ${MOD_NAME}/
     GameAPI/C/
 )
 
-set_target_properties(PerZoneTitleCards PROPERTIES OUTPUT_NAME ${OUTPUT_NAME})
+set_target_properties(ExampleMod PROPERTIES OUTPUT_NAME ${OUTPUT_NAME})
 
-target_compile_definitions(PerZoneTitleCards PRIVATE
+target_compile_definitions(ExampleMod PRIVATE
 	RSDK_REVISION=${RETRO_REVISION}
 	RETRO_USE_MOD_LOADER=1
 	RETRO_MOD_LOADER_VER=${RETRO_MOD_LOADER_VER}

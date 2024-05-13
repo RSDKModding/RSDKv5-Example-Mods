@@ -1,7 +1,6 @@
 #include "DebugMode.h"
 #include "Player.h"
 
-#include "../ModConfig.h"
 #include "../Helpers.h"
 
 ObjectDebugMode *DebugMode;
@@ -12,70 +11,12 @@ void DebugMode_Update(void)
 
     RSDKControllerState *controller = &ControllerInfo[CONT_P1];
 
-    int32 tx = 0, ty = 0;
-    if (CheckTouchRect(0, 96, ScreenInfo->center.x, ScreenInfo->size.y, &tx, &ty) >= 0) {
-        tx -= config.moveDPadPos.x;
-        ty -= config.moveDPadPos.y;
-
-        switch (((RSDK.ATan2(tx, ty) + 16) & 0xFF) >> 5) {
-            case 0:
-                ControllerInfo->keyRight.down |= true;
-                controller->keyRight.down = true;
-                break;
-
-            case 1:
-                ControllerInfo->keyRight.down |= true;
-                controller->keyRight.down = true;
-
-                ControllerInfo->keyDown.down |= true;
-                controller->keyDown.down = true;
-                break;
-
-            case 2:
-                ControllerInfo->keyDown.down |= true;
-                controller->keyDown.down = true;
-                break;
-
-            case 3:
-                ControllerInfo->keyDown.down |= true;
-                controller->keyDown.down = true;
-
-                ControllerInfo->keyLeft.down |= true;
-                controller->keyLeft.down = true;
-                break;
-
-            case 4:
-                ControllerInfo->keyLeft.down |= true;
-                controller->keyLeft.down = true;
-                break;
-
-            case 5:
-                ControllerInfo->keyLeft.down |= true;
-                controller->keyLeft.down = true;
-
-                ControllerInfo->keyUp.down |= true;
-                controller->keyUp.down = true;
-                break;
-
-            case 6:
-                ControllerInfo->keyUp.down |= true;
-                controller->keyUp.down = true;
-                break;
-
-            case 7:
-                ControllerInfo->keyUp.down |= true;
-                controller->keyUp.down = true;
-
-                ControllerInfo->keyRight.down |= true;
-                controller->keyRight.down = true;
-                break;
-        }
-    }
+    HandleDPad_8Dir(controller);
 
     if (DebugMode->itemType == 0xFF)
         DebugMode->itemType = DebugMode->itemTypeCount ? (DebugMode->itemTypeCount - 1) : 0;
 
-    tx = 0, ty = 0;
+    int32 tx = 0, ty = 0;
     if (CheckTouchRect(ScreenInfo->center.x - 48, 0, ScreenInfo->center.x + 48, 56, &tx, &ty) >= 0) {
         if (tx > ScreenInfo->center.x) {
             if (!Mod_Player->touchJump) {

@@ -37,9 +37,6 @@
     <ClCompile Include="Objects\CreditsSetup.c">
       <Filter>Source Files\Objects</Filter>
     </ClCompile>
-    <ClCompile Include="Objects\FXFade.c">
-      <Filter>Source Files\Objects</Filter>
-    </ClCompile>
     <ClCompile Include="Objects\CutsceneSeq.c">
       <Filter>Source Files\Objects</Filter>
     </ClCompile>
@@ -113,6 +110,9 @@
       <Filter>Source Files\Objects</Filter>
     </ClCompile>
     <ClCompile Include="Objects\OOZ2Outro.c">
+      <Filter>Source Files\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\UISaveSlot.c">
       <Filter>Source Files\Objects</Filter>
     </ClCompile>
   </ItemGroup>
@@ -229,6 +229,9 @@
       <Filter>Source Files\Objects</Filter>
     </ClInclude>
     <ClInclude Include="Objects\OOZ2Outro.h">
+      <Filter>Source Files\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\UISaveSlot.h">
       <Filter>Source Files\Objects</Filter>
     </ClInclude>
   </ItemGroup>

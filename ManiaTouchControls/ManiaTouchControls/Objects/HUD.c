@@ -54,10 +54,12 @@ void HUD_DrawTouchControls(void)
 #if MANIA_USE_PLUS
     canMove |= player->stateInput == EncoreIntro_PlayerInput_BuddySel;
 #endif
+    canMove &= player->state != Player_State_Victory;
 
     bool32 canJump = player->stateInput == Player_Input_P1;
     canJump |= player->stateInput == MegaChopper_Input_GrabbedP1;
     canJump |= player->stateInput == Gachapandora_Player_StateInput_P1Grabbed;
+    canJump &= player->state != Player_State_Victory;
 
 #if GAME_VERSION != VER_100
     bool32 canSuper = canJump && Player_CanTransform(player);

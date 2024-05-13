@@ -11,6 +11,7 @@ StateMachine(Player_Input_P1)                          = NULL;
 bool32 (*Player_CheckValidState)(EntityPlayer *player) = NULL;
 
 StateMachine(Player_State_Transform) = NULL;
+StateMachine(Player_State_Victory)   = NULL;
 
 #if MANIA_USE_PLUS
 StateMachine(Player_State_Death)         = NULL;
@@ -27,6 +28,8 @@ StateMachine(Gachapandora_Player_StateInput_P1Grabbed) = NULL;
 #if MANIA_USE_PLUS
 StateMachine(EncoreIntro_PlayerInput_BuddySel) = NULL;
 #endif
+StateMachine(ERZStart_State_PlayerSuperFly) = NULL;
+StateMachine(ERZStart_State_PlayerRebound)  = NULL;
 
 bool32 Player_CanTransform(EntityPlayer *player)
 {
@@ -95,33 +98,10 @@ bool32 Player_Input_P1_Hook(bool32 skippedState)
     if (self->controllerID < PLAYER_COUNT) {
         RSDKControllerState *controller = &ControllerInfo[self->controllerID];
 
-        int32 tx = 0, ty = 0;
-        if (CheckTouchRect(0, 96, ScreenInfo->center.x, ScreenInfo->size.y, &tx, &ty) >= 0) {
-            tx -= config.moveDPadPos.x;
-            ty -= config.moveDPadPos.y;
-
-            switch (((RSDK.ATan2(tx, ty) + 32) & 0xFF) >> 6) {
-                case 0:
-                    ControllerInfo->keyRight.down |= true;
-                    controller->keyRight.down = true;
-                    break;
-
-                case 1:
-                    ControllerInfo->keyDown.down |= true;
-                    controller->keyDown.down = true;
-                    break;
-
-                case 2:
-                    ControllerInfo->keyLeft.down |= true;
-                    controller->keyLeft.down = true;
-                    break;
-
-                case 3:
-                    ControllerInfo->keyUp.down |= true;
-                    controller->keyUp.down = true;
-                    break;
-            }
-        }
+        if (self->state != ERZStart_State_PlayerSuperFly && self->state != ERZStart_State_PlayerRebound)
+            HandleDPad_4Dir(controller);
+        else
+            HandleDPad_8Dir(controller);
 
 #if GAME_VERSION != VER_100
         bool32 canSuper = Player_CanTransform(self) && !self->onGround;

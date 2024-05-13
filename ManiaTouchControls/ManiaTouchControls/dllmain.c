@@ -30,6 +30,7 @@
 #include "Objects/UIVideo.h"
 #include "Objects/UIControl.h"
 #include "Objects/OOZ2Outro.h"
+#include "Objects/UISaveSlot.h"
 
 ModConfig config;
 
@@ -62,8 +63,6 @@ void InitModAPI(void)
     Gachapandora_Player_StateInput_P1Grabbed = Mod.GetPublicFunction(NULL, "Gachapandora_Player_StateInput_P1Grabbed");
 #if MANIA_USE_PLUS
     EncoreIntro_PlayerInput_BuddySel = Mod.GetPublicFunction(NULL, "EncoreIntro_PlayerInput_BuddySel");
-    OOZ2Outro_State_BoardSub         = Mod.GetPublicFunction(NULL, "OOZ2Outro_State_BoardSub");
-    OOZ2Outro_State_SubActivate      = Mod.GetPublicFunction(NULL, "OOZ2Outro_State_SubActivate");
 #endif
 
     BSS_Player_Input_P1   = Mod.GetPublicFunction(NULL, "BSS_Player_Input_P1");
@@ -74,6 +73,7 @@ void InitModAPI(void)
 #endif
 
     Player_State_Transform = Mod.GetPublicFunction(NULL, "Player_State_Transform");
+    Player_State_Victory   = Mod.GetPublicFunction(NULL, "Player_State_Victory");
 
 #if MANIA_USE_PLUS
     Player_State_Death         = Mod.GetPublicFunction(NULL, "Player_State_Death");
@@ -84,14 +84,15 @@ void InitModAPI(void)
     Player_State_Roll          = Mod.GetPublicFunction(NULL, "Player_State_Roll");
 #endif
 
+    ERZStart_State_PlayerSuperFly = Mod.GetPublicFunction(NULL, "ERZStart_State_PlayerSuperFly");
+    ERZStart_State_PlayerRebound  = Mod.GetPublicFunction(NULL, "ERZStart_State_PlayerRebound");
+
     // Register State Hooks
     Mod.RegisterStateHook(Player_Input_P1, Player_Input_P1_Hook, true);
     Mod.RegisterStateHook(MegaChopper_Input_GrabbedP1, Player_Input_P1_Hook, true);
     Mod.RegisterStateHook(Gachapandora_Player_StateInput_P1Grabbed, Player_Input_P1_Hook, true);
 #if MANIA_USE_PLUS
     Mod.RegisterStateHook(EncoreIntro_PlayerInput_BuddySel, Player_Input_P1_Hook, true);
-    Mod.RegisterStateHook(OOZ2Outro_State_BoardSub, OOZ2Outro_State_BoardSub_Hook, true);
-    Mod.RegisterStateHook(OOZ2Outro_State_SubActivate, OOZ2Outro_State_SubActivate_Hook, true);
 #endif
 
     Mod.RegisterStateHook(BSS_Player_Input_P1, BSS_Player_Input_P1_Hook, true);
@@ -114,6 +115,8 @@ void InitModAPI(void)
 
     Mod.RegisterStateHook(Mod.GetPublicFunction(NULL, "DASetup_State_ManageControl"), DASetup_State_ManageControl_Hook, true);
 
+    Mod.RegisterStateHook(Mod.GetPublicFunction(NULL, "UISaveSlot_State_Selected"), UISaveSlot_State_Selected_Hook, true);
+
 #if MANIA_USE_PLUS
     Mod.RegisterStateHook(PBL_Player_Input_P1, PBL_Player_Input_P1_Hook, true);
 
@@ -122,11 +125,13 @@ void InitModAPI(void)
     Mod.RegisterStateHook(Mod.GetPublicFunction(NULL, "TryAgainE_State_Stinger"), TryAgainE_State_Stinger_Hook, true);
 
     Mod.RegisterStateHook(Mod.GetPublicFunction(NULL, "Summary_State_Wait"), Summary_State_Wait_Hook, true);
+
+    Mod.RegisterStateHook(Mod.GetPublicFunction(NULL, "OOZ2Outro_State_BoardSub"), OOZ2Outro_State_BoardSub_Hook, true);
+    Mod.RegisterStateHook(Mod.GetPublicFunction(NULL, "OOZ2Outro_State_SubActivate"), OOZ2Outro_State_SubActivate_Hook, true);
 #endif
 
     // Register Object Hooks
     MOD_REGISTER_OBJECT_HOOK(UIControl);
-
 
     // Register Modded Objects
     MOD_REGISTER_OBJ_OVERLOAD(PuyoGame, PuyoGame_Update, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);

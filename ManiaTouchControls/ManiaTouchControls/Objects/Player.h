@@ -343,6 +343,7 @@ extern StateMachine(Player_Input_P1);
 extern bool32 (*Player_CheckValidState)(EntityPlayer *player);
 
 extern StateMachine(Player_State_Transform);
+extern StateMachine(Player_State_Victory);
 
 #if MANIA_USE_PLUS
 extern StateMachine(Player_State_Death);
@@ -359,6 +360,8 @@ extern StateMachine(Gachapandora_Player_StateInput_P1Grabbed);
 #if MANIA_USE_PLUS
 extern StateMachine(EncoreIntro_PlayerInput_BuddySel);
 #endif
+extern StateMachine(ERZStart_State_PlayerSuperFly);
+extern StateMachine(ERZStart_State_PlayerRebound);
 
 // Extra Entity Functions
 bool32 Player_CanTransform(EntityPlayer *player);

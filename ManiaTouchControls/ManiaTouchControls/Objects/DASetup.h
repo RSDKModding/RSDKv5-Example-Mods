@@ -24,15 +24,15 @@ typedef struct {
 
 // Mod Object Class
 typedef struct {
-    uint8 touchDir;
     uint8 touchConfirm;
     uint16 dpadFrames;
     Animator dpadAnimator;
     Animator dpadTouchAnimator;
-    Vector2 dpadPos;
+    Animator dpadArrowAnimator;
     int32 dpadAlpha;
+    Vector2 dpadPos;
     Vector2 playPos;
-    int32 playAlpha;
+    Vector2 backPos;
 } ModObjectDASetup;
 
 // Entity Class

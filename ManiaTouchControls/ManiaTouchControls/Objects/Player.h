@@ -436,6 +436,7 @@ extern ModObjectPlayer *Mod_Player;
 extern StateMachine(Player_Input_P1);
 extern bool32 (*Player_CheckValidState)(EntityPlayer *player);
 
+extern StateMachine(Player_State_Static);
 extern StateMachine(Player_State_Transform);
 extern StateMachine(Player_State_Victory);
 
@@ -443,7 +444,6 @@ extern StateMachine(Player_State_Victory);
 extern StateMachine(Player_State_Death);
 extern StateMachine(Player_State_Drown);
 extern StateMachine(Player_State_EncoreRespawn);
-extern StateMachine(Player_State_Static);
 extern StateMachine(Player_State_Ground);
 extern StateMachine(Player_State_Roll);
 #endif

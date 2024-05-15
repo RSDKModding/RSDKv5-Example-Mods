@@ -72,6 +72,7 @@ void InitModAPI(void)
     PBL_Player_Input_P1 = Mod.GetPublicFunction(NULL, "PBL_Player_Input_P1");
 #endif
 
+    Player_State_Static    = Mod.GetPublicFunction(NULL, "Player_State_Static");
     Player_State_Transform = Mod.GetPublicFunction(NULL, "Player_State_Transform");
     Player_State_Victory   = Mod.GetPublicFunction(NULL, "Player_State_Victory");
 
@@ -79,7 +80,6 @@ void InitModAPI(void)
     Player_State_Death         = Mod.GetPublicFunction(NULL, "Player_State_Death");
     Player_State_Drown         = Mod.GetPublicFunction(NULL, "Player_State_Drown");
     Player_State_EncoreRespawn = Mod.GetPublicFunction(NULL, "Player_State_EncoreRespawn");
-    Player_State_Static        = Mod.GetPublicFunction(NULL, "Player_State_Static");
     Player_State_Ground        = Mod.GetPublicFunction(NULL, "Player_State_Ground");
     Player_State_Roll          = Mod.GetPublicFunction(NULL, "Player_State_Roll");
 #endif

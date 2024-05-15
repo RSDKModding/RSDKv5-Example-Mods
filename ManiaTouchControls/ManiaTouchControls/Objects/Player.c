@@ -10,6 +10,7 @@ ModObjectPlayer *Mod_Player;
 StateMachine(Player_Input_P1)                          = NULL;
 bool32 (*Player_CheckValidState)(EntityPlayer *player) = NULL;
 
+StateMachine(Player_State_Static)    = NULL;
 StateMachine(Player_State_Transform) = NULL;
 StateMachine(Player_State_Victory)   = NULL;
 
@@ -17,7 +18,6 @@ StateMachine(Player_State_Victory)   = NULL;
 StateMachine(Player_State_Death)         = NULL;
 StateMachine(Player_State_Drown)         = NULL;
 StateMachine(Player_State_EncoreRespawn) = NULL;
-StateMachine(Player_State_Static)        = NULL;
 StateMachine(Player_State_Ground)        = NULL;
 StateMachine(Player_State_Roll)          = NULL;
 #endif
@@ -98,7 +98,8 @@ bool32 Player_Input_P1_Hook(bool32 skippedState)
     if (self->controllerID < PLAYER_COUNT) {
         RSDKControllerState *controller = &ControllerInfo[self->controllerID];
 
-        if (self->state != ERZStart_State_PlayerSuperFly && self->state != ERZStart_State_PlayerRebound && self->animator.animationID != ANI_BUBBLE)
+        if (self->state != ERZStart_State_PlayerSuperFly && self->state != ERZStart_State_PlayerRebound
+            && !(self->state == Player_State_Static && self->animator.animationID == ANI_BUBBLE))
             HandleDPad_4Dir(controller);
         else
             HandleDPad_8Dir(controller);

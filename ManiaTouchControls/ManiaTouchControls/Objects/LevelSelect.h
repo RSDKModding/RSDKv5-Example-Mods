@@ -108,6 +108,5 @@ void LevelSelect_StageLoad(void);
 
 // Extra Entity Functions
 bool32 LevelSelect_State_Navigate_Hook(bool32 skippedState);
-void LevelSelect_DrawUI(void);
 
 #endif //! OBJ_LEVELSELECT_H

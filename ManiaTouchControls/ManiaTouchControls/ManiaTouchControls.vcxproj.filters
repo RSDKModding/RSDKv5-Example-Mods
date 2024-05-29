@@ -150,9 +150,6 @@
     <ClInclude Include="Objects\CreditsSetup.h">
       <Filter>Source Files\Objects</Filter>
     </ClInclude>
-    <ClInclude Include="Objects\FXFade.h">
-      <Filter>Source Files\Objects</Filter>
-    </ClInclude>
     <ClInclude Include="Objects\CutsceneSeq.h">
       <Filter>Source Files\Objects</Filter>
     </ClInclude>

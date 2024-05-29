@@ -59,9 +59,11 @@ bool32 LevelSelect_State_Navigate_Hook(bool32 skippedState)
     return false;
 }
 
-void LevelSelect_DrawUI(void)
+void LevelSelect_Draw(void)
 {
     RSDK_THIS(LevelSelect);
+
+    Mod.Super(LevelSelect->classID, SUPER_DRAW, NULL);
 
     int32 alphaStore   = self->alpha;
     int32 inkStore     = self->inkEffect;
@@ -161,7 +163,7 @@ void LevelSelect_DrawUI(void)
             Mod_LevelSelect->dpadAnimator.frameID = 1;
             RSDK.DrawSprite(&Mod_LevelSelect->dpadAnimator, &Mod_LevelSelect->confirmPos, true);
         }
-        
+
         if (ControllerInfo->keyX.down) {
             self->alpha                                = opacity;
             Mod_LevelSelect->dpadTouchAnimator.frameID = 4;
@@ -219,13 +221,6 @@ void LevelSelect_DrawUI(void)
     self->inkEffect = inkStore;
     self->drawFX    = fxStore;
     self->scale     = scaleStore;
-}
-
-void LevelSelect_Draw(void)
-{
-    LevelSelect_DrawUI();
-
-    Mod.Super(LevelSelect->classID, SUPER_DRAW, NULL);
 }
 
 void LevelSelect_StageLoad(void)

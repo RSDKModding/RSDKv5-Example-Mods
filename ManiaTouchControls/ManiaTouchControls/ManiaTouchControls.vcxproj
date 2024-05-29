@@ -222,7 +222,6 @@
     <ClInclude Include="Objects\CutsceneSeq.h" />
     <ClInclude Include="Objects\DASetup.h" />
     <ClInclude Include="Objects\DebugMode.h" />
-    <ClInclude Include="Objects\FXFade.h" />
     <ClInclude Include="Objects\HUD.h" />
     <ClInclude Include="Objects\LevelSelect.h" />
     <ClInclude Include="Objects\UISaveSlot.h" />

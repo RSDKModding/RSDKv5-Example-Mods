@@ -136,7 +136,7 @@ void InitModAPI(void)
     // Register Modded Objects
     MOD_REGISTER_OBJ_OVERLOAD(PuyoGame, PuyoGame_Update, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
     MOD_REGISTER_OBJ_OVERLOAD(PuyoLevelSelect, PuyoLevelSelect_Update, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-    MOD_REGISTER_OBJ_OVERLOAD(CreditsSetup, NULL, NULL, CreditsSetup_StaticUpdate, NULL, NULL, NULL, NULL, NULL, NULL);
+    MOD_REGISTER_OBJ_OVERLOAD_MSV(CreditsSetup, Mod_CreditsSetup, NULL, NULL, CreditsSetup_StaticUpdate, NULL, NULL, CreditsSetup_StageLoad, NULL, NULL, NULL);
 
     MOD_REGISTER_OBJ_OVERLOAD_MSV(BSS_HUD, Mod_BSS_HUD, NULL, NULL, NULL, BSS_HUD_Draw, NULL, BSS_HUD_StageLoad, NULL, NULL, NULL);
     MOD_REGISTER_OBJ_OVERLOAD_MSV(BSS_Player, Mod_BSS_Player, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
@@ -164,6 +164,7 @@ void InitModAPI(void)
     // Register Mod Callbacks
     Mod.AddModCallback(MODCB_ONVIDEOSKIPCB, TitleSetup_ModCB_VideoSkip);
     Mod.AddModCallback(MODCB_ONVIDEOSKIPCB, UIVideo_ModCB_VideoSkip);
+    Mod.AddModCallback(MODCB_ONDRAW, CreditsSetup_ModCB_OnDraw);
     Mod.AddModCallback(MODCB_ONDRAW, DASetup_ModCB_OnDraw);
 
     // Get Public Functions

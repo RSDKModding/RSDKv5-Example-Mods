@@ -39,5 +39,4 @@ void PBL_Crane_Update(void)
         Mod_PBL_Crane->active = false;
     }
 }
-
 #endif

@@ -26,7 +26,7 @@ bool32 UFO_Player_Input_P1_Hook(bool32 skippedState)
         }
 
         bool32 touchedPause = false;
-        if (CheckTouchRect(ScreenInfo->size.x - 0x80, 0, ScreenInfo->size.x, 0x40, NULL, NULL) >= 0) {
+        if (CheckTouchPause()) {
             ControllerInfo->keyStart.down |= true;
             controller->keyStart.down = true;
             touchedPause              = true;

@@ -23,7 +23,7 @@ bool32 DASetup_State_ManageControl_Hook(bool32 skippedState) {
 
     Mod_DASetup->touchConfirm = ControllerInfo->keyA.down;
 
-    if (CheckTouchRect(ScreenInfo->size.x - 0x80, 0, ScreenInfo->size.x, 0x40, NULL, NULL) >= 0)
+    if (CheckTouchPause())
         ControllerInfo->keyB.press |= true;
 
     UIControl->anyRightPress |= ControllerInfo->keyRight.press;

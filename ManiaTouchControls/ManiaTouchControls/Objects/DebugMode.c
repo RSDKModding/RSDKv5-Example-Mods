@@ -50,19 +50,17 @@ void DebugMode_Update(void)
         }
     }
     else {
-        switch (CheckTouchRect(ScreenInfo->center.x, 96, ScreenInfo->size.x, SCREEN_YSIZE, NULL, NULL)) {
-            case -1: Mod_Player->touchJump = false; break;
-
-            case 0:
-                ControllerInfo->keyC.down = true;
-                controller->keyC.down     = true;
-                if (!Mod_Player->touchJump) {
-                    ControllerInfo->keyC.press = true;
-                    controller->keyC.press     = true;
-                }
-                Mod_Player->touchJump = controller->keyC.down;
-                break;
+        if (CheckTouchRect(ScreenInfo->center.x, 96, ScreenInfo->size.x, ScreenInfo->size.y, NULL, NULL) >= 0) {
+            ControllerInfo->keyC.down = true;
+            controller->keyC.down     = true;
+            if (!Mod_Player->touchJump) {
+                ControllerInfo->keyC.press = true;
+                controller->keyC.press     = true;
+            }
+            Mod_Player->touchJump = controller->keyC.down;
         }
+        else
+            Mod_Player->touchJump = false;
     }
 
     bool32 touchedDebug = false;
@@ -91,24 +89,6 @@ void DebugMode_Update(void)
 #else
     Mod_Player->touchDebug = controller->keyY.down;
 #endif
-
-    if (CheckTouchRect(ScreenInfo->size.x - 88, 0, ScreenInfo->size.x, 40, NULL, NULL) >= 0 || controller->keyStart.press || Unknown_pausePress) {
-        if (SceneInfo->state == ENGINESTATE_REGULAR) {
-            // fuck it, TODO: this
-            // EntityPauseMenu *pauseMenu = RSDK_GET_ENTITY(SLOT_PAUSEMENU);
-            // bool32 allowPause          = true;
-            //
-            // if (ActClear && ActClear->actClearActive)
-            //     allowPause = false;
-            //
-            // if (!RSDK.GetEntityCount(TitleCard->classID, false) && !pauseMenu->classID && allowPause) {
-            //     RSDK.ResetEntitySlot(SLOT_PAUSEMENU, PauseMenu->classID, NULL);
-            //     pauseMenu->triggerPlayer = self->playerID;
-            //     if (globals->gameMode == MODE_COMPETITION)
-            //         pauseMenu->disableRestart = true;
-            // }
-        }
-    }
 
     Mod.Super(DebugMode->classID, SUPER_UPDATE, NULL);
 }

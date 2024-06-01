@@ -11,7 +11,7 @@ void CreditsSetup_StaticUpdate(void)
     RSDK_THIS(CreditsSetup);
 
     if (!CreditsSetup->skipped) {
-        if (CheckTouchRect(ScreenInfo->size.x - 0x80, 0, ScreenInfo->size.x, 0x40, NULL, NULL) >= 0)
+        if (CheckTouchPause())
             ControllerInfo->keyStart.press |= true;
         else
             ControllerInfo->keyA.down |= TouchInfo->count;

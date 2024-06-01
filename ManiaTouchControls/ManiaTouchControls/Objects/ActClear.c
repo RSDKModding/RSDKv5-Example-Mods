@@ -12,7 +12,7 @@ bool32 ActClear_State_TallyScore_Hook(bool32 skippedState)
 #if MANIA_USE_PLUS
 bool32 ActClear_State_ShowResultsTA_Hook(bool32 skippedState)
 {
-    if (API.CheckDLC(DLC_PLUS) && CheckTouchRect(ScreenInfo->size.x - 0x80, 0, ScreenInfo->size.x, 0x40, NULL, NULL) >= 0) {
+    if (API.CheckDLC(DLC_PLUS) && CheckTouchPause()) {
         if (!ControllerInfo[CONT_P1].keyY.down)
             ControllerInfo->keyY.press = true;
     }

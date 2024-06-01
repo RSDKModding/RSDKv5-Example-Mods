@@ -14,4 +14,6 @@ void HandleDPad_8Dir(RSDKControllerState *controller);
 #define API_GetConfirmButtonFlip() false // too lazy lol
 #endif
 
+#define CheckTouchPause() (CheckTouchRect(ScreenInfo->size.x - 0x80, 0, ScreenInfo->size.x, 0x40, NULL, NULL) >= 0)
+
 #endif // !HELPERS_H

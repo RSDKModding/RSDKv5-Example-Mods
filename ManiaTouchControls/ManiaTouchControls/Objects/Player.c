@@ -132,7 +132,7 @@ bool32 Player_Input_P1_Hook(bool32 skippedState)
         }
 
         bool32 touchedPause = false;
-        if (CheckTouchRect(ScreenInfo->size.x - 0x80, 0, ScreenInfo->size.x, 0x40, NULL, NULL) >= 0) {
+        if (CheckTouchPause()) {
             ControllerInfo->keyStart.down |= true;
             controller->keyStart.down = true;
             touchedPause              = true;
@@ -155,7 +155,7 @@ bool32 Player_Input_P1_Hook(bool32 skippedState)
 #if GAME_VERSION != VER_100
         bool32 touchedSuper = false;
         if (canSuper) {
-            if (CheckTouchRect(jumpX - 64, jumpY, jumpX, ScreenInfo->size.x, NULL, NULL) >= 0) {
+            if (CheckTouchRect(jumpX - 64, jumpY, jumpX, ScreenInfo->size.y, NULL, NULL) >= 0) {
                 ControllerInfo->keyY.down |= true;
                 controller->keyY.down = true;
                 touchedSuper          = true;

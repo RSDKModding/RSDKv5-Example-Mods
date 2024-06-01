@@ -38,7 +38,7 @@ bool32 LevelSelect_State_Navigate_Hook(bool32 skippedState)
         }
     }
 
-    if (CheckTouchRect(ScreenInfo->size.x - 0x80, 0, ScreenInfo->size.x, 0x40, NULL, NULL) >= 0) {
+    if (CheckTouchPause()) {
         ControllerInfo->keyStart.press |= true;
         self->labelID = self->labelCount - 1; // Pressing start on Sound Test takes you to the menu scene
     }

@@ -44,7 +44,7 @@ bool32 PuyoBean_Input_Player_Hook(bool32 skippedState)
         Mod_PuyoBean->touchLeft  = controller->keyB.down;
         Mod_PuyoBean->touchRight = controller->keyA.down;
 
-        if (CheckTouchRect(ScreenInfo->size.x - 0x80, 0, ScreenInfo->size.x, 0x40, NULL, NULL) >= 0) {
+        if (CheckTouchPause()) {
             ControllerInfo->keyStart.down |= true;
             controller->keyStart.down = true;
         }

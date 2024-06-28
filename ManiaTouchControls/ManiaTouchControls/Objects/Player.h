@@ -5,6 +5,100 @@
 #include "Camera.h"
 
 typedef enum {
+    ANI_IDLE,
+    ANI_BORED_1,
+    ANI_BORED_2,
+    ANI_LOOK_UP,
+    ANI_CROUCH,
+    ANI_WALK,
+    ANI_AIR_WALK,
+    ANI_JOG,
+    ANI_RUN,
+    ANI_DASH,
+    ANI_JUMP,
+    ANI_SPRING_TWIRL,
+    ANI_SPRING_DIAGONAL,
+    ANI_SKID,
+    ANI_SKID_TURN,
+    ANI_SPINDASH,
+    ANI_ABILITY_0,
+    ANI_PUSH,
+    ANI_HURT,
+    ANI_DIE,
+    ANI_DROWN,
+    ANI_BALANCE_1,
+    ANI_BALANCE_2,
+    ANI_SPRING_CS,
+    ANI_STAND_CS,
+    ANI_FAN,
+    ANI_VICTORY,
+    ANI_OUTTA_HERE,
+    ANI_HANG,
+    ANI_HANG_MOVE,
+    ANI_POLE_SWING_V,
+    ANI_POLE_SWING_H,
+    ANI_SHAFT_SWING,
+    ANI_TURNTABLE,
+    ANI_TWISTER,
+    ANI_SPIRAL_RUN,
+    ANI_STICK,
+    ANI_PULLEY_HOLD,
+    ANI_SHIMMY_IDLE,
+    ANI_SHIMMY_MOVE,
+    ANI_BUBBLE,
+    ANI_BREATHE,
+    ANI_RIDE,
+    ANI_CLING,
+    ANI_BUNGEE,
+    ANI_TWIST_RUN,
+#if MANIA_USE_PLUS
+    ANI_FLUME,
+#endif
+    ANI_TRANSFORM,
+    ANI_ABILITY_1,
+    ANI_ABILITY_2,
+    ANI_ABILITY_3,
+    ANI_ABILITY_4,
+    ANI_ABILITY_5,
+    ANI_ABILITY_6,
+    ANI_ABILITY_7,
+
+    // Sonic Ability Anim Aliases
+    ANI_DROPDASH = ANI_ABILITY_0,
+    ANI_PEELOUT  = ANI_ABILITY_1,
+
+    // Tails Ability Anim Aliases
+    ANI_FLY            = ANI_ABILITY_1,
+    ANI_FLY_TIRED      = ANI_ABILITY_2,
+    ANI_FLY_LIFT       = ANI_ABILITY_3,
+    ANI_FLY_LIFT_TIRED = ANI_ABILITY_4,
+    ANI_SWIM           = ANI_ABILITY_5,
+    ANI_SWIM_TIRED     = ANI_ABILITY_6,
+    ANI_SWIM_LIFT      = ANI_ABILITY_7,
+
+    // Knux Ability Anim Aliases
+    ANI_LEDGE_PULL_UP = ANI_ABILITY_0,
+    ANI_GLIDE         = ANI_ABILITY_1,
+    ANI_GLIDE_DROP    = ANI_ABILITY_2,
+    ANI_GLIDE_LAND    = ANI_ABILITY_3,
+    ANI_GLIDE_SLIDE   = ANI_ABILITY_4,
+    ANI_CLIMB_IDLE    = ANI_ABILITY_5,
+    ANI_CLIMB_UP      = ANI_ABILITY_6,
+    ANI_CLIMB_DOWN    = ANI_ABILITY_7,
+
+#if MANIA_USE_PLUS
+    // Mighty Ability Anim Aliases
+    ANI_HAMMERDROP = ANI_ABILITY_0,
+    ANI_UNSPIN     = ANI_ABILITY_1,
+
+    // Ray Ability Anim Aliases
+    ANI_HANG2    = ANI_ABILITY_0,
+    ANI_FLY_UP   = ANI_ABILITY_1,
+    ANI_FLY_DOWN = ANI_ABILITY_2,
+#endif
+} PlayerAnimationIDs;
+
+typedef enum {
     SUPERSTATE_NONE,
     SUPERSTATE_FADEIN,
     SUPERSTATE_SUPER,
@@ -342,13 +436,14 @@ extern ModObjectPlayer *Mod_Player;
 extern StateMachine(Player_Input_P1);
 extern bool32 (*Player_CheckValidState)(EntityPlayer *player);
 
+extern StateMachine(Player_State_Static);
 extern StateMachine(Player_State_Transform);
+extern StateMachine(Player_State_Victory);
 
 #if MANIA_USE_PLUS
 extern StateMachine(Player_State_Death);
 extern StateMachine(Player_State_Drown);
 extern StateMachine(Player_State_EncoreRespawn);
-extern StateMachine(Player_State_Static);
 extern StateMachine(Player_State_Ground);
 extern StateMachine(Player_State_Roll);
 #endif
@@ -359,6 +454,8 @@ extern StateMachine(Gachapandora_Player_StateInput_P1Grabbed);
 #if MANIA_USE_PLUS
 extern StateMachine(EncoreIntro_PlayerInput_BuddySel);
 #endif
+extern StateMachine(ERZStart_State_PlayerSuperFly);
+extern StateMachine(ERZStart_State_PlayerRebound);
 
 // Extra Entity Functions
 bool32 Player_CanTransform(EntityPlayer *player);

@@ -52,21 +52,20 @@ typedef struct {
 
 // Mod Object Class
 typedef struct {
-    uint8 touchDir;
     uint8 touchConfirm;
     uint8 touchSwap;
     uint8 touchSwapP2;
     uint16 dpadFrames;
     Animator dpadAnimator;
     Animator dpadTouchAnimator;
-    Vector2 dpadPos;
+    Animator dpadArrowAnimator;
     int32 dpadAlpha;
-    Vector2 confirmPos;
-    int32 confirmAlpha;
-    Vector2 swapPos;
-    int32 swapAlpha;
-    Vector2 swapP2Pos;
     int32 swapP2Alpha;
+    Vector2 dpadPos;
+    Vector2 confirmPos;
+    Vector2 swapPos;
+    Vector2 swapP2Pos;
+    Vector2 backPos;
 } ModObjectLevelSelect;
 
 // Entity Class
@@ -109,6 +108,5 @@ void LevelSelect_StageLoad(void);
 
 // Extra Entity Functions
 bool32 LevelSelect_State_Navigate_Hook(bool32 skippedState);
-void LevelSelect_DrawUI(void);
 
 #endif //! OBJ_LEVELSELECT_H

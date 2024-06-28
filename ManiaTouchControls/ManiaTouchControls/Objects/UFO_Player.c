@@ -1,6 +1,5 @@
 #include "UFO_Player.h"
 
-#include "../ModConfig.h"
 #include "../Helpers.h"
 
 ObjectUFO_Player *UFO_Player;
@@ -16,33 +15,7 @@ bool32 UFO_Player_Input_P1_Hook(bool32 skippedState)
     if (self->controllerID < PLAYER_COUNT) {
         RSDKControllerState *controller = &ControllerInfo[self->controllerID];
 
-        int32 tx = 0, ty = 0;
-        if (CheckTouchRect(0, 96, ScreenInfo->center.x, ScreenInfo->size.y, &tx, &ty) >= 0) {
-            tx -= config.moveDPadPos.x;
-            ty -= config.moveDPadPos.y;
-
-            switch (((RSDK.ATan2(tx, ty) + 32) & 0xFF) >> 6) {
-                case 0:
-                    ControllerInfo->keyRight.down |= true;
-                    controller->keyRight.down = true;
-                    break;
-
-                case 1:
-                    ControllerInfo->keyDown.down |= true;
-                    controller->keyDown.down = true;
-                    break;
-
-                case 2:
-                    ControllerInfo->keyLeft.down |= true;
-                    controller->keyLeft.down = true;
-                    break;
-
-                case 3:
-                    ControllerInfo->keyUp.down |= true;
-                    controller->keyUp.down = true;
-                    break;
-            }
-        }
+        HandleDPad_4Dir(controller);
 
         // fixes a bug with button vs touch
         bool32 touchedJump = false;
@@ -53,7 +26,7 @@ bool32 UFO_Player_Input_P1_Hook(bool32 skippedState)
         }
 
         bool32 touchedPause = false;
-        if (CheckTouchRect(ScreenInfo->size.x - 0x80, 0, ScreenInfo->size.x, 0x40, NULL, NULL) >= 0) {
+        if (CheckTouchPause()) {
             ControllerInfo->keyStart.down |= true;
             controller->keyStart.down = true;
             touchedPause              = true;

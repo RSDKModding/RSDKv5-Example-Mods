@@ -182,9 +182,9 @@
     <ClCompile Include="Objects\CutsceneSeq.c" />
     <ClCompile Include="Objects\DASetup.c" />
     <ClCompile Include="Objects\DebugMode.c" />
-    <ClCompile Include="Objects\FXFade.c" />
     <ClCompile Include="Objects\HUD.c" />
     <ClCompile Include="Objects\LevelSelect.c" />
+    <ClCompile Include="Objects\UISaveSlot.c" />
     <ClCompile Include="Objects\OOZ2Outro.c" />
     <ClCompile Include="Objects\PBL_Crane.c" />
     <ClCompile Include="Objects\PBL_Flipper.c" />
@@ -222,9 +222,9 @@
     <ClInclude Include="Objects\CutsceneSeq.h" />
     <ClInclude Include="Objects\DASetup.h" />
     <ClInclude Include="Objects\DebugMode.h" />
-    <ClInclude Include="Objects\FXFade.h" />
     <ClInclude Include="Objects\HUD.h" />
     <ClInclude Include="Objects\LevelSelect.h" />
+    <ClInclude Include="Objects\UISaveSlot.h" />
     <ClInclude Include="Objects\OOZ2Outro.h" />
     <ClInclude Include="Objects\PBL_Crane.h" />
     <ClInclude Include="Objects\PBL_Flipper.h" />

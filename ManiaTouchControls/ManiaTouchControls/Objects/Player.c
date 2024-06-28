@@ -10,13 +10,14 @@ ModObjectPlayer *Mod_Player;
 StateMachine(Player_Input_P1)                          = NULL;
 bool32 (*Player_CheckValidState)(EntityPlayer *player) = NULL;
 
+StateMachine(Player_State_Static)    = NULL;
 StateMachine(Player_State_Transform) = NULL;
+StateMachine(Player_State_Victory)   = NULL;
 
 #if MANIA_USE_PLUS
 StateMachine(Player_State_Death)         = NULL;
 StateMachine(Player_State_Drown)         = NULL;
 StateMachine(Player_State_EncoreRespawn) = NULL;
-StateMachine(Player_State_Static)        = NULL;
 StateMachine(Player_State_Ground)        = NULL;
 StateMachine(Player_State_Roll)          = NULL;
 #endif
@@ -27,6 +28,8 @@ StateMachine(Gachapandora_Player_StateInput_P1Grabbed) = NULL;
 #if MANIA_USE_PLUS
 StateMachine(EncoreIntro_PlayerInput_BuddySel) = NULL;
 #endif
+StateMachine(ERZStart_State_PlayerSuperFly) = NULL;
+StateMachine(ERZStart_State_PlayerRebound)  = NULL;
 
 bool32 Player_CanTransform(EntityPlayer *player)
 {
@@ -95,33 +98,11 @@ bool32 Player_Input_P1_Hook(bool32 skippedState)
     if (self->controllerID < PLAYER_COUNT) {
         RSDKControllerState *controller = &ControllerInfo[self->controllerID];
 
-        int32 tx = 0, ty = 0;
-        if (CheckTouchRect(0, 96, ScreenInfo->center.x, ScreenInfo->size.y, &tx, &ty) >= 0) {
-            tx -= config.moveDPadPos.x;
-            ty -= config.moveDPadPos.y;
-
-            switch (((RSDK.ATan2(tx, ty) + 32) & 0xFF) >> 6) {
-                case 0:
-                    ControllerInfo->keyRight.down |= true;
-                    controller->keyRight.down = true;
-                    break;
-
-                case 1:
-                    ControllerInfo->keyDown.down |= true;
-                    controller->keyDown.down = true;
-                    break;
-
-                case 2:
-                    ControllerInfo->keyLeft.down |= true;
-                    controller->keyLeft.down = true;
-                    break;
-
-                case 3:
-                    ControllerInfo->keyUp.down |= true;
-                    controller->keyUp.down = true;
-                    break;
-            }
-        }
+        if (self->state != ERZStart_State_PlayerSuperFly && self->state != ERZStart_State_PlayerRebound
+            && !(self->state == Player_State_Static && self->animator.animationID == ANI_BUBBLE))
+            HandleDPad_4Dir(controller);
+        else
+            HandleDPad_8Dir(controller);
 
 #if GAME_VERSION != VER_100
         bool32 canSuper = Player_CanTransform(self) && !self->onGround;
@@ -151,7 +132,7 @@ bool32 Player_Input_P1_Hook(bool32 skippedState)
         }
 
         bool32 touchedPause = false;
-        if (CheckTouchRect(ScreenInfo->size.x - 0x80, 0, ScreenInfo->size.x, 0x40, NULL, NULL) >= 0) {
+        if (CheckTouchPause()) {
             ControllerInfo->keyStart.down |= true;
             controller->keyStart.down = true;
             touchedPause              = true;
@@ -174,7 +155,7 @@ bool32 Player_Input_P1_Hook(bool32 skippedState)
 #if GAME_VERSION != VER_100
         bool32 touchedSuper = false;
         if (canSuper) {
-            if (CheckTouchRect(jumpX - 64, jumpY, jumpX, ScreenInfo->size.x, NULL, NULL) >= 0) {
+            if (CheckTouchRect(jumpX - 64, jumpY, jumpX, ScreenInfo->size.y, NULL, NULL) >= 0) {
                 ControllerInfo->keyY.down |= true;
                 controller->keyY.down = true;
                 touchedSuper          = true;

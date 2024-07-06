@@ -1,11 +1,15 @@
-#include "../ModConfig.h"
+#include "GameAPI/Game.h"
 
+#define extraWidth ((ScreenInfo->size.x - WIDE_SCR_XSIZE) / 2)
+
+#if MANIA_USE_PLUS
 typedef struct ObjectUIControl ObjectUIControl;
 typedef struct EntityUIControl EntityUIControl;
 typedef struct ObjectMainMenu ObjectMainMenu;
 typedef struct EntityMainMenu EntityMainMenu;
 typedef struct ObjectUIDiorama ObjectUIDiorama;
 typedef struct EntityUIDiorama EntityUIDiorama;
+#endif
 
 typedef struct ObjectSpiderMobile ObjectSpiderMobile;
 typedef struct EntitySpiderMobile EntitySpiderMobile;
@@ -21,8 +25,8 @@ typedef struct ObjectZone ObjectZone;
 typedef struct ObjectPlayer ObjectPlayer;
 typedef struct EntityPlayer EntityPlayer;
 
-#include "Menu/UIControl.h"
 #if MANIA_USE_PLUS
+#include "Menu/UIControl.h"
 #include "Menu/MainMenu.h"
 #include "Menu/UIDiorama.h"
 #endif

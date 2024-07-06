@@ -1,3 +1,4 @@
+#if MANIA_USE_PLUS
 #ifndef UIDIORAMA_H
 #define UIDIORAMA_H
 
@@ -44,6 +45,6 @@ struct EntityUIDiorama {
 // Object Struct
 extern ObjectUIDiorama *UIDiorama;
 
-void UIDiorama_Create(void* data);
-
+void UIDiorama_Create(void *data);
+#endif
 #endif

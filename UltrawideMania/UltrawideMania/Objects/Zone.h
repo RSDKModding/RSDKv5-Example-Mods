@@ -67,5 +67,5 @@ struct ObjectZone {
 #endif
 };
 
-extern ObjectZone* Zone;
+extern ObjectZone *Zone;
 #endif

@@ -1,22 +1,13 @@
-#include "../../ModConfig.h"
-
-StateMachine(SpiderMobile_StateBody_AwaitPlayer);
+#include "../All.h"
 ObjectSpiderMobile *SpiderMobile;
 
-int32 preTimer;
-
-bool32 SpiderMobile_StateBody_AwaitPlayer_Pre(bool32 skip) {
-    RSDK_THIS(SpiderMobile);
-    preTimer = self->timer;
-
-    return false;
-}
+StateMachine(SpiderMobile_StateBody_AwaitPlayer);
 
 bool32 SpiderMobile_StateBody_AwaitPlayer_Hook(bool32 skip)
 {
     RSDK_THIS(SpiderMobile);
 
-    if (self->timer || !preTimer)
+    if (self->state == SpiderMobile_StateBody_AwaitPlayer)
         return false;
 
     Zone->cameraBoundsL[0] = (self->position.x >> 16) - ScreenInfo->center.x;

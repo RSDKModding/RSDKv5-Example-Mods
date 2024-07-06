@@ -1,5 +1,8 @@
-#include "../../ModConfig.h"
+#include "../All.h"
+#if MANIA_USE_PLUS
 ObjectMainMenu *MainMenu;
+
+bool32 (*MathHelpers_PointInHitbox)(int32 thisX1, int32 thisY1, int32 otherX1, int32 otherY1, int32 direction, Hitbox *hitbox);
 
 void MainMenu_StaticUpdate(void)
 {
@@ -24,3 +27,4 @@ void MainMenu_StaticUpdate(void)
 
     Mod.Super(MainMenu->classID, SUPER_STATICUPDATE, NULL);
 }
+#endif

@@ -1,3 +1,4 @@
+#if MANIA_USE_PLUS
 #ifndef UICONTROL_H
 #define UICONTROL_H
 
@@ -83,7 +84,7 @@ struct EntityUIControl {
     void *heading; // EntityUIHeading
     void *shifter; // EntityUIShifter
 #if MANIA_USE_PLUS
-    void *carousel; // EntityUICarousel
+    void *carousel;                        // EntityUICarousel
     void *prompts[UICONTROL_PROMPT_COUNT]; // EntityUIButtonPrompt
 #endif
     void *buttons[UICONTROL_BUTTON_COUNT]; // EntityUIButton
@@ -100,4 +101,5 @@ struct EntityUIControl {
     int32 unused6;
     int32 unused7;
 };
+#endif
 #endif

@@ -1,4 +1,4 @@
-#include "../../ModConfig.h"
+#include "../All.h"
 ObjectCutsceneSeq *CutsceneSeq;
 
 bool32 (*FBZ1Outro_Cutscene_PrepareFBZ2)(EntityCutsceneSeq *host);

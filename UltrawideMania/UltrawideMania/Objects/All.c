@@ -1,4 +1,4 @@
-#include "../ModConfig.h"
+#include "All.h"
 
 #if MANIA_USE_PLUS
 #include "Menu/MainMenu.c"

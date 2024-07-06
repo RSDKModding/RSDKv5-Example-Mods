@@ -1,8 +1,8 @@
-#include "../../ModConfig.h"
-
+#include "../All.h"
+#if MANIA_USE_PLUS
 ObjectUIDiorama *UIDiorama;
 
-void UIDiorama_Create(void* data)
+void UIDiorama_Create(void *data)
 {
     RSDK_THIS(UIDiorama);
 
@@ -10,3 +10,4 @@ void UIDiorama_Create(void* data)
 
     self->position.x -= extraWidth << 16;
 }
+#endif

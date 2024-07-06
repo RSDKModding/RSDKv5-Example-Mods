@@ -63,9 +63,6 @@
     <ClInclude Include="..\GameAPI\C\GameAPI\GameVariables.h">
       <Filter>GameAPI</Filter>
     </ClInclude>
-    <ClInclude Include="ModConfig.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="Objects\All.h">
       <Filter>Source Files\Objects</Filter>
     </ClInclude>

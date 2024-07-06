@@ -1,8 +1,6 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
-#include "GameAPI/Game.h"
-
 #if MANIA_USE_PLUS
 struct ObjectPlayer {
     RSDK_OBJECT
@@ -214,7 +212,7 @@ struct EntityPlayer {
     StateMachine(state);
     StateMachine(nextAirState);
     StateMachine(nextGroundState);
-    void *camera;
+    void *camera; // Camera
     Animator animator;
     Animator tailAnimator;
     int32 maxWalkSpeed;

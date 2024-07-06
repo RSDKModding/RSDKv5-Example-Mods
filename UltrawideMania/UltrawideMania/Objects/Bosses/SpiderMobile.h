@@ -73,6 +73,5 @@ struct ObjectSpiderMobile {
 extern StateMachine(SpiderMobile_StateBody_AwaitPlayer);
 extern ObjectSpiderMobile *SpiderMobile;
 
-bool32 SpiderMobile_StateBody_AwaitPlayer_Pre(bool32);
 bool32 SpiderMobile_StateBody_AwaitPlayer_Hook(bool32);
 #endif

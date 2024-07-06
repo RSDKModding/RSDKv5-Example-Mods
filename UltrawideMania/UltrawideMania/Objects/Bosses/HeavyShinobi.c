@@ -1,4 +1,4 @@
-#include "../../ModConfig.h"
+#include "../All.h"
 ObjectHeavyShinobi *HeavyShinobi;
 
 StateMachine(HeavyShinobi_State_Init);

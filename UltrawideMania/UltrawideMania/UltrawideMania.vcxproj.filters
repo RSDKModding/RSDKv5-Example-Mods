@@ -46,6 +46,9 @@
     <ClCompile Include="Objects\Cutscenes\CutsceneSeq.c">
       <Filter>Source Files\Objects\Cutscenes</Filter>
     </ClCompile>
+    <ClCompile Include="Objects\Bosses\CrimsonEye.c">
+      <Filter>Source Files\Objects\Bosses</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\GameAPI\C\GameAPI\Game.h">
@@ -86,6 +89,12 @@
     </ClInclude>
     <ClInclude Include="Objects\Cutscenes\CutsceneSeq.h">
       <Filter>Source Files\Objects\Cutscenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Bosses\CrimsonEye.h">
+      <Filter>Source Files\Objects\Bosses</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Player.h">
+      <Filter>Source Files\Objects</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

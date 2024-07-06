@@ -4,6 +4,7 @@
 ModConfig config;
 
 ObjectZone *Zone;
+ObjectPlayer *Player;
 
 bool32 (*MathHelpers_PointInHitbox)(int32 thisX1, int32 thisY1, int32 otherX1, int32 otherY1, int32 direction, Hitbox *hitbox);
 
@@ -37,10 +38,17 @@ void InitModAPI(void)
     HeavyShinobi_State_Init = Mod.GetPublicFunction(NULL, "HeavyShinobi_State_Init");
     Mod.RegisterStateHook(HeavyShinobi_State_Init, HeavyShinobi_State_Init_Hook, false);
 
+    CrimsonEye_StateContainer_SetupArena  = Mod.GetPublicFunction(NULL, "CrimsonEye_StateContainer_SetupArena");
+    CrimsonEye_StateContainer_AwaitPlayer = Mod.GetPublicFunction(NULL, "CrimsonEye_StateContainer_AwaitPlayer");
+    Mod.RegisterStateHook(CrimsonEye_StateContainer_SetupArena, CrimsonEye_StateContainer_SetupArena_Hook, false);
+    Mod.RegisterStateHook(CrimsonEye_StateContainer_AwaitPlayer, CrimsonEye_StateContainer_AwaitPlayer_Hook, false);
+
     FBZ1Outro_Cutscene_PrepareFBZ2 = Mod.GetPublicFunction(NULL, "FBZ1Outro_Cutscene_PrepareFBZ2");
 
     MOD_REGISTER_OBJECT_HOOK(SpiderMobile);
+    MOD_REGISTER_OBJECT_HOOK(CrimsonEye);
     MOD_REGISTER_OBJECT_HOOK(Zone);
+    MOD_REGISTER_OBJECT_HOOK(Player);
 
     // be extra sure
     Mod.AddModCallback(MODCB_ONSTATICUPDATE, SetExtraWidth);

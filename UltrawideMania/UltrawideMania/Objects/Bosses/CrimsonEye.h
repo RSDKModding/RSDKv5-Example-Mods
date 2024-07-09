@@ -61,9 +61,10 @@ struct EntityCrimsonEye {
     Animator animator;
 };
 
+extern ObjectCrimsonEye *CrimsonEye;
+
 extern StateMachine(CrimsonEye_StateContainer_SetupArena);
 extern StateMachine(CrimsonEye_StateContainer_AwaitPlayer);
-extern ObjectCrimsonEye *CrimsonEye;
 
 bool32 CrimsonEye_StateContainer_SetupArena_Hook(bool32);
 bool32 CrimsonEye_StateContainer_AwaitPlayer_Hook(bool32);

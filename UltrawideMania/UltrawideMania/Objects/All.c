@@ -8,5 +8,6 @@
 #include "Bosses/SpiderMobile.c"
 #include "Bosses/HeavyShinobi.c"
 #include "Bosses/CrimsonEye.c"
+#include "Bosses/BigSqueeze.c"
 
 #include "Cutscenes/CutsceneSeq.c"

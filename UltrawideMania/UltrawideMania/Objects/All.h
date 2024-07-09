@@ -17,6 +17,8 @@ typedef struct ObjectHeavyShinobi ObjectHeavyShinobi;
 typedef struct EntityHeavyShinobi EntityHeavyShinobi;
 typedef struct ObjectCrimsonEye ObjectCrimsonEye;
 typedef struct EntityCrimsonEye EntityCrimsonEye;
+typedef struct ObjectBigSqueeze ObjectBigSqueeze;
+typedef struct EntityBigSqueeze EntityBigSqueeze;
 
 typedef struct ObjectCutsceneSeq ObjectCutsceneSeq;
 typedef struct EntityCutsceneSeq EntityCutsceneSeq;
@@ -34,6 +36,7 @@ typedef struct EntityPlayer EntityPlayer;
 #include "Bosses/SpiderMobile.h"
 #include "Bosses/HeavyShinobi.h"
 #include "Bosses/CrimsonEye.h"
+#include "Bosses/BigSqueeze.h"
 
 #include "Cutscenes/CutsceneSeq.h"
 

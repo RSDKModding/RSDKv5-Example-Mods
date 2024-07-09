@@ -28,10 +28,17 @@ void InitModAPI(void)
     Mod.RegisterStateHook(CrimsonEye_StateContainer_SetupArena, CrimsonEye_StateContainer_SetupArena_Hook, false);
     Mod.RegisterStateHook(CrimsonEye_StateContainer_AwaitPlayer, CrimsonEye_StateContainer_AwaitPlayer_Hook, false);
 
+    BigSqueeze_StateManager_SetupIntro = Mod.GetPublicFunction(NULL, "BigSqueeze_StateManager_SetupIntro");
+    BigSqueeze_StateManager_SetupArena = Mod.GetPublicFunction(NULL, "BigSqueeze_StateManager_SetupArena");
+    Mod.RegisterStateHook(BigSqueeze_StateManager_SetupIntro, BigSqueeze_StateManager_SetupIntro_Hook, false);
+    Mod.RegisterStateHook(BigSqueeze_StateManager_SetupArena, BigSqueeze_StateManager_SetupArena_Hook, false);
+
     FBZ1Outro_Cutscene_PrepareFBZ2 = Mod.GetPublicFunction(NULL, "FBZ1Outro_Cutscene_PrepareFBZ2");
 
     MOD_REGISTER_OBJECT_HOOK(SpiderMobile);
     MOD_REGISTER_OBJECT_HOOK(CrimsonEye);
+    MOD_REGISTER_OBJECT_HOOK(BigSqueeze);
+
     MOD_REGISTER_OBJECT_HOOK(Zone);
     MOD_REGISTER_OBJECT_HOOK(Player);
 }

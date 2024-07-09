@@ -179,6 +179,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="Objects\Bosses\BigSqueeze.c" />
     <ClCompile Include="Objects\Bosses\CrimsonEye.c" />
     <ClCompile Include="Objects\Bosses\HeavyShinobi.c" />
     <ClCompile Include="Objects\Bosses\SpiderMobile.c" />
@@ -197,6 +198,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClInclude>
+    <ClInclude Include="Objects\Bosses\BigSqueeze.h" />
     <ClInclude Include="Objects\Bosses\CrimsonEye.h" />
     <ClInclude Include="Objects\Bosses\HeavyShinobi.h" />
     <ClInclude Include="Objects\Bosses\SpiderMobile.h" />

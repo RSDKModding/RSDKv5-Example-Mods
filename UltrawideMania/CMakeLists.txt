@@ -24,8 +24,27 @@ endif()
 
 option(MOD_INCLUDE_EDITOR "Whether or not to include editor functions. Defaults to true" ON)
 
+find_path(GAMEAPI
+  NAMES
+    C
+    CPP
+  PATHS
+    .
+    ..
+  PATH_SUFFIXES
+    GameAPI
+    RSDKv5-GameAPI
+  NO_DEFAULT_PATH
+)
+
+if(GAMEAPI)
+  message(STATUS "Found GameAPI for ${MOD_NAME}: ${GAMEAPI}")
+else()
+  message(FATAL_ERROR "GameAPI not found for ${MOD_NAME}. Clone it in the mod's folder.")
+endif()
+
 add_library(UltrawideMania SHARED
-    GameAPI/C/GameAPI/Game.c
+    ${GAMEAPI}/C/GameAPI/Game.c
     ${MOD_NAME}/dllmain.c
     ${MOD_NAME}/Objects/All.c
 )
@@ -33,7 +52,7 @@ add_library(UltrawideMania SHARED
 target_include_directories(UltrawideMania PRIVATE
     ${MOD_NAME}/
     ${MOD_NAME}/Objects/
-    GameAPI/C/
+    ${GAMEAPI}/C/
 )
 
 set_target_properties(UltrawideMania PROPERTIES OUTPUT_NAME ${OUTPUT_NAME})

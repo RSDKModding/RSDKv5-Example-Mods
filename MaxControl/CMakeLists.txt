@@ -35,6 +35,7 @@ find_path(GAMEAPI
     GameAPI
     RSDKv5-GameAPI
   NO_DEFAULT_PATH
+  NO_CMAKE_FIND_ROOT_PATH
 )
 
 if(GAMEAPI)

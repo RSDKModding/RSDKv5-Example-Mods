@@ -354,7 +354,7 @@ void HUD_Draw(void)
     if (debugModeSVars)
         player->classID = debugModeSVars->classID;
     else
-        player->classID = TYPE_BLANK;
+        player->classID = TYPE_DEFAULTOBJECT;
     player->camera = NULL;
 
     Vector2 lifePos = self->lifePos;

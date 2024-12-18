@@ -29,3 +29,4 @@
 #include "Objects/SpecialClear.c"
 #include "Objects/OOZ2Outro.c"
 #include "Objects/UISaveSlot.c"
+#include "Objects/ReplayRecorder.c"

@@ -31,6 +31,7 @@
 #include "Objects/UIControl.h"
 #include "Objects/OOZ2Outro.h"
 #include "Objects/UISaveSlot.h"
+#include "Objects/ReplayRecorder.h"
 
 ModConfig config;
 
@@ -86,6 +87,9 @@ void InitModAPI(void)
 
     ERZStart_State_PlayerSuperFly = Mod.GetPublicFunction(NULL, "ERZStart_State_PlayerSuperFly");
     ERZStart_State_PlayerRebound  = Mod.GetPublicFunction(NULL, "ERZStart_State_PlayerRebound");
+
+    TitleSetup_VideoSkipCB = Mod.GetPublicFunction(NULL, "TitleSetup_VideoSkipCB");
+    UIVideo_SkipCB         = Mod.GetPublicFunction(NULL, "UIVideo_SkipCB");
 
     // Register State Hooks
     Mod.RegisterStateHook(Player_Input_P1, Player_Input_P1_Hook, true);
@@ -159,6 +163,8 @@ void InitModAPI(void)
     MOD_REGISTER_OBJ_OVERLOAD_MSV(PBL_Setup, Mod_PBL_Setup, NULL, NULL, PBL_Setup_StaticUpdate, NULL, NULL, NULL, NULL, NULL, NULL);
 
     MOD_REGISTER_OBJ_OVERLOAD(CutsceneSeq, CutsceneSeq_Update, NULL, NULL, NULL, CutsceneSeq_Create, NULL, NULL, NULL, NULL);
+
+    MOD_REGISTER_OBJ_OVERLOAD_MSV(ReplayRecorder, Mod_ReplayRecorder, NULL, NULL, ReplayRecorder_StaticUpdate, NULL, NULL, NULL, NULL, NULL, NULL);
 #endif
 
     // Register Mod Callbacks
@@ -166,10 +172,6 @@ void InitModAPI(void)
     Mod.AddModCallback(MODCB_ONVIDEOSKIPCB, UIVideo_ModCB_VideoSkip);
     Mod.AddModCallback(MODCB_ONDRAW, CreditsSetup_ModCB_OnDraw);
     Mod.AddModCallback(MODCB_ONDRAW, DASetup_ModCB_OnDraw);
-
-    // Get Public Functions
-    TitleSetup_VideoSkipCB = Mod.GetPublicFunction(NULL, "TitleSetup_VideoSkipCB");
-    UIVideo_SkipCB         = Mod.GetPublicFunction(NULL, "UIVideo_SkipCB");
 }
 
 #if RETRO_USE_MOD_LOADER

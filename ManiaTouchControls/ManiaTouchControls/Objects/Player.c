@@ -95,6 +95,11 @@ bool32 Player_Input_P1_Hook(bool32 skippedState)
 {
     RSDK_THIS(Player);
 
+#if MANIA_USE_PLUS
+    if (self->stateInputReplay != StateMachine_None)
+        return false;
+#endif
+
     if (self->controllerID < PLAYER_COUNT) {
         RSDKControllerState *controller = &ControllerInfo[self->controllerID];
 

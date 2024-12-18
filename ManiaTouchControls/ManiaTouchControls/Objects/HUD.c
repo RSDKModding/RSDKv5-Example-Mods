@@ -1,5 +1,6 @@
 #include "HUD.h"
 #include "Player.h"
+#include "ReplayRecorder.h"
 #include "../ModConfig.h"
 
 ObjectHUD *HUD;
@@ -11,8 +12,64 @@ void HUD_DrawTouchControls(void)
 {
     RSDK_THIS(HUD);
 
-    int32 playerID                  = SceneInfo->currentScreenID;
-    EntityPlayer *player            = RSDK_GET_ENTITY(playerID, Player);
+    int32 playerID       = SceneInfo->currentScreenID;
+    EntityPlayer *player = RSDK_GET_ENTITY(playerID, Player);
+
+#if MANIA_USE_PLUS
+    if (player->stateInputReplay != StateMachine_None) {
+        // Only draw the pause button during time attack replays
+
+        int32 alphaStore    = self->alpha;
+        int32 inkStore      = self->inkEffect;
+        int32 fxStore       = self->drawFX;
+        Vector2 scaleStore  = self->scale;
+
+        Mod_HUD->pausePos.x = TO_FIXED(ScreenInfo[SceneInfo->currentScreenID].size.x - 76);
+        Mod_HUD->pausePos.y = TO_FIXED(16);
+
+        self->inkEffect = INK_ALPHA;
+        self->drawFX    = FX_SCALE;
+
+        int32 opacity = (int32)(0x100 * config.vDPadOpacity);
+        self->scale.x = (int32)(0x200 * config.vDPadSize);
+        self->scale.y = (int32)(0x200 * config.vDPadSize);
+
+        bool32 canPause = !ReplayRecorder->playbackManager->isGhostPlayback;
+
+        if (canPause)
+        {
+            if ((SceneInfo->state & 3) == ENGINESTATE_REGULAR) {
+                if (Mod_HUD->pauseAlpha[playerID] < opacity)
+                    Mod_HUD->pauseAlpha[playerID] += 8;
+
+                self->alpha                        = Mod_HUD->pauseAlpha[playerID];
+                Mod_HUD->dpadTouchAnimator.frameID = 5;
+                RSDK.DrawSprite(&Mod_HUD->dpadTouchAnimator, &Mod_HUD->pausePos, true);
+            }
+            else {
+                Mod_HUD->pauseAlpha[playerID] = 0;
+            }
+        }
+        else
+        {
+            if (Mod_HUD->pauseAlpha[playerID] > 0)
+                Mod_HUD->pauseAlpha[playerID] -= 8;
+
+            self->alpha = Mod_HUD->pauseAlpha[playerID];
+            if (self->alpha > 0) {
+                Mod_HUD->dpadTouchAnimator.frameID = 5;
+                RSDK.DrawSprite(&Mod_HUD->dpadTouchAnimator, &Mod_HUD->pausePos, true);
+            }
+        }
+
+        self->alpha     = alphaStore;
+        self->inkEffect = inkStore;
+        self->drawFX    = fxStore;
+        self->scale     = scaleStore;
+
+        return;
+    }
+#endif
 
     int32 alphaStore   = self->alpha;
     int32 inkStore     = self->inkEffect;
@@ -328,7 +385,7 @@ void HUD_DrawMobileHUD(void) {
         drawPos.x = TO_FIXED(ScreenInfo[SceneInfo->currentScreenID].size.x) - self->actionPromptPos;
         drawPos.y = TO_FIXED(48);
 
-        if (API.CheckDLC(DLC_PLUS)) {
+        if (API.CheckDLC(DLC_PLUS) && HUD->replaySaveEnabled) {
             // Draw Replay Save Icon
             RSDK.DrawSprite(&self->replayClapAnimator, &drawPos, true);
             drawPos.y += TO_FIXED(28);

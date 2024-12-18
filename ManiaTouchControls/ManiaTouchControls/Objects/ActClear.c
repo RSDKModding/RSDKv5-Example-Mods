@@ -13,7 +13,7 @@ bool32 ActClear_State_TallyScore_Hook(bool32 skippedState)
 #if MANIA_USE_PLUS
 bool32 ActClear_State_ShowResultsTA_Hook(bool32 skippedState)
 {
-    if (API.CheckDLC(DLC_PLUS) && HUD->replaySaveEnabled && CheckTouchPause()) {
+    if (API.CheckDLC(DLC_PLUS) && CheckTouchPause()) {
         if (!ControllerInfo[CONT_P1].keyY.down)
             ControllerInfo->keyY.press = true;
     }

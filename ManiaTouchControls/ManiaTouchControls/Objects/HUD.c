@@ -1,5 +1,6 @@
 #include "HUD.h"
 #include "Player.h"
+#include "ActClear.h"
 #include "ReplayRecorder.h"
 #include "../ModConfig.h"
 
@@ -385,9 +386,16 @@ void HUD_DrawMobileHUD(void) {
         drawPos.x = TO_FIXED(ScreenInfo[SceneInfo->currentScreenID].size.x) - self->actionPromptPos;
         drawPos.y = TO_FIXED(48);
 
-        if (API.CheckDLC(DLC_PLUS) && HUD->replaySaveEnabled) {
+        if (API.CheckDLC(DLC_PLUS)) {
             // Draw Replay Save Icon
-            RSDK.DrawSprite(&self->replayClapAnimator, &drawPos, true);
+            ObjectActClear *ActClear = Mod.FindObject("ActClear");
+            if (HUD->replaySaveEnabled || ActClear->hasSavedReplay)
+                RSDK.DrawSprite(&self->replayClapAnimator, &drawPos, true);
+            else {
+                self->inkEffect = INK_BLEND;
+                RSDK.DrawSprite(&self->replayClapAnimator, &drawPos, true);
+                self->inkEffect = INK_NONE;
+            }
             drawPos.y += TO_FIXED(28);
         }
         // Draw Thumbs Up Icon

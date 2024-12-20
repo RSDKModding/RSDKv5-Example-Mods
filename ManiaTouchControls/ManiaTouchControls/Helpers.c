@@ -1,6 +1,10 @@
 #include "Helpers.h"
 #include "ModConfig.h"
 
+#if !MANIA_USE_PLUS
+bool32 (*APICallback_GetConfirmButtonFlip)(void);
+#endif
+
 int8 dirPressed = 0b0000;
 
 int32 CheckTouchRect(int32 x1, int32 y1, int32 x2, int32 y2, int32 *fx, int32 *fy)

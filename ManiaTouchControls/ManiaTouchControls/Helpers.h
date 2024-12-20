@@ -9,9 +9,11 @@ void HandleDPad_4Dir(RSDKControllerState *controller);
 void HandleDPad_8Dir(RSDKControllerState *controller);
 
 #if MANIA_USE_PLUS
-#define API_GetConfirmButtonFlip() API.GetConfirmButtonFlip()
+#define API_GetConfirmButtonFlip API.GetConfirmButtonFlip
 #else
-#define API_GetConfirmButtonFlip() false // too lazy lol
+#define API_GetConfirmButtonFlip APICallback_GetConfirmButtonFlip
+
+extern bool32 (*APICallback_GetConfirmButtonFlip)(void);
 #endif
 
 #define CheckTouchPause() (CheckTouchRect(ScreenInfo->size.x - 0x80, 0, ScreenInfo->size.x, 0x40, NULL, NULL) >= 0)

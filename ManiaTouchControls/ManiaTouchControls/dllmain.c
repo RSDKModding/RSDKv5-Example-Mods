@@ -1,4 +1,5 @@
 #include "ModConfig.h"
+#include "Helpers.h"
 
 #include "Objects/Player.h"
 #include "Objects/BSS_Player.h"
@@ -90,6 +91,10 @@ void InitModAPI(void)
 
     TitleSetup_VideoSkipCB = Mod.GetPublicFunction(NULL, "TitleSetup_VideoSkipCB");
     UIVideo_SkipCB         = Mod.GetPublicFunction(NULL, "UIVideo_SkipCB");
+
+#if !MANIA_USE_PLUS
+    APICallback_GetConfirmButtonFlip = Mod.GetPublicFunction(NULL, "APICallback_GetConfirmButtonFlip");
+#endif
 
     // Register State Hooks
     Mod.RegisterStateHook(Player_Input_P1, Player_Input_P1_Hook, true);

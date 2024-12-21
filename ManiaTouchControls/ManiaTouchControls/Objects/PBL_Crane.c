@@ -1,5 +1,4 @@
 #include "PBL_Crane.h"
-
 #include "../ModConfig.h"
 #include "../Helpers.h"
 

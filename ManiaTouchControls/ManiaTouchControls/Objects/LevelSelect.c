@@ -1,5 +1,4 @@
 #include "LevelSelect.h"
-
 #include "../ModConfig.h"
 #include "../Helpers.h"
 

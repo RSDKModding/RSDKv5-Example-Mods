@@ -1,5 +1,4 @@
 #include "SpecialClear.h"
-
 #include "../Helpers.h"
 
 bool32 SpecialClear_State_TallyScore_Hook(bool32 skippedState)

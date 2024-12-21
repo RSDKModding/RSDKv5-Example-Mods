@@ -1,5 +1,4 @@
 #include "PuyoGame.h"
-
 #include "../Helpers.h"
 
 ObjectPuyoGame *PuyoGame;

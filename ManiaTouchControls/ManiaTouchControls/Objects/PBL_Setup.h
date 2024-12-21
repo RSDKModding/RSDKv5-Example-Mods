@@ -42,9 +42,6 @@ extern ModObjectPBL_Setup *Mod_PBL_Setup;
 
 // Standard Entity Events
 void PBL_Setup_StaticUpdate(void);
-
-// Extra Entity Functions
-
 #endif
 
 #endif //! OBJ_PBL_SETUP_H

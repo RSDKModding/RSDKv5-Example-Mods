@@ -94,8 +94,6 @@ typedef struct {
 extern ObjectPuyoBean *PuyoBean;
 extern ModObjectPuyoBean *Mod_PuyoBean;
 
-// Standard Entity Events
-
 // Extra Entity Functions
 bool32 PuyoBean_Input_Player_Hook(bool32 skippedState);
 

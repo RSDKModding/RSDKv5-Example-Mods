@@ -1,5 +1,4 @@
 #include "PuyoLevelSelect.h"
-
 #include "../ModConfig.h"
 #include "../Helpers.h"
 

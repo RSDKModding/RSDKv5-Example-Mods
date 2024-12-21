@@ -37,8 +37,7 @@ void HUD_DrawTouchControls(void)
 
         bool32 canPause = !ReplayRecorder->playbackManager->isGhostPlayback;
 
-        if (canPause)
-        {
+        if (canPause) {
             if ((SceneInfo->state & 3) == ENGINESTATE_REGULAR) {
                 if (Mod_HUD->pauseAlpha[playerID] < opacity)
                     Mod_HUD->pauseAlpha[playerID] += 8;
@@ -51,8 +50,7 @@ void HUD_DrawTouchControls(void)
                 Mod_HUD->pauseAlpha[playerID] = 0;
             }
         }
-        else
-        {
+        else {
             if (Mod_HUD->pauseAlpha[playerID] > 0)
                 Mod_HUD->pauseAlpha[playerID] -= 8;
 

@@ -41,7 +41,6 @@ void PBL_HUD_StageLoad(void);
 
 // Extra Entity Functions
 void PBL_HUD_DrawTouchControls(void);
-
 #endif
 
 #endif //! OBJ_PBL_HUD_H

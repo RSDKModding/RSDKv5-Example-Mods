@@ -63,8 +63,6 @@ typedef struct {
 // Object Struct
 extern ObjectSpecialClear *SpecialClear;
 
-// Standard Entity Events
-
 // Extra Entity Functions
 bool32 SpecialClear_State_TallyScore_Hook(bool32 skippedState);
 

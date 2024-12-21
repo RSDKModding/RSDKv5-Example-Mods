@@ -58,9 +58,6 @@ extern ModObjectPBL_Crane *Mod_PBL_Crane;
 
 // Standard Entity Events
 void PBL_Crane_Update(void);
-
-// Extra Entity Functions
-
 #endif
 
 #endif //! OBJ_PBL_CRANE_H

@@ -64,8 +64,6 @@ typedef struct {
 // Object Struct
 extern ObjectActClear *ActClear;
 
-// Standard Entity Events
-
 // Extra Entity Functions
 bool32 ActClear_State_TallyScore_Hook(bool32 skippedState);
 #if MANIA_USE_PLUS

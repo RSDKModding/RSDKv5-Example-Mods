@@ -3,21 +3,28 @@
 
 #include "GameAPI/Game.h"
 
+#if MANIA_USE_PLUS
 #define CUTSCENESEQ_POINT_COUNT (8)
 
-#if MANIA_USE_PLUS
 typedef enum {
     SKIPTYPE_DISABLED,
     SKIPTYPE_RELOADSCN,
     SKIPTYPE_NEXTSCENE,
     SKIPTYPE_CALLBACK,
 } SkipTypes;
-#endif
 
 // Object Class
 typedef struct {
     RSDK_OBJECT
 } ObjectCutsceneSeq;
+
+// Mod Object Class
+typedef struct {
+    uint16 dpadFrames;
+    Animator dpadArrowAnimator;
+    int32 dpadAlpha;
+    Vector2 skipPos;
+} ModObjectCutsceneSeq;
 
 // Entity Class
 typedef struct {
@@ -34,18 +41,19 @@ typedef struct {
     Vector2 points[CUTSCENESEQ_POINT_COUNT];
     int32 fadeWhite;
     int32 fadeBlack;
-#if MANIA_USE_PLUS
     int32 skipType;
     void (*skipCallback)(void);
-#endif
 } EntityCutsceneSeq;
 
 extern ObjectCutsceneSeq *CutsceneSeq;
+extern ModObjectCutsceneSeq *Mod_CutsceneSeq;
 
-#if MANIA_USE_PLUS
 // Standard Entity Events
 void CutsceneSeq_Update(void);
+void CutsceneSeq_LateUpdate(void);
+void CutsceneSeq_Draw(void);
 void CutsceneSeq_Create(void *data);
+void CutsceneSeq_StageLoad(void);
 #endif
 
 #endif //! OBJ_CUTSCENESEQ_H

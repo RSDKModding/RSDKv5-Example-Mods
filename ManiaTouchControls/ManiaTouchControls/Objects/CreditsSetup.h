@@ -21,7 +21,7 @@ typedef struct {
     uint16 dpadFrames;
     Animator dpadArrowAnimator;
     int32 dpadAlpha;
-    Vector2 backPos;
+    Vector2 skipPos;
 } ModObjectCreditsSetup;
 
 // Entity Class

@@ -48,9 +48,6 @@ extern ModObjectPBL_Flipper *Mod_PBL_Flipper;
 
 // Standard Entity Events
 void PBL_Flipper_StaticUpdate(void);
-
-// Extra Entity Functions
-
 #endif
 
 #endif //! OBJ_PBL_FLIPPER_H

@@ -1,6 +1,5 @@
 #include "Player.h"
 #include "SaveGame.h"
-
 #include "../ModConfig.h"
 #include "../Helpers.h"
 

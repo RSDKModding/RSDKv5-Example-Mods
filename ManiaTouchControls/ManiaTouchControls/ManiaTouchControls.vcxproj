@@ -204,7 +204,6 @@
     <ClCompile Include="Objects\TryAgainE.c" />
     <ClCompile Include="Objects\UFO_HUD.c" />
     <ClCompile Include="Objects\UFO_Player.c" />
-    <ClCompile Include="Objects\UIControl.c" />
     <ClCompile Include="Objects\UIVideo.c" />
   </ItemGroup>
   <ItemGroup>

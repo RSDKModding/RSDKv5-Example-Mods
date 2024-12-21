@@ -28,8 +28,6 @@ typedef struct {
 // Object Struct
 extern ObjectTryAgainE *TryAgainE;
 
-// Standard Entity Events
-
 // Extra Entity Functions
 bool32 TryAgainE_State_Stinger_Hook(bool32 skippedState);
 #endif

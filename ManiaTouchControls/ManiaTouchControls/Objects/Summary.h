@@ -34,11 +34,8 @@ typedef struct {
 // Object Struct
 extern ObjectSummary *Summary;
 
-// Standard Entity Events
-
 // Extra Entity Functions
 bool32 Summary_State_Wait_Hook(bool32 skippedState);
-
 #endif
 
 #endif //! OBJ_SUMMARY_H

@@ -32,6 +32,4 @@ extern ObjectDebugMode *DebugMode;
 // Standard Entity Events
 void DebugMode_Update(void);
 
-// Extra Entity Functions
-
 #endif //! OBJ_DEBUGMODE_H

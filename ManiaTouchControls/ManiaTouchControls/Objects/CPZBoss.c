@@ -1,5 +1,4 @@
 #include "CPZBoss.h"
-
 #include "../Helpers.h"
 
 ObjectCPZBoss *CPZBoss;

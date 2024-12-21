@@ -1,12 +1,10 @@
 #include "DASetup.h"
 #include "UIControl.h"
-
 #include "../ModConfig.h"
 #include "../Helpers.h"
 
 ObjectDASetup *DASetup;
 ModObjectDASetup *Mod_DASetup;
-
 
 bool32 DASetup_State_ManageControl_Hook(bool32 skippedState) {
     HandleDPad_4Dir(NULL);
@@ -23,9 +21,9 @@ bool32 DASetup_State_ManageControl_Hook(bool32 skippedState) {
 
     Mod_DASetup->touchConfirm = ControllerInfo->keyA.down;
 
-    if (CheckTouchPause())
-        ControllerInfo->keyB.press |= true;
+    ControllerInfo->keyB.press |= CheckTouchPause();
 
+    ObjectUIControl *UIControl = Mod.FindObject("UIControl");
     UIControl->anyRightPress |= ControllerInfo->keyRight.press;
     UIControl->anyLeftPress |= ControllerInfo->keyLeft.press;
     UIControl->anyUpPress |= ControllerInfo->keyUp.press;

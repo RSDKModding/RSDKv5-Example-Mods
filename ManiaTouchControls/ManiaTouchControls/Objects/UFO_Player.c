@@ -1,5 +1,4 @@
 #include "UFO_Player.h"
-
 #include "../Helpers.h"
 
 ObjectUFO_Player *UFO_Player;

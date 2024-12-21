@@ -1,5 +1,4 @@
 #include "CreditsSetup.h"
-
 #include "../ModConfig.h"
 #include "../Helpers.h"
 
@@ -35,8 +34,8 @@ void CreditsSetup_DrawUI(void)
     int32 alphaStore   = self->alpha;
     int32 inkStore     = self->inkEffect;
 
-    Mod_CreditsSetup->backPos.x = TO_FIXED(ScreenInfo[SceneInfo->currentScreenID].size.x - 25);
-    Mod_CreditsSetup->backPos.y = TO_FIXED(16);
+    Mod_CreditsSetup->skipPos.x = TO_FIXED(ScreenInfo[SceneInfo->currentScreenID].size.x - 25);
+    Mod_CreditsSetup->skipPos.y = TO_FIXED(16);
 
     self->inkEffect = INK_ALPHA;
 
@@ -50,8 +49,8 @@ void CreditsSetup_DrawUI(void)
             self->alpha = opacity;
         else
             self->alpha = Mod_CreditsSetup->dpadAlpha;
-        Mod_CreditsSetup->dpadArrowAnimator.frameID = 5;
-        RSDK.DrawSprite(&Mod_CreditsSetup->dpadArrowAnimator, &Mod_CreditsSetup->backPos, true);
+        Mod_CreditsSetup->dpadArrowAnimator.frameID = 4;
+        RSDK.DrawSprite(&Mod_CreditsSetup->dpadArrowAnimator, &Mod_CreditsSetup->skipPos, true);
     }
     else {
         Mod_CreditsSetup->dpadAlpha = 0;

@@ -67,9 +67,6 @@
     <ClCompile Include="Objects\DASetup.c">
       <Filter>Source Files\Objects</Filter>
     </ClCompile>
-    <ClCompile Include="Objects\UIControl.c">
-      <Filter>Source Files\Objects</Filter>
-    </ClCompile>
     <ClCompile Include="Helpers.c">
       <Filter>Source Files</Filter>
     </ClCompile>

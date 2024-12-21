@@ -35,8 +35,6 @@ typedef struct {
 // Object Struct
 extern ObjectCPZBoss *CPZBoss;
 
-// Standard Entity Events
-
 // Extra Entity Functions
 bool32 CPZBoss_State_HandleMatch_Player_Hook(bool32 skippedState);
 

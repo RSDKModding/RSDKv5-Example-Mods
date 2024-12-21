@@ -1,6 +1,5 @@
 #include "PBL_Player.h"
 #include "PBL_Crane.h"
-
 #include "../Helpers.h"
 
 #if MANIA_USE_PLUS

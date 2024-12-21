@@ -1,5 +1,4 @@
 #include "PBL_Setup.h"
-
 #include "../Helpers.h"
 
 #if MANIA_USE_PLUS
@@ -21,5 +20,4 @@ void PBL_Setup_StaticUpdate(void)
 
     Mod.Super(PBL_Setup->classID, SUPER_STATICUPDATE, NULL);
 }
-
 #endif

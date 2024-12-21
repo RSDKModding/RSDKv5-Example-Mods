@@ -20,7 +20,6 @@
 #include "Objects/TryAgainE.c"
 #include "Objects/TitleSetup.c"
 #include "Objects/UIVideo.c"
-#include "Objects/UIControl.c"
 #include "Objects/DebugMode.c"
 #include "Objects/SaveGame.c"
 #include "Objects/PBL_HUD.c"

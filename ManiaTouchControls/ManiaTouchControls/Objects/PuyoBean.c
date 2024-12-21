@@ -1,5 +1,4 @@
 #include "PuyoBean.h"
-
 #include "../Helpers.h"
 
 ObjectPuyoBean *PuyoBean;

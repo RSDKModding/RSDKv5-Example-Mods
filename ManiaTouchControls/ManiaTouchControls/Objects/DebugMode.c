@@ -1,6 +1,5 @@
 #include "DebugMode.h"
 #include "Player.h"
-
 #include "../Helpers.h"
 
 ObjectDebugMode *DebugMode;

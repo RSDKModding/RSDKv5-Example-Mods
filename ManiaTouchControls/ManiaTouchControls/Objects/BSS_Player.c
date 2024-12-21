@@ -1,5 +1,4 @@
 #include "BSS_Player.h"
-
 #include "../Helpers.h"
 
 ObjectBSS_Player *BSS_Player;

@@ -96,6 +96,11 @@ void InitModAPI(void)
     APICallback_GetConfirmButtonFlip = Mod.GetPublicFunction(NULL, "APICallback_GetConfirmButtonFlip");
 #endif
 
+#if MANIA_USE_PLUS
+    OOZ2Outro_State_BoardSub = Mod.GetPublicFunction(NULL, "OOZ2Outro_State_BoardSub");
+    OOZ2Outro_State_SubActivate = Mod.GetPublicFunction(NULL, "OOZ2Outro_State_SubActivate");
+#endif
+
     // Register State Hooks
     Mod.RegisterStateHook(Player_Input_P1, Player_Input_P1_Hook, true);
     Mod.RegisterStateHook(MegaChopper_Input_GrabbedP1, Player_Input_P1_Hook, true);
@@ -135,12 +140,9 @@ void InitModAPI(void)
 
     Mod.RegisterStateHook(Mod.GetPublicFunction(NULL, "Summary_State_Wait"), Summary_State_Wait_Hook, true);
 
-    Mod.RegisterStateHook(Mod.GetPublicFunction(NULL, "OOZ2Outro_State_BoardSub"), OOZ2Outro_State_BoardSub_Hook, true);
-    Mod.RegisterStateHook(Mod.GetPublicFunction(NULL, "OOZ2Outro_State_SubActivate"), OOZ2Outro_State_SubActivate_Hook, true);
+    Mod.RegisterStateHook(OOZ2Outro_State_BoardSub, OOZ2Outro_State_Hook, true);
+    Mod.RegisterStateHook(OOZ2Outro_State_SubActivate, OOZ2Outro_State_Hook, true);
 #endif
-
-    // Register Object Hooks
-    MOD_REGISTER_OBJECT_HOOK(UIControl);
 
     // Register Modded Objects
     MOD_REGISTER_OBJ_OVERLOAD(PuyoGame, PuyoGame_Update, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
@@ -167,7 +169,10 @@ void InitModAPI(void)
     MOD_REGISTER_OBJ_OVERLOAD_MSV(PBL_Flipper, Mod_PBL_Flipper, NULL, NULL, PBL_Flipper_StaticUpdate, NULL, NULL, NULL, NULL, NULL, NULL);
     MOD_REGISTER_OBJ_OVERLOAD_MSV(PBL_Setup, Mod_PBL_Setup, NULL, NULL, PBL_Setup_StaticUpdate, NULL, NULL, NULL, NULL, NULL, NULL);
 
-    MOD_REGISTER_OBJ_OVERLOAD(CutsceneSeq, CutsceneSeq_Update, NULL, NULL, NULL, CutsceneSeq_Create, NULL, NULL, NULL, NULL);
+    MOD_REGISTER_OBJ_OVERLOAD_MSV(CutsceneSeq, Mod_CutsceneSeq, CutsceneSeq_Update, CutsceneSeq_LateUpdate, NULL, CutsceneSeq_Draw,
+                                  CutsceneSeq_Create, CutsceneSeq_StageLoad, NULL, NULL, NULL);
+
+    MOD_REGISTER_OBJ_OVERLOAD_MSV(OOZ2Outro, Mod_OOZ2Outro, NULL, NULL, NULL, NULL, NULL, OOZ2Outro_StageLoad, NULL, NULL, NULL);
 
     MOD_REGISTER_OBJ_OVERLOAD_MSV(ReplayRecorder, Mod_ReplayRecorder, NULL, NULL, ReplayRecorder_StaticUpdate, NULL, NULL, NULL, NULL, NULL, NULL);
 #endif
@@ -177,6 +182,9 @@ void InitModAPI(void)
     Mod.AddModCallback(MODCB_ONVIDEOSKIPCB, UIVideo_ModCB_VideoSkip);
     Mod.AddModCallback(MODCB_ONDRAW, CreditsSetup_ModCB_OnDraw);
     Mod.AddModCallback(MODCB_ONDRAW, DASetup_ModCB_OnDraw);
+#if MANIA_USE_PLUS
+    Mod.AddModCallback(MODCB_ONDRAW, OOZ2Outro_ModCB_OnDraw);
+#endif
 }
 
 #if RETRO_USE_MOD_LOADER

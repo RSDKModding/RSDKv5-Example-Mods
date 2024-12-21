@@ -2,7 +2,7 @@
 #include "ModConfig.h"
 
 #if !MANIA_USE_PLUS
-bool32 (*APICallback_GetConfirmButtonFlip)(void);
+bool32 (*APICallback_GetConfirmButtonFlip)(void) = NULL;
 #endif
 
 int8 dirPressed = 0b0000;

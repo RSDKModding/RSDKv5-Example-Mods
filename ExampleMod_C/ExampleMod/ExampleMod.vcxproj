@@ -22,7 +22,7 @@
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
     <ProjectGuid>{a7ddf156-9c7e-4867-8641-65dc61f3d1ce}</ProjectGuid>
-    <RootNamespace>DuckysDevTools</RootNamespace>
+    <RootNamespace>ExampleMod</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />

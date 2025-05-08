@@ -1,4 +1,4 @@
-#include "../GameAPI/CPP/GameAPI/Game.hpp"
+#include "GameAPI/Game.hpp"
 
 using namespace RSDK;
 

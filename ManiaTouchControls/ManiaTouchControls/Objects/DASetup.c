@@ -119,7 +119,7 @@ void DASetup_DrawUI(void)
         RSDK.DrawSprite(&Mod_DASetup->dpadAnimator, &Mod_DASetup->dpadPos, true);
     }
 
-    if (!ControllerInfo->keyUp.down && !ControllerInfo->keyRight.down && !ControllerInfo->keyLeft.down && !ControllerInfo->keyRight.down) {
+    if (!ControllerInfo->keyUp.down && !ControllerInfo->keyDown.down && !ControllerInfo->keyLeft.down && !ControllerInfo->keyRight.down) {
         self->alpha                       = Mod_DASetup->dpadAlpha;
         Mod_DASetup->dpadAnimator.frameID = 11;
         RSDK.DrawSprite(&Mod_DASetup->dpadAnimator, &Mod_DASetup->dpadPos, true);

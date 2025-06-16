@@ -145,7 +145,7 @@ void LevelSelect_Draw(void)
         RSDK.DrawSprite(&Mod_LevelSelect->dpadAnimator, &Mod_LevelSelect->dpadPos, true);
     }
 
-    if (!ControllerInfo->keyUp.down && !ControllerInfo->keyRight.down && !ControllerInfo->keyLeft.down && !ControllerInfo->keyRight.down) {
+    if (!ControllerInfo->keyUp.down && !ControllerInfo->keyDown.down && !ControllerInfo->keyLeft.down && !ControllerInfo->keyRight.down) {
         self->alpha                           = Mod_LevelSelect->dpadAlpha;
         Mod_LevelSelect->dpadAnimator.frameID = 11;
         RSDK.DrawSprite(&Mod_LevelSelect->dpadAnimator, &Mod_LevelSelect->dpadPos, true);

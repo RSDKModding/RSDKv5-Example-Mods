@@ -161,6 +161,7 @@ void DASetup_StageLoad(void)
     Mod.Super(DASetup->classID, SUPER_STAGELOAD, NULL);
 
     Mod_DASetup->dpadFrames = RSDK.LoadSpriteAnimation("Global/TouchControls.bin", SCOPE_STAGE);
+    Mod_DASetup->dpadAlpha  = 0;
 
     RSDK.SetSpriteAnimation(Mod_DASetup->dpadFrames, 0, &Mod_DASetup->dpadAnimator, true, 0);
     RSDK.SetSpriteAnimation(Mod_DASetup->dpadFrames, 1, &Mod_DASetup->dpadTouchAnimator, true, 0);

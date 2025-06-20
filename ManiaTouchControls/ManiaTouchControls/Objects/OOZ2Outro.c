@@ -80,6 +80,7 @@ void OOZ2Outro_StageLoad(void)
     Mod.Super(OOZ2Outro->classID, SUPER_STAGELOAD, NULL);
 
     Mod_OOZ2Outro->dpadFrames = RSDK.LoadSpriteAnimation("Global/TouchControls.bin", SCOPE_STAGE);
+    Mod_OOZ2Outro->dpadAlpha  = 0;
 
     RSDK.SetSpriteAnimation(Mod_OOZ2Outro->dpadFrames, 2, &Mod_OOZ2Outro->dpadArrowAnimator, true, 0);
 }

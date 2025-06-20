@@ -226,7 +226,9 @@ void LevelSelect_StageLoad(void)
 {
     Mod.Super(LevelSelect->classID, SUPER_STAGELOAD, NULL);
 
-    Mod_LevelSelect->dpadFrames = RSDK.LoadSpriteAnimation("Global/TouchControls.bin", SCOPE_STAGE);
+    Mod_LevelSelect->dpadFrames  = RSDK.LoadSpriteAnimation("Global/TouchControls.bin", SCOPE_STAGE);
+    Mod_LevelSelect->dpadAlpha   = 0;
+    Mod_LevelSelect->swapP2Alpha = 0;
 
     RSDK.SetSpriteAnimation(Mod_LevelSelect->dpadFrames, 0, &Mod_LevelSelect->dpadAnimator, true, 0);
     RSDK.SetSpriteAnimation(Mod_LevelSelect->dpadFrames, 1, &Mod_LevelSelect->dpadTouchAnimator, true, 0);

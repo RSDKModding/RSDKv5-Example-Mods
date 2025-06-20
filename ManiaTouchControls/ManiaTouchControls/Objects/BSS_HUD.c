@@ -23,7 +23,7 @@ void BSS_HUD_DrawTouchControls(void)
     Mod_BSS_HUD->actionPos.y = TO_FIXED(config.jumpDPadPos.y);
 
     Mod_BSS_HUD->pausePos.x = TO_FIXED(ScreenInfo[SceneInfo->currentScreenID].center.x);
-    Mod_BSS_HUD->pausePos.y = TO_FIXED(16);
+    Mod_BSS_HUD->pausePos.y = TO_FIXED(24);
 
     self->inkEffect = INK_ALPHA;
     self->drawFX    = FX_SCALE;
@@ -179,6 +179,8 @@ void BSS_HUD_StageLoad(void)
     Mod.Super(BSS_HUD->classID, SUPER_STAGELOAD, NULL);
 
     Mod_BSS_HUD->dpadFrames = RSDK.LoadSpriteAnimation("Global/TouchControls.bin", SCOPE_STAGE);
+    Mod_BSS_HUD->dpadAlpha  = 0;
+    Mod_BSS_HUD->pauseAlpha = 0;
 
     RSDK.SetSpriteAnimation(Mod_BSS_HUD->dpadFrames, 0, &Mod_BSS_HUD->dpadAnimator, true, 0);
     RSDK.SetSpriteAnimation(Mod_BSS_HUD->dpadFrames, 1, &Mod_BSS_HUD->dpadTouchAnimator, true, 0);

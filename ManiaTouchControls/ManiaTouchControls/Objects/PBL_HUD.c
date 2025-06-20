@@ -186,6 +186,8 @@ void PBL_HUD_StageLoad(void)
     Mod.Super(PBL_HUD->classID, SUPER_STAGELOAD, NULL);
 
     Mod_PBL_HUD->dpadFrames = RSDK.LoadSpriteAnimation("Global/TouchControls.bin", SCOPE_STAGE);
+    Mod_PBL_HUD->dpadAlpha  = 0;
+    Mod_PBL_HUD->pauseAlpha = 0;
 
     RSDK.SetSpriteAnimation(Mod_PBL_HUD->dpadFrames, 0, &Mod_PBL_HUD->dpadAnimator, true, 0);
     RSDK.SetSpriteAnimation(Mod_PBL_HUD->dpadFrames, 1, &Mod_PBL_HUD->dpadTouchAnimator, true, 0);

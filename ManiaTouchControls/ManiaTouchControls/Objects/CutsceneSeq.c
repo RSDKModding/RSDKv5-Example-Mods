@@ -86,6 +86,7 @@ void CutsceneSeq_StageLoad(void)
     Mod.Super(CutsceneSeq->classID, SUPER_STAGELOAD, NULL);
 
     Mod_CutsceneSeq->dpadFrames = RSDK.LoadSpriteAnimation("Global/TouchControls.bin", SCOPE_STAGE);
+    Mod_CutsceneSeq->dpadAlpha  = 0;
 
     RSDK.SetSpriteAnimation(Mod_CutsceneSeq->dpadFrames, 2, &Mod_CutsceneSeq->dpadArrowAnimator, true, 0);
 }

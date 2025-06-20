@@ -464,6 +464,17 @@ void HUD_StageLoad(void)
     Mod.Super(HUD->classID, SUPER_STAGELOAD, NULL);
 
     Mod_HUD->dpadFrames = RSDK.LoadSpriteAnimation("Global/TouchControls.bin", SCOPE_STAGE);
+    for (uint8 p = 0; p < PLAYER_COUNT; p++) {
+        Mod_HUD->dpadAlpha[p] = 0;
+        Mod_HUD->jumpAlpha[p] = 0;
+#if GAME_VERSION != VER_100
+        Mod_HUD->superAlpha[p] = 0;
+#endif
+#if MANIA_USE_PLUS
+        Mod_HUD->swapAlpha[p] = 0;
+#endif
+        Mod_HUD->pauseAlpha[p] = 0;
+    }
 
     RSDK.SetSpriteAnimation(Mod_HUD->dpadFrames, 0, &Mod_HUD->dpadAnimator, true, 0);
     RSDK.SetSpriteAnimation(Mod_HUD->dpadFrames, 1, &Mod_HUD->dpadTouchAnimator, true, 0);

@@ -65,6 +65,7 @@ void CreditsSetup_StageLoad(void)
     Mod.Super(CreditsSetup->classID, SUPER_STAGELOAD, NULL);
 
     Mod_CreditsSetup->dpadFrames = RSDK.LoadSpriteAnimation("Global/TouchControls.bin", SCOPE_STAGE);
+    Mod_CreditsSetup->dpadAlpha  = 0;
 
     RSDK.SetSpriteAnimation(Mod_CreditsSetup->dpadFrames, 2, &Mod_CreditsSetup->dpadArrowAnimator, true, 0);
 }

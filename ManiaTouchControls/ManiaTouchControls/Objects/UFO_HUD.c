@@ -177,6 +177,8 @@ void UFO_HUD_StageLoad(void)
     Mod.Super(UFO_HUD->classID, SUPER_STAGELOAD, NULL);
 
     Mod_UFO_HUD->dpadFrames = RSDK.LoadSpriteAnimation("Global/TouchControls.bin", SCOPE_STAGE);
+    Mod_UFO_HUD->dpadAlpha  = 0;
+    Mod_UFO_HUD->pauseAlpha = 0;
 
     RSDK.SetSpriteAnimation(Mod_UFO_HUD->dpadFrames, 0, &Mod_UFO_HUD->dpadAnimator, true, 0);
     RSDK.SetSpriteAnimation(Mod_UFO_HUD->dpadFrames, 1, &Mod_UFO_HUD->dpadTouchAnimator, true, 0);

@@ -67,87 +67,103 @@ void DASetup_DrawUI(void)
     self->scale.x = (int32)(0x200 * config.vDPadSize);
     self->scale.y = (int32)(0x200 * config.vDPadSize);
 
-    if (Mod_DASetup->dpadAlpha < opacity)
-        Mod_DASetup->dpadAlpha += 4;
+    if (!DASetup->returnToMenu) {
+        if (Mod_DASetup->dpadAlpha < opacity)
+            Mod_DASetup->dpadAlpha += 4;
 
-    // Draw DPad
-    self->alpha                       = Mod_DASetup->dpadAlpha;
-    Mod_DASetup->dpadAnimator.frameID = 10;
-    RSDK.DrawSprite(&Mod_DASetup->dpadAnimator, &Mod_DASetup->dpadPos, true);
-
-    if (ControllerInfo->keyLeft.down) {
-        self->alpha                            = opacity;
-        Mod_DASetup->dpadTouchAnimator.frameID = 6;
-        RSDK.DrawSprite(&Mod_DASetup->dpadTouchAnimator, &Mod_DASetup->dpadPos, true);
-    }
-    else {
+        // Draw DPad
         self->alpha                       = Mod_DASetup->dpadAlpha;
-        Mod_DASetup->dpadAnimator.frameID = 6;
+        Mod_DASetup->dpadAnimator.frameID = 10;
         RSDK.DrawSprite(&Mod_DASetup->dpadAnimator, &Mod_DASetup->dpadPos, true);
-    }
 
-    if (ControllerInfo->keyDown.down) {
-        self->alpha                            = opacity;
-        Mod_DASetup->dpadTouchAnimator.frameID = 9;
-        RSDK.DrawSprite(&Mod_DASetup->dpadTouchAnimator, &Mod_DASetup->dpadPos, true);
-    }
-    else {
-        self->alpha                       = Mod_DASetup->dpadAlpha;
-        Mod_DASetup->dpadAnimator.frameID = 9;
-        RSDK.DrawSprite(&Mod_DASetup->dpadAnimator, &Mod_DASetup->dpadPos, true);
-    }
-
-    if (ControllerInfo->keyRight.down) {
-        self->alpha                            = opacity;
-        Mod_DASetup->dpadTouchAnimator.frameID = 7;
-        RSDK.DrawSprite(&Mod_DASetup->dpadTouchAnimator, &Mod_DASetup->dpadPos, true);
-    }
-    else {
-        self->alpha                       = Mod_DASetup->dpadAlpha;
-        Mod_DASetup->dpadAnimator.frameID = 7;
-        RSDK.DrawSprite(&Mod_DASetup->dpadAnimator, &Mod_DASetup->dpadPos, true);
-    }
-
-    if (ControllerInfo->keyUp.down) {
-        self->alpha                            = opacity;
-        Mod_DASetup->dpadTouchAnimator.frameID = 8;
-        RSDK.DrawSprite(&Mod_DASetup->dpadTouchAnimator, &Mod_DASetup->dpadPos, true);
-    }
-    else {
-        self->alpha                       = Mod_DASetup->dpadAlpha;
-        Mod_DASetup->dpadAnimator.frameID = 8;
-        RSDK.DrawSprite(&Mod_DASetup->dpadAnimator, &Mod_DASetup->dpadPos, true);
-    }
-
-    if (!ControllerInfo->keyUp.down && !ControllerInfo->keyDown.down && !ControllerInfo->keyLeft.down && !ControllerInfo->keyRight.down) {
-        self->alpha                       = Mod_DASetup->dpadAlpha;
-        Mod_DASetup->dpadAnimator.frameID = 11;
-        RSDK.DrawSprite(&Mod_DASetup->dpadAnimator, &Mod_DASetup->dpadPos, true);
-    }
-
-    int32 frameID = 1 + (DASetup->activeTrack == DASetup->trackID);
-
-    if ((SceneInfo->state & 3) == ENGINESTATE_REGULAR) {
-        if (ControllerInfo->keyA.down) {
+        if (ControllerInfo->keyLeft.down) {
             self->alpha                            = opacity;
-            Mod_DASetup->dpadTouchAnimator.frameID = frameID;
-            RSDK.DrawSprite(&Mod_DASetup->dpadTouchAnimator, &Mod_DASetup->playPos, true);
+            Mod_DASetup->dpadTouchAnimator.frameID = 6;
+            RSDK.DrawSprite(&Mod_DASetup->dpadTouchAnimator, &Mod_DASetup->dpadPos, true);
         }
         else {
             self->alpha                       = Mod_DASetup->dpadAlpha;
-            Mod_DASetup->dpadAnimator.frameID = frameID;
-            RSDK.DrawSprite(&Mod_DASetup->dpadAnimator, &Mod_DASetup->playPos, true);
+            Mod_DASetup->dpadAnimator.frameID = 6;
+            RSDK.DrawSprite(&Mod_DASetup->dpadAnimator, &Mod_DASetup->dpadPos, true);
         }
 
-        if (ControllerInfo->keyB.down)
-            self->alpha = opacity;
-        else
-            self->alpha = Mod_DASetup->dpadAlpha;
-        Mod_DASetup->dpadArrowAnimator.frameID = 5;
-        RSDK.DrawSprite(&Mod_DASetup->dpadArrowAnimator, &Mod_DASetup->backPos, true);
+        if (ControllerInfo->keyDown.down) {
+            self->alpha                            = opacity;
+            Mod_DASetup->dpadTouchAnimator.frameID = 9;
+            RSDK.DrawSprite(&Mod_DASetup->dpadTouchAnimator, &Mod_DASetup->dpadPos, true);
+        }
+        else {
+            self->alpha                       = Mod_DASetup->dpadAlpha;
+            Mod_DASetup->dpadAnimator.frameID = 9;
+            RSDK.DrawSprite(&Mod_DASetup->dpadAnimator, &Mod_DASetup->dpadPos, true);
+        }
+
+        if (ControllerInfo->keyRight.down) {
+            self->alpha                            = opacity;
+            Mod_DASetup->dpadTouchAnimator.frameID = 7;
+            RSDK.DrawSprite(&Mod_DASetup->dpadTouchAnimator, &Mod_DASetup->dpadPos, true);
+        }
+        else {
+            self->alpha                       = Mod_DASetup->dpadAlpha;
+            Mod_DASetup->dpadAnimator.frameID = 7;
+            RSDK.DrawSprite(&Mod_DASetup->dpadAnimator, &Mod_DASetup->dpadPos, true);
+        }
+
+        if (ControllerInfo->keyUp.down) {
+            self->alpha                            = opacity;
+            Mod_DASetup->dpadTouchAnimator.frameID = 8;
+            RSDK.DrawSprite(&Mod_DASetup->dpadTouchAnimator, &Mod_DASetup->dpadPos, true);
+        }
+        else {
+            self->alpha                       = Mod_DASetup->dpadAlpha;
+            Mod_DASetup->dpadAnimator.frameID = 8;
+            RSDK.DrawSprite(&Mod_DASetup->dpadAnimator, &Mod_DASetup->dpadPos, true);
+        }
+
+        if (!ControllerInfo->keyUp.down && !ControllerInfo->keyDown.down && !ControllerInfo->keyLeft.down && !ControllerInfo->keyRight.down) {
+            self->alpha                       = Mod_DASetup->dpadAlpha;
+            Mod_DASetup->dpadAnimator.frameID = 11;
+            RSDK.DrawSprite(&Mod_DASetup->dpadAnimator, &Mod_DASetup->dpadPos, true);
+        }
+
+        int32 frameID = 1 + (DASetup->activeTrack == DASetup->trackID);
+
+        if ((SceneInfo->state & 3) == ENGINESTATE_REGULAR) {
+            if (ControllerInfo->keyA.down) {
+                self->alpha                            = opacity;
+                Mod_DASetup->dpadTouchAnimator.frameID = frameID;
+                RSDK.DrawSprite(&Mod_DASetup->dpadTouchAnimator, &Mod_DASetup->playPos, true);
+            }
+            else {
+                self->alpha                       = Mod_DASetup->dpadAlpha;
+                Mod_DASetup->dpadAnimator.frameID = frameID;
+                RSDK.DrawSprite(&Mod_DASetup->dpadAnimator, &Mod_DASetup->playPos, true);
+            }
+
+            if (ControllerInfo->keyB.down)
+                self->alpha = opacity;
+            else
+                self->alpha = Mod_DASetup->dpadAlpha;
+            Mod_DASetup->dpadArrowAnimator.frameID = 5;
+            RSDK.DrawSprite(&Mod_DASetup->dpadArrowAnimator, &Mod_DASetup->backPos, true);
+        }
+        else {
+            Mod_DASetup->dpadAlpha = 0;
+        }
     }
     else {
-        Mod_DASetup->dpadAlpha = 0;
+        if (Mod_DASetup->dpadAlpha > 0)
+            Mod_DASetup->dpadAlpha -= 4;
+
+        self->alpha = Mod_DASetup->dpadAlpha;
+        if (self->alpha > 0) {
+            Mod_DASetup->dpadAnimator.frameID = 0;
+            RSDK.DrawSprite(&Mod_DASetup->dpadAnimator, &Mod_DASetup->dpadPos, true);
+            Mod_DASetup->dpadAnimator.frameID = 1 + (DASetup->activeTrack == DASetup->trackID);
+            RSDK.DrawSprite(&Mod_DASetup->dpadAnimator, &Mod_DASetup->playPos, true);
+            Mod_DASetup->dpadAnimator.frameID = 5;
+            RSDK.DrawSprite(&Mod_DASetup->dpadAnimator, &Mod_DASetup->backPos, true);
+        }
     }
 
     self->alpha     = alphaStore;

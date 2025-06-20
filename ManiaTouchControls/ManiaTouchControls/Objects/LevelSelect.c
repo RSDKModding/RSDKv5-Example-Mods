@@ -5,6 +5,8 @@
 ObjectLevelSelect *LevelSelect;
 ModObjectLevelSelect *Mod_LevelSelect;
 
+StateMachine(LevelSelect_State_FadeOut) = NULL;
+
 bool32 LevelSelect_State_Navigate_Hook(bool32 skippedState)
 {
     RSDK_THIS(LevelSelect);
@@ -93,99 +95,117 @@ void LevelSelect_Draw(void)
 
     InputState *confirmButton = API_GetConfirmButtonFlip() ? &ControllerInfo->keyB : &ControllerInfo->keyA;
 
-    if (Mod_LevelSelect->dpadAlpha < opacity)
-        Mod_LevelSelect->dpadAlpha += 4;
+    if (self->state != LevelSelect_State_FadeOut) {
+        if (Mod_LevelSelect->dpadAlpha < opacity)
+            Mod_LevelSelect->dpadAlpha += 4;
 
-    // Draw DPad
-    self->alpha                           = Mod_LevelSelect->dpadAlpha;
-    Mod_LevelSelect->dpadAnimator.frameID = 10;
-    RSDK.DrawSprite(&Mod_LevelSelect->dpadAnimator, &Mod_LevelSelect->dpadPos, true);
-
-    if (ControllerInfo->keyLeft.down) {
-        self->alpha                                = opacity;
-        Mod_LevelSelect->dpadTouchAnimator.frameID = 6;
-        RSDK.DrawSprite(&Mod_LevelSelect->dpadTouchAnimator, &Mod_LevelSelect->dpadPos, true);
-    }
-    else {
+        // Draw DPad
         self->alpha                           = Mod_LevelSelect->dpadAlpha;
-        Mod_LevelSelect->dpadAnimator.frameID = 6;
+        Mod_LevelSelect->dpadAnimator.frameID = 10;
         RSDK.DrawSprite(&Mod_LevelSelect->dpadAnimator, &Mod_LevelSelect->dpadPos, true);
-    }
 
-    if (ControllerInfo->keyDown.down) {
-        self->alpha                                = opacity;
-        Mod_LevelSelect->dpadTouchAnimator.frameID = 9;
-        RSDK.DrawSprite(&Mod_LevelSelect->dpadTouchAnimator, &Mod_LevelSelect->dpadPos, true);
-    }
-    else {
-        self->alpha                           = Mod_LevelSelect->dpadAlpha;
-        Mod_LevelSelect->dpadAnimator.frameID = 9;
-        RSDK.DrawSprite(&Mod_LevelSelect->dpadAnimator, &Mod_LevelSelect->dpadPos, true);
-    }
-
-    if (ControllerInfo->keyRight.down) {
-        self->alpha                                = opacity;
-        Mod_LevelSelect->dpadTouchAnimator.frameID = 7;
-        RSDK.DrawSprite(&Mod_LevelSelect->dpadTouchAnimator, &Mod_LevelSelect->dpadPos, true);
-    }
-    else {
-        self->alpha                           = Mod_LevelSelect->dpadAlpha;
-        Mod_LevelSelect->dpadAnimator.frameID = 7;
-        RSDK.DrawSprite(&Mod_LevelSelect->dpadAnimator, &Mod_LevelSelect->dpadPos, true);
-    }
-
-    if (ControllerInfo->keyUp.down) {
-        self->alpha                                = opacity;
-        Mod_LevelSelect->dpadTouchAnimator.frameID = 8;
-        RSDK.DrawSprite(&Mod_LevelSelect->dpadTouchAnimator, &Mod_LevelSelect->dpadPos, true);
-    }
-    else {
-        self->alpha                           = Mod_LevelSelect->dpadAlpha;
-        Mod_LevelSelect->dpadAnimator.frameID = 8;
-        RSDK.DrawSprite(&Mod_LevelSelect->dpadAnimator, &Mod_LevelSelect->dpadPos, true);
-    }
-
-    if (!ControllerInfo->keyUp.down && !ControllerInfo->keyDown.down && !ControllerInfo->keyLeft.down && !ControllerInfo->keyRight.down) {
-        self->alpha                           = Mod_LevelSelect->dpadAlpha;
-        Mod_LevelSelect->dpadAnimator.frameID = 11;
-        RSDK.DrawSprite(&Mod_LevelSelect->dpadAnimator, &Mod_LevelSelect->dpadPos, true);
-    }
-
-    if ((SceneInfo->state & 3) == ENGINESTATE_REGULAR) {
-        if (confirmButton->down) {
+        if (ControllerInfo->keyLeft.down) {
             self->alpha                                = opacity;
-            Mod_LevelSelect->dpadTouchAnimator.frameID = 1;
-            RSDK.DrawSprite(&Mod_LevelSelect->dpadTouchAnimator, &Mod_LevelSelect->confirmPos, true);
+            Mod_LevelSelect->dpadTouchAnimator.frameID = 6;
+            RSDK.DrawSprite(&Mod_LevelSelect->dpadTouchAnimator, &Mod_LevelSelect->dpadPos, true);
         }
         else {
             self->alpha                           = Mod_LevelSelect->dpadAlpha;
+            Mod_LevelSelect->dpadAnimator.frameID = 6;
+            RSDK.DrawSprite(&Mod_LevelSelect->dpadAnimator, &Mod_LevelSelect->dpadPos, true);
+        }
+
+        if (ControllerInfo->keyDown.down) {
+            self->alpha                                = opacity;
+            Mod_LevelSelect->dpadTouchAnimator.frameID = 9;
+            RSDK.DrawSprite(&Mod_LevelSelect->dpadTouchAnimator, &Mod_LevelSelect->dpadPos, true);
+        }
+        else {
+            self->alpha                           = Mod_LevelSelect->dpadAlpha;
+            Mod_LevelSelect->dpadAnimator.frameID = 9;
+            RSDK.DrawSprite(&Mod_LevelSelect->dpadAnimator, &Mod_LevelSelect->dpadPos, true);
+        }
+
+        if (ControllerInfo->keyRight.down) {
+            self->alpha                                = opacity;
+            Mod_LevelSelect->dpadTouchAnimator.frameID = 7;
+            RSDK.DrawSprite(&Mod_LevelSelect->dpadTouchAnimator, &Mod_LevelSelect->dpadPos, true);
+        }
+        else {
+            self->alpha                           = Mod_LevelSelect->dpadAlpha;
+            Mod_LevelSelect->dpadAnimator.frameID = 7;
+            RSDK.DrawSprite(&Mod_LevelSelect->dpadAnimator, &Mod_LevelSelect->dpadPos, true);
+        }
+
+        if (ControllerInfo->keyUp.down) {
+            self->alpha                                = opacity;
+            Mod_LevelSelect->dpadTouchAnimator.frameID = 8;
+            RSDK.DrawSprite(&Mod_LevelSelect->dpadTouchAnimator, &Mod_LevelSelect->dpadPos, true);
+        }
+        else {
+            self->alpha                           = Mod_LevelSelect->dpadAlpha;
+            Mod_LevelSelect->dpadAnimator.frameID = 8;
+            RSDK.DrawSprite(&Mod_LevelSelect->dpadAnimator, &Mod_LevelSelect->dpadPos, true);
+        }
+
+        if (!ControllerInfo->keyUp.down && !ControllerInfo->keyDown.down && !ControllerInfo->keyLeft.down && !ControllerInfo->keyRight.down) {
+            self->alpha                           = Mod_LevelSelect->dpadAlpha;
+            Mod_LevelSelect->dpadAnimator.frameID = 11;
+            RSDK.DrawSprite(&Mod_LevelSelect->dpadAnimator, &Mod_LevelSelect->dpadPos, true);
+        }
+
+        if ((SceneInfo->state & 3) == ENGINESTATE_REGULAR) {
+            if (confirmButton->down) {
+                self->alpha                                = opacity;
+                Mod_LevelSelect->dpadTouchAnimator.frameID = 1;
+                RSDK.DrawSprite(&Mod_LevelSelect->dpadTouchAnimator, &Mod_LevelSelect->confirmPos, true);
+            }
+            else {
+                self->alpha                           = Mod_LevelSelect->dpadAlpha;
+                Mod_LevelSelect->dpadAnimator.frameID = 1;
+                RSDK.DrawSprite(&Mod_LevelSelect->dpadAnimator, &Mod_LevelSelect->confirmPos, true);
+            }
+
+            if (ControllerInfo->keyX.down) {
+                self->alpha                                = opacity;
+                Mod_LevelSelect->dpadTouchAnimator.frameID = 4;
+                RSDK.DrawSprite(&Mod_LevelSelect->dpadTouchAnimator, &Mod_LevelSelect->swapPos, true);
+            }
+            else {
+                self->alpha                           = Mod_LevelSelect->dpadAlpha;
+                Mod_LevelSelect->dpadAnimator.frameID = 4;
+                RSDK.DrawSprite(&Mod_LevelSelect->dpadAnimator, &Mod_LevelSelect->swapPos, true);
+            }
+
+            if (ControllerInfo->keyStart.down)
+                self->alpha = opacity;
+            else
+                self->alpha = Mod_LevelSelect->dpadAlpha;
+            Mod_LevelSelect->dpadArrowAnimator.frameID = 5;
+            RSDK.DrawSprite(&Mod_LevelSelect->dpadArrowAnimator, &Mod_LevelSelect->backPos, true);
+        }
+        else {
+            Mod_LevelSelect->dpadAlpha = 0;
+        }
+    }
+    else {
+        if (Mod_LevelSelect->dpadAlpha > 0)
+            Mod_LevelSelect->dpadAlpha -= 4;
+
+        self->alpha = Mod_LevelSelect->dpadAlpha;
+        if (self->alpha > 0) {
+            Mod_LevelSelect->dpadAnimator.frameID = 0;
+            RSDK.DrawSprite(&Mod_LevelSelect->dpadAnimator, &Mod_LevelSelect->dpadPos, true);
             Mod_LevelSelect->dpadAnimator.frameID = 1;
             RSDK.DrawSprite(&Mod_LevelSelect->dpadAnimator, &Mod_LevelSelect->confirmPos, true);
-        }
-
-        if (ControllerInfo->keyX.down) {
-            self->alpha                                = opacity;
-            Mod_LevelSelect->dpadTouchAnimator.frameID = 4;
-            RSDK.DrawSprite(&Mod_LevelSelect->dpadTouchAnimator, &Mod_LevelSelect->swapPos, true);
-        }
-        else {
-            self->alpha                           = Mod_LevelSelect->dpadAlpha;
             Mod_LevelSelect->dpadAnimator.frameID = 4;
             RSDK.DrawSprite(&Mod_LevelSelect->dpadAnimator, &Mod_LevelSelect->swapPos, true);
+            Mod_LevelSelect->dpadArrowAnimator.frameID = 5;
+            RSDK.DrawSprite(&Mod_LevelSelect->dpadArrowAnimator, &Mod_LevelSelect->backPos, true);
         }
-
-        if (ControllerInfo->keyStart.down)
-            self->alpha = opacity;
-        else
-            self->alpha = Mod_LevelSelect->dpadAlpha;
-        Mod_LevelSelect->dpadArrowAnimator.frameID = 5;
-        RSDK.DrawSprite(&Mod_LevelSelect->dpadArrowAnimator, &Mod_LevelSelect->backPos, true);
-    }
-    else {
-        Mod_LevelSelect->dpadAlpha = 0;
     }
 
-    if (self->leaderCharacterID == LSELECT_PLAYER_SONIC) {
+    if (self->leaderCharacterID == LSELECT_PLAYER_SONIC && self->state != LevelSelect_State_FadeOut) {
         if ((SceneInfo->state & 3) == ENGINESTATE_REGULAR) {
             if (Mod_LevelSelect->swapP2Alpha < opacity)
                 Mod_LevelSelect->swapP2Alpha += 4;

@@ -89,6 +89,8 @@ void InitModAPI(void)
     ERZStart_State_PlayerSuperFly = Mod.GetPublicFunction(NULL, "ERZStart_State_PlayerSuperFly");
     ERZStart_State_PlayerRebound  = Mod.GetPublicFunction(NULL, "ERZStart_State_PlayerRebound");
 
+    LevelSelect_State_FadeOut = Mod.GetPublicFunction(NULL, "LevelSelect_State_FadeOut");
+
     TitleSetup_VideoSkipCB = Mod.GetPublicFunction(NULL, "TitleSetup_VideoSkipCB");
     UIVideo_SkipCB         = Mod.GetPublicFunction(NULL, "UIVideo_SkipCB");
 

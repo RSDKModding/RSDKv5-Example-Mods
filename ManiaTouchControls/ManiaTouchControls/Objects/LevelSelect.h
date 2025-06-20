@@ -109,4 +109,6 @@ void LevelSelect_StageLoad(void);
 // Extra Entity Functions
 bool32 LevelSelect_State_Navigate_Hook(bool32 skippedState);
 
+extern StateMachine(LevelSelect_State_FadeOut);
+
 #endif //! OBJ_LEVELSELECT_H

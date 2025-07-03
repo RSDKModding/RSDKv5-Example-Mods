@@ -99,7 +99,7 @@ bool32 Player_Input_P1_Hook(bool32 skippedState)
         return false;
 #endif
 
-    if (self->controllerID < PLAYER_COUNT) {
+    if (self->controllerID <= CONT_P4) {
         RSDKControllerState *controller = &ControllerInfo[self->controllerID];
 
         if (self->state != ERZStart_State_PlayerSuperFly && self->state != ERZStart_State_PlayerRebound

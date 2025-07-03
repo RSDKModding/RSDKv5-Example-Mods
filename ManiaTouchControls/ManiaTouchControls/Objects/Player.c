@@ -13,6 +13,10 @@ StateMachine(Player_State_Static)    = NULL;
 StateMachine(Player_State_Transform) = NULL;
 StateMachine(Player_State_Victory)   = NULL;
 
+#if GAME_VERSION != VER_100
+StateMachine(Player_State_Air) = NULL;
+#endif
+
 #if MANIA_USE_PLUS
 StateMachine(Player_State_Death)         = NULL;
 StateMachine(Player_State_Drown)         = NULL;

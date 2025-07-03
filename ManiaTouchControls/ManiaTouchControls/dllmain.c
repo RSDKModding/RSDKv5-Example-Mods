@@ -78,6 +78,10 @@ void InitModAPI(void)
     Player_State_Transform = Mod.GetPublicFunction(NULL, "Player_State_Transform");
     Player_State_Victory   = Mod.GetPublicFunction(NULL, "Player_State_Victory");
 
+#if GAME_VERSION != VER_100
+    Player_State_Air = Mod.GetPublicFunction(NULL, "Player_State_Air");
+#endif
+
 #if MANIA_USE_PLUS
     Player_State_Death         = Mod.GetPublicFunction(NULL, "Player_State_Death");
     Player_State_Drown         = Mod.GetPublicFunction(NULL, "Player_State_Drown");

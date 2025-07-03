@@ -440,6 +440,10 @@ extern StateMachine(Player_State_Static);
 extern StateMachine(Player_State_Transform);
 extern StateMachine(Player_State_Victory);
 
+#if GAME_VERSION != VER_100
+extern StateMachine(Player_State_Air);
+#endif
+
 #if MANIA_USE_PLUS
 extern StateMachine(Player_State_Death);
 extern StateMachine(Player_State_Drown);

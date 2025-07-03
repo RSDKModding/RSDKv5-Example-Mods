@@ -256,18 +256,20 @@ void HUD_DrawTouchControls(void)
     }
 
 #if GAME_VERSION != VER_100
+    bool32 canTransform = player->state == Player_State_Air && player->jumpAbilityState == 1;
+
     if (canSuper) {
         if ((SceneInfo->state & 3) == ENGINESTATE_REGULAR) {
             if (Mod_HUD->superAlpha[playerID] < opacity)
                 Mod_HUD->superAlpha[playerID] += 4;
 
-            if (!player->onGround && ControllerInfo[player->controllerID].keyY.down) {
-                self->alpha                        = opacity;
+            if (ControllerInfo[player->controllerID].keyY.down) {
+                self->alpha                        = opacity / (2 - canTransform);
                 Mod_HUD->dpadTouchAnimator.frameID = 3;
                 RSDK.DrawSprite(&Mod_HUD->dpadTouchAnimator, &superPos, true);
             }
             else {
-                self->alpha                   = Mod_HUD->superAlpha[playerID];
+                self->alpha                   = Mod_HUD->superAlpha[playerID] / (2 - canTransform);
                 Mod_HUD->dpadAnimator.frameID = 3;
                 RSDK.DrawSprite(&Mod_HUD->dpadAnimator, &superPos, true);
             }
@@ -280,7 +282,7 @@ void HUD_DrawTouchControls(void)
         if (Mod_HUD->superAlpha[playerID] > 0)
             Mod_HUD->superAlpha[playerID] -= 4;
 
-        self->alpha = Mod_HUD->superAlpha[playerID];
+        self->alpha = Mod_HUD->superAlpha[playerID] / (2 - canTransform);
         if (self->alpha > 0) {
             Mod_HUD->dpadAnimator.frameID = 3;
             RSDK.DrawSprite(&Mod_HUD->dpadAnimator, &superPos, true);

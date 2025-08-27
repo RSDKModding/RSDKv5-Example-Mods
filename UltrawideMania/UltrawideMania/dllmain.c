@@ -7,6 +7,18 @@ ObjectPlayer *Player;
 DLLExport bool32 LinkModLogic(EngineInfo *info, const char *id);
 #endif
 
+void BSS_ModCB_OnDraw(void *data)
+{
+    int32 group = VOID_TO_INT(data);
+
+    if (group == DRAWGROUP_COUNT - 2 && ScreenInfo->size.x > 512 && RSDK.FindObject("BSS_Setup")) {
+        // Draw black border to hide checkerboard wrapping
+        int32 widthDiff = (ScreenInfo->size.x - 512) / 2;
+        RSDK.DrawRect(0, 0, widthDiff, ScreenInfo->size.y, 0x000000, 0xFF, INK_NONE, true);
+        RSDK.DrawRect(ScreenInfo->size.x - widthDiff, 0, widthDiff, ScreenInfo->size.y, 0x000000, 0xFF, INK_NONE, true);
+    }
+}
+
 void InitModAPI(void)
 {
     MOD_REGISTER_OBJ_OVERLOAD(CutsceneSeq, NULL, CutsceneSeq_LateUpdate, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
@@ -41,6 +53,9 @@ void InitModAPI(void)
 
     MOD_REGISTER_OBJECT_HOOK(Zone);
     MOD_REGISTER_OBJECT_HOOK(Player);
+
+    // Register Mod Callbacks
+    Mod.AddModCallback(MODCB_ONDRAW, BSS_ModCB_OnDraw);
 }
 
 #if RETRO_USE_MOD_LOADER

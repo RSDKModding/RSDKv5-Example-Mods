@@ -14,7 +14,7 @@ bool32 PuyoBean_Input_Player_Hook(bool32 skippedState)
         HandleDPad_4Dir(controller);
 
         // fixes a bug with button vs touch
-        int32 halfX        = ScreenInfo->center.x / 2;
+        int32 halfX = ScreenInfo->center.x / 2;
 
         bool32 touchedRotR = false;
         if (CheckTouchRect(ScreenInfo->center.x, 96, ScreenInfo->center.x + halfX, ScreenInfo->size.y, NULL, NULL) >= 0) {

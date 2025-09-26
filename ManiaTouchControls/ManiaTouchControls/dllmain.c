@@ -105,7 +105,7 @@ void InitModAPI(void)
 #endif
 
 #if MANIA_USE_PLUS
-    OOZ2Outro_State_BoardSub = Mod.GetPublicFunction(NULL, "OOZ2Outro_State_BoardSub");
+    OOZ2Outro_State_BoardSub    = Mod.GetPublicFunction(NULL, "OOZ2Outro_State_BoardSub");
     OOZ2Outro_State_SubActivate = Mod.GetPublicFunction(NULL, "OOZ2Outro_State_SubActivate");
 #endif
 
@@ -157,7 +157,8 @@ void InitModAPI(void)
     // Register Modded Objects
     MOD_REGISTER_OBJ_OVERLOAD(PuyoGame, PuyoGame_Update, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
     MOD_REGISTER_OBJ_OVERLOAD(PuyoLevelSelect, PuyoLevelSelect_Update, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-    MOD_REGISTER_OBJ_OVERLOAD_MSV(CreditsSetup, Mod_CreditsSetup, NULL, NULL, CreditsSetup_StaticUpdate, NULL, NULL, CreditsSetup_StageLoad, NULL, NULL, NULL);
+    MOD_REGISTER_OBJ_OVERLOAD_MSV(CreditsSetup, Mod_CreditsSetup, NULL, NULL, CreditsSetup_StaticUpdate, NULL, NULL, CreditsSetup_StageLoad, NULL,
+                                  NULL, NULL);
 
     MOD_REGISTER_OBJ_OVERLOAD_MSV(BSS_HUD, Mod_BSS_HUD, NULL, NULL, NULL, BSS_HUD_Draw, NULL, BSS_HUD_StageLoad, NULL, NULL, NULL);
     MOD_REGISTER_OBJ_OVERLOAD_MSV(BSS_Player, Mod_BSS_Player, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
@@ -172,7 +173,7 @@ void InitModAPI(void)
     MOD_REGISTER_OBJ_OVERLOAD_MSV(UFO_Player, Mod_UFO_Player, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
     MOD_REGISTER_OBJ_OVERLOAD_MSV(TimeAttackGate, Mod_TimeAttackGate, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-    
+
 #if MANIA_USE_PLUS
     MOD_REGISTER_OBJ_OVERLOAD_MSV(PBL_HUD, Mod_PBL_HUD, NULL, NULL, NULL, PBL_HUD_Draw, NULL, PBL_HUD_StageLoad, NULL, NULL, NULL);
     MOD_REGISTER_OBJ_OVERLOAD_MSV(PBL_Player, Mod_PBL_Player, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);

@@ -29,8 +29,8 @@ bool32 TimeAttackGate_State_Restarter_Hook(bool32 skippedState)
                 if (canRestart) {
                     if (CheckTouchRect(jumpX, jumpY - 64, ScreenInfo->size.x, jumpY, NULL, NULL) >= 0) {
                         ControllerInfo->keyY.down |= true;
-                        controller->keyY.down    = true;
-                        touchedRestart           = true;
+                        controller->keyY.down = true;
+                        touchedRestart        = true;
                     }
 
                     if (!Mod_TimeAttackGate->touchRestart && touchedRestart) {

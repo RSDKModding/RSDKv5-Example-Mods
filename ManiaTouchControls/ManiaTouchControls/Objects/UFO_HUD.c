@@ -129,7 +129,7 @@ void UFO_HUD_DrawTouchControls(void)
             Mod_UFO_HUD->pauseAlpha = 0;
         }
 
-        self->alpha                        = Mod_UFO_HUD->pauseAlpha;
+        self->alpha                            = Mod_UFO_HUD->pauseAlpha;
         Mod_UFO_HUD->dpadTouchAnimator.frameID = 5;
         RSDK.DrawSprite(&Mod_UFO_HUD->dpadTouchAnimator, &Mod_UFO_HUD->pausePos, true);
     }

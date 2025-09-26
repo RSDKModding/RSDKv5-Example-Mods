@@ -40,4 +40,4 @@ typedef struct {
     bool32 finishedCountdown;
 } ObjectAnnouncer;
 
-#endif //!OBJ_ANNOUNCER_H
+#endif //! OBJ_ANNOUNCER_H

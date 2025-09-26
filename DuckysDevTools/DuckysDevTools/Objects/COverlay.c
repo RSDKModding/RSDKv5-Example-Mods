@@ -7,7 +7,7 @@ ObjectCOverlay *COverlay;
 void COverlay_Draw(void)
 {
     EntityPlayer *player = RSDK_GET_ENTITY(SceneInfo->currentScreenID, Player);
-    ObjectZone *Zone = Mod.FindObject("Zone");
+    ObjectZone *Zone     = Mod.FindObject("Zone");
 
     if (Zone && player) {
         int32 collisionLayers = Zone->collisionLayers;

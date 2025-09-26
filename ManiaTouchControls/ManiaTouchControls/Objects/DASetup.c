@@ -6,7 +6,8 @@
 ObjectDASetup *DASetup;
 ModObjectDASetup *Mod_DASetup;
 
-bool32 DASetup_State_ManageControl_Hook(bool32 skippedState) {
+bool32 DASetup_State_ManageControl_Hook(bool32 skippedState)
+{
     HandleDPad_4Dir(NULL);
 
     // fixes a bug with button vs touch

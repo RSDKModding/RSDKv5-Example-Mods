@@ -116,12 +116,12 @@ void BSS_HUD_DrawTouchControls(void)
             RSDKControllerState *controller = &ControllerInfo[player->controllerID];
             bool32 jumpHold                 = controller->keyA.down || controller->keyB.down || controller->keyC.down || controller->keyX.down;
             if (jumpHold) {
-                self->alpha                        = opacity;
+                self->alpha                            = opacity;
                 Mod_BSS_HUD->dpadTouchAnimator.frameID = 1;
                 RSDK.DrawSprite(&Mod_BSS_HUD->dpadTouchAnimator, &Mod_BSS_HUD->actionPos, true);
             }
             else {
-                self->alpha                   = Mod_BSS_HUD->dpadAlpha;
+                self->alpha                       = Mod_BSS_HUD->dpadAlpha;
                 Mod_BSS_HUD->dpadAnimator.frameID = 1;
                 RSDK.DrawSprite(&Mod_BSS_HUD->dpadAnimator, &Mod_BSS_HUD->actionPos, true);
             }
@@ -131,7 +131,7 @@ void BSS_HUD_DrawTouchControls(void)
             Mod_BSS_HUD->pauseAlpha = 0;
         }
 
-        self->alpha                        = Mod_BSS_HUD->pauseAlpha;
+        self->alpha                            = Mod_BSS_HUD->pauseAlpha;
         Mod_BSS_HUD->dpadTouchAnimator.frameID = 5;
         RSDK.DrawSprite(&Mod_BSS_HUD->dpadTouchAnimator, &Mod_BSS_HUD->pausePos, true);
     }

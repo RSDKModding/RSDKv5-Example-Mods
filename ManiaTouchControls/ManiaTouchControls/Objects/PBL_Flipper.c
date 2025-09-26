@@ -53,7 +53,7 @@ void PBL_Flipper_StaticUpdate(void)
         Mod_PBL_Flipper->touchR = TriggerInfoR[CONT_P1].keyBumper.down;
     }
 
-	Mod.Super(PBL_Flipper->classID, SUPER_STATICUPDATE, NULL); 
+    Mod.Super(PBL_Flipper->classID, SUPER_STATICUPDATE, NULL);
 }
 
 #endif

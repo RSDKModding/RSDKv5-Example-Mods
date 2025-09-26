@@ -49,5 +49,4 @@ typedef struct {
 
 SaveRAM *SaveGame_GetSaveRAM();
 
-
 #endif //! OBJ_SAVEGAME_H

@@ -86,7 +86,7 @@ void PBL_HUD_DrawTouchControls(void)
             }
 
             if (player->right) {
-                self->alpha                        = opacity;
+                self->alpha                            = opacity;
                 Mod_PBL_HUD->dpadTouchAnimator.frameID = 7;
                 RSDK.DrawSprite(&Mod_PBL_HUD->dpadTouchAnimator, &Mod_PBL_HUD->dpadPos, true);
             }
@@ -123,12 +123,12 @@ void PBL_HUD_DrawTouchControls(void)
             }
 
             if (player->jumpHold) {
-                self->alpha                        = opacity;
+                self->alpha                            = opacity;
                 Mod_PBL_HUD->dpadTouchAnimator.frameID = 1;
                 RSDK.DrawSprite(&Mod_PBL_HUD->dpadTouchAnimator, &Mod_PBL_HUD->actionPos, true);
             }
             else {
-                self->alpha                   = Mod_PBL_HUD->dpadAlpha;
+                self->alpha                       = Mod_PBL_HUD->dpadAlpha;
                 Mod_PBL_HUD->dpadAnimator.frameID = 1;
                 RSDK.DrawSprite(&Mod_PBL_HUD->dpadAnimator, &Mod_PBL_HUD->actionPos, true);
             }
@@ -138,7 +138,7 @@ void PBL_HUD_DrawTouchControls(void)
             Mod_PBL_HUD->pauseAlpha = 0;
         }
 
-        self->alpha                        = Mod_PBL_HUD->pauseAlpha;
+        self->alpha                            = Mod_PBL_HUD->pauseAlpha;
         Mod_PBL_HUD->dpadTouchAnimator.frameID = 5;
         RSDK.DrawSprite(&Mod_PBL_HUD->dpadTouchAnimator, &Mod_PBL_HUD->pausePos, true);
     }

@@ -31,8 +31,8 @@ void CreditsSetup_DrawUI(void)
 {
     RSDK_THIS(CreditsSetup);
 
-    int32 alphaStore   = self->alpha;
-    int32 inkStore     = self->inkEffect;
+    int32 alphaStore = self->alpha;
+    int32 inkStore   = self->inkEffect;
 
     Mod_CreditsSetup->skipPos.x = TO_FIXED(ScreenInfo[SceneInfo->currentScreenID].size.x - 25);
     Mod_CreditsSetup->skipPos.y = TO_FIXED(16);

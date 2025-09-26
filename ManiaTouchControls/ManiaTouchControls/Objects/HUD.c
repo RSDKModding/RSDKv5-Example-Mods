@@ -21,10 +21,10 @@ void HUD_DrawTouchControls(void)
     if (player->stateInputReplay != StateMachine_None) {
         // Only draw the pause button during time attack replays
 
-        int32 alphaStore    = self->alpha;
-        int32 inkStore      = self->inkEffect;
-        int32 fxStore       = self->drawFX;
-        Vector2 scaleStore  = self->scale;
+        int32 alphaStore   = self->alpha;
+        int32 inkStore     = self->inkEffect;
+        int32 fxStore      = self->drawFX;
+        Vector2 scaleStore = self->scale;
 
         Mod_HUD->pausePos.x = TO_FIXED(ScreenInfo[SceneInfo->currentScreenID].size.x - 76);
         Mod_HUD->pausePos.y = TO_FIXED(16);
@@ -81,7 +81,7 @@ void HUD_DrawTouchControls(void)
 
     Mod_HUD->actionPos.x = TO_FIXED(ScreenInfo[SceneInfo->currentScreenID].size.x + config.jumpDPadPos.x);
     Mod_HUD->actionPos.y = TO_FIXED(config.jumpDPadPos.y);
-    
+
 #if GAME_VERSION != VER_100
     Mod_HUD->superPos.x = Mod_HUD->actionPos.x - TO_FIXED(64);
     Mod_HUD->superPos.y = Mod_HUD->actionPos.y;
@@ -91,9 +91,9 @@ void HUD_DrawTouchControls(void)
     Mod_HUD->swapPos.y = Mod_HUD->actionPos.y - TO_FIXED(64);
 
 #if MANIA_USE_PLUS
-    if (globals->gameMode == MODE_ENCORE) 
+    if (globals->gameMode == MODE_ENCORE)
         Mod_HUD->pausePos.x = TO_FIXED(ScreenInfo[SceneInfo->currentScreenID].size.x - 100);
-    else 
+    else
 #endif
         Mod_HUD->pausePos.x = TO_FIXED(ScreenInfo[SceneInfo->currentScreenID].size.x - 76);
     Mod_HUD->pausePos.y = TO_FIXED(16);
@@ -135,12 +135,12 @@ void HUD_DrawTouchControls(void)
 #if GAME_VERSION != VER_100
     Vector2 superPos = Mod_HUD->superPos;
 #endif
-    Vector2 swapPos  = Mod_HUD->swapPos;
+    Vector2 swapPos = Mod_HUD->swapPos;
 
     RSDKControllerState *controller = &ControllerInfo[player->controllerID];
 
     if (canMove) {
-        if (Mod_HUD->dpadAlpha[playerID] < opacity) 
+        if (Mod_HUD->dpadAlpha[playerID] < opacity)
             Mod_HUD->dpadAlpha[playerID] += 4;
 
         // Draw DPad
@@ -210,7 +210,9 @@ void HUD_DrawTouchControls(void)
             RSDK.DrawSprite(&Mod_HUD->dpadAnimator, &Mod_HUD->dpadPos, true);
         }
 
-        if (player->classID == Player->classID ? (!player->up && !player->down && !player->left && !player->right) : (!controller->keyUp.down && !controller->keyDown.down && !controller->keyLeft.down && !controller->keyRight.down)) {
+        if (player->classID == Player->classID
+                ? (!player->up && !player->down && !player->left && !player->right)
+                : (!controller->keyUp.down && !controller->keyDown.down && !controller->keyLeft.down && !controller->keyRight.down)) {
             self->alpha                   = Mod_HUD->dpadAlpha[playerID];
             Mod_HUD->dpadAnimator.frameID = 11;
             RSDK.DrawSprite(&Mod_HUD->dpadAnimator, &Mod_HUD->dpadPos, true);
@@ -249,7 +251,7 @@ void HUD_DrawTouchControls(void)
         }
     }
     else {
-        if (Mod_HUD->jumpAlpha[playerID] > 0) 
+        if (Mod_HUD->jumpAlpha[playerID] > 0)
             Mod_HUD->jumpAlpha[playerID] -= 4;
 
         self->alpha = Mod_HUD->jumpAlpha[playerID];
@@ -361,9 +363,10 @@ void HUD_DrawTouchControls(void)
     self->scale     = scaleStore;
 }
 
-void HUD_DrawMobileHUD(void) {
+void HUD_DrawMobileHUD(void)
+{
     RSDK_THIS(HUD);
-    
+
     EntityPlayer *player = RSDK_GET_ENTITY(SceneInfo->currentScreenID, Player);
     Vector2 drawPos;
 
@@ -433,7 +436,7 @@ void HUD_Draw(void)
     Vector2 lifePos = self->lifePos;
 #if MANIA_USE_PLUS
     if (globals->gameMode == MODE_COMPETITION) {
-        lifePos         = self->vsLifePos[SceneInfo->currentScreenID];
+        lifePos = self->vsLifePos[SceneInfo->currentScreenID];
 
         self->vsLifePos[SceneInfo->currentScreenID].x = TO_FIXED(ScreenInfo[SceneInfo->currentScreenID].size.x - 48) - lifePos.x;
         self->vsLifePos[SceneInfo->currentScreenID].y = TO_FIXED(25);
@@ -460,7 +463,7 @@ void HUD_Draw(void)
     HUD_DrawMobileHUD();
 
 #if MANIA_USE_PLUS
-    if (globals->gameMode == MODE_COMPETITION) 
+    if (globals->gameMode == MODE_COMPETITION)
         self->vsLifePos[SceneInfo->currentScreenID] = lifePos;
     else
 #endif
@@ -486,7 +489,7 @@ void HUD_StageLoad(void)
             Mod_HUD->pauseAlpha[p] = 0;
         }
         else
-            Mod_HUD->swapAlpha[p]  = 0;
+            Mod_HUD->swapAlpha[p] = 0;
     }
 
     RSDK.SetSpriteAnimation(Mod_HUD->dpadFrames, 0, &Mod_HUD->dpadAnimator, true, 0);

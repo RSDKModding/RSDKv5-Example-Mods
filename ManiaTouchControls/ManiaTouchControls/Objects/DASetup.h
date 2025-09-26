@@ -37,7 +37,7 @@ typedef struct {
 
 // Entity Class
 typedef struct {
-	RSDK_ENTITY
+    RSDK_ENTITY
 } EntityDASetup;
 
 // Object Struct
@@ -54,4 +54,4 @@ void DASetup_DrawUI(void);
 // Mod Callbacks
 void DASetup_ModCB_OnDraw(void *data);
 
-#endif //!OBJ_DASETUP_H
+#endif //! OBJ_DASETUP_H

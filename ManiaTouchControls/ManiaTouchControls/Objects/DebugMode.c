@@ -68,8 +68,8 @@ void DebugMode_Update(void)
         ControllerInfo->keyX.down = true;
         controller->keyX.down     = true;
 #else
-        ControllerInfo->keyY.down  = true;
-        controller->keyY.down      = true;
+        ControllerInfo->keyY.down = true;
+        controller->keyY.down     = true;
 #endif
         touchedDebug = true;
     }

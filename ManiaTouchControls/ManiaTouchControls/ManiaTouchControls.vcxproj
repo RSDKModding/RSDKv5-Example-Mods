@@ -185,6 +185,7 @@
     <ClCompile Include="Objects\HUD.c" />
     <ClCompile Include="Objects\LevelSelect.c" />
     <ClCompile Include="Objects\ReplayRecorder.c" />
+    <ClCompile Include="Objects\TimeAttackGate.c" />
     <ClCompile Include="Objects\UISaveSlot.c" />
     <ClCompile Include="Objects\OOZ2Outro.c" />
     <ClCompile Include="Objects\PBL_Crane.c" />
@@ -225,6 +226,7 @@
     <ClInclude Include="Objects\HUD.h" />
     <ClInclude Include="Objects\LevelSelect.h" />
     <ClInclude Include="Objects\ReplayRecorder.h" />
+    <ClInclude Include="Objects\TimeAttackGate.h" />
     <ClInclude Include="Objects\UISaveSlot.h" />
     <ClInclude Include="Objects\OOZ2Outro.h" />
     <ClInclude Include="Objects\PBL_Crane.h" />

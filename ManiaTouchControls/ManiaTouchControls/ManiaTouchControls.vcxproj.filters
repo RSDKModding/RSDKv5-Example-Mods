@@ -115,6 +115,9 @@
     <ClCompile Include="Objects\ReplayRecorder.c">
       <Filter>Source Files\Objects</Filter>
     </ClCompile>
+    <ClCompile Include="Objects\TimeAttackGate.c">
+      <Filter>Source Files\Objects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Objects\Player.h">
@@ -232,6 +235,9 @@
       <Filter>Source Files\Objects</Filter>
     </ClInclude>
     <ClInclude Include="Objects\ReplayRecorder.h">
+      <Filter>Source Files\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\TimeAttackGate.h">
       <Filter>Source Files\Objects</Filter>
     </ClInclude>
   </ItemGroup>

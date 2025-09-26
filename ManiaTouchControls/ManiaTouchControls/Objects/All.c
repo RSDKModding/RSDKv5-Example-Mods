@@ -29,3 +29,4 @@
 #include "Objects/OOZ2Outro.c"
 #include "Objects/UISaveSlot.c"
 #include "Objects/ReplayRecorder.c"
+#include "Objects/TimeAttackGate.c"

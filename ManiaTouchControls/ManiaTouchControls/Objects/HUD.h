@@ -34,10 +34,8 @@ typedef struct {
     Vector2 superPos;
     int32 superAlpha[PLAYER_COUNT];
 #endif
-#if MANIA_USE_PLUS
-    Vector2 swapPos;
-    int32 swapAlpha[PLAYER_COUNT];
-#endif
+    Vector2 swapPos; // Also used for time attack quick restart
+    int32 swapAlpha[PLAYER_COUNT]; // Also used for time attack quick restart
     Vector2 pausePos;
     int32 pauseAlpha[PLAYER_COUNT];
 } ModObjectHUD;

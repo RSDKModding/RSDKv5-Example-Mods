@@ -2,6 +2,7 @@
 #include "Player.h"
 #include "ActClear.h"
 #include "ReplayRecorder.h"
+#include "TimeAttackGate.h"
 #include "../ModConfig.h"
 
 ObjectHUD *HUD;
@@ -86,10 +87,10 @@ void HUD_DrawTouchControls(void)
     Mod_HUD->superPos.y = Mod_HUD->actionPos.y;
 #endif
 
-#if MANIA_USE_PLUS
     Mod_HUD->swapPos.x = Mod_HUD->actionPos.x;
     Mod_HUD->swapPos.y = Mod_HUD->actionPos.y - TO_FIXED(64);
 
+#if MANIA_USE_PLUS
     if (globals->gameMode == MODE_ENCORE) 
         Mod_HUD->pausePos.x = TO_FIXED(ScreenInfo[SceneInfo->currentScreenID].size.x - 100);
     else 
@@ -120,8 +121,13 @@ void HUD_DrawTouchControls(void)
 #if GAME_VERSION != VER_100
     bool32 canSuper = canJump && Player_CanTransform(player);
 #endif
+
+    ObjectTimeAttackGate *TimeAttackGate = Mod.FindObject("TimeAttackGate");
+
+    bool32 canSwap = globals->gameMode == MODE_TIMEATTACK && TimeAttackGate->started;
 #if MANIA_USE_PLUS
-    bool32 canSwap = canJump && globals->gameMode == MODE_ENCORE && !HUD->swapCooldown && Player_CheckValidState(player) && Player_CanSwap(player);
+    if (globals->gameMode == MODE_ENCORE)
+        canSwap = canJump && !HUD->swapCooldown && Player_CheckValidState(player) && Player_CanSwap(player);
 #endif
 
     bool32 canPause = canMove;
@@ -129,9 +135,7 @@ void HUD_DrawTouchControls(void)
 #if GAME_VERSION != VER_100
     Vector2 superPos = Mod_HUD->superPos;
 #endif
-#if MANIA_USE_PLUS
     Vector2 swapPos  = Mod_HUD->swapPos;
-#endif
 
     RSDKControllerState *controller = &ControllerInfo[player->controllerID];
 
@@ -290,13 +294,18 @@ void HUD_DrawTouchControls(void)
     }
 #endif
 
-#if MANIA_USE_PLUS
     if (canSwap) {
         if ((SceneInfo->state & 3) == ENGINESTATE_REGULAR) {
             if (Mod_HUD->swapAlpha[playerID] < opacity)
                 Mod_HUD->swapAlpha[playerID] += 4;
 
-            if (player->onGround && ControllerInfo[player->controllerID].keyY.down) {
+            bool32 showPressed = true;
+#if MANIA_USE_PLUS
+            if (globals->gameMode == MODE_ENCORE)
+                showPressed = player->onGround;
+#endif
+
+            if (showPressed && ControllerInfo[player->controllerID].keyY.down) {
                 self->alpha                        = opacity;
                 Mod_HUD->dpadTouchAnimator.frameID = 4;
                 RSDK.DrawSprite(&Mod_HUD->dpadTouchAnimator, &swapPos, true);
@@ -321,7 +330,6 @@ void HUD_DrawTouchControls(void)
             RSDK.DrawSprite(&Mod_HUD->dpadAnimator, &swapPos, true);
         }
     }
-#endif
 
     if (canPause) {
         if ((SceneInfo->state & 3) == ENGINESTATE_REGULAR) {
@@ -466,16 +474,19 @@ void HUD_StageLoad(void)
     Mod.Super(HUD->classID, SUPER_STAGELOAD, NULL);
 
     Mod_HUD->dpadFrames = RSDK.LoadSpriteAnimation("Global/TouchControls.bin", SCOPE_STAGE);
+
     for (uint8 p = 0; p < PLAYER_COUNT; p++) {
-        Mod_HUD->dpadAlpha[p] = 0;
-        Mod_HUD->jumpAlpha[p] = 0;
+        if (globals->gameMode != MODE_TIMEATTACK) {
+            Mod_HUD->dpadAlpha[p] = 0;
+            Mod_HUD->jumpAlpha[p] = 0;
 #if GAME_VERSION != VER_100
-        Mod_HUD->superAlpha[p] = 0;
+            Mod_HUD->superAlpha[p] = 0;
 #endif
-#if MANIA_USE_PLUS
-        Mod_HUD->swapAlpha[p] = 0;
-#endif
-        Mod_HUD->pauseAlpha[p] = 0;
+            Mod_HUD->swapAlpha[p]  = 0;
+            Mod_HUD->pauseAlpha[p] = 0;
+        }
+        else
+            Mod_HUD->swapAlpha[p]  = 0;
     }
 
     RSDK.SetSpriteAnimation(Mod_HUD->dpadFrames, 0, &Mod_HUD->dpadAnimator, true, 0);

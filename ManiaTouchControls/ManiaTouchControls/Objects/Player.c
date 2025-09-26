@@ -1,5 +1,6 @@
 #include "Player.h"
 #include "SaveGame.h"
+#include "TimeAttackGate.h"
 #include "../ModConfig.h"
 #include "../Helpers.h"
 
@@ -17,9 +18,10 @@ StateMachine(Player_State_Victory)   = NULL;
 StateMachine(Player_State_Air) = NULL;
 #endif
 
+StateMachine(Player_State_Death) = NULL;
+StateMachine(Player_State_Drown) = NULL;
+
 #if MANIA_USE_PLUS
-StateMachine(Player_State_Death)         = NULL;
-StateMachine(Player_State_Drown)         = NULL;
 StateMachine(Player_State_EncoreRespawn) = NULL;
 StateMachine(Player_State_Ground)        = NULL;
 StateMachine(Player_State_Roll)          = NULL;
@@ -115,8 +117,13 @@ bool32 Player_Input_P1_Hook(bool32 skippedState)
 #if GAME_VERSION != VER_100
         bool32 canSuper = Player_CanTransform(self) && !self->onGround;
 #endif
+
+        ObjectTimeAttackGate *TimeAttackGate = Mod.FindObject("TimeAttackGate");
+
+        bool32 canSwap = globals->gameMode == MODE_TIMEATTACK && TimeAttackGate->started;
 #if MANIA_USE_PLUS
-        bool32 canSwap = Player_CanSwap(self) && globals->gameMode == MODE_ENCORE;
+        if (globals->gameMode == MODE_ENCORE)
+            canSwap = Player_CanSwap(self);
 #endif
 
         int32 jumpX = ScreenInfo->center.x;
@@ -126,10 +133,8 @@ bool32 Player_Input_P1_Hook(bool32 skippedState)
         if (canSuper)
             jumpX = ScreenInfo[self->playerID].size.x + config.jumpDPadPos.x - 48;
 #endif
-#if MANIA_USE_PLUS
         if (canSwap)
             jumpY = config.jumpDPadPos.y - 48;
-#endif
 
         // fixes a bug with button vs touch
         bool32 touchedJump = false;

@@ -444,9 +444,10 @@ extern StateMachine(Player_State_Victory);
 extern StateMachine(Player_State_Air);
 #endif
 
-#if MANIA_USE_PLUS
 extern StateMachine(Player_State_Death);
 extern StateMachine(Player_State_Drown);
+
+#if MANIA_USE_PLUS
 extern StateMachine(Player_State_EncoreRespawn);
 extern StateMachine(Player_State_Ground);
 extern StateMachine(Player_State_Roll);

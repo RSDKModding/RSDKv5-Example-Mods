@@ -33,6 +33,7 @@
 #include "Objects/OOZ2Outro.h"
 #include "Objects/UISaveSlot.h"
 #include "Objects/ReplayRecorder.h"
+#include "Objects/TimeAttackGate.h"
 
 ModConfig config;
 
@@ -82,9 +83,10 @@ void InitModAPI(void)
     Player_State_Air = Mod.GetPublicFunction(NULL, "Player_State_Air");
 #endif
 
+    Player_State_Death = Mod.GetPublicFunction(NULL, "Player_State_Death");
+    Player_State_Drown = Mod.GetPublicFunction(NULL, "Player_State_Drown");
+
 #if MANIA_USE_PLUS
-    Player_State_Death         = Mod.GetPublicFunction(NULL, "Player_State_Death");
-    Player_State_Drown         = Mod.GetPublicFunction(NULL, "Player_State_Drown");
     Player_State_EncoreRespawn = Mod.GetPublicFunction(NULL, "Player_State_EncoreRespawn");
     Player_State_Ground        = Mod.GetPublicFunction(NULL, "Player_State_Ground");
     Player_State_Roll          = Mod.GetPublicFunction(NULL, "Player_State_Roll");
@@ -137,6 +139,8 @@ void InitModAPI(void)
 
     Mod.RegisterStateHook(Mod.GetPublicFunction(NULL, "UISaveSlot_State_Selected"), UISaveSlot_State_Selected_Hook, true);
 
+    Mod.RegisterStateHook(Mod.GetPublicFunction(NULL, "TimeAttackGate_State_Restarter"), TimeAttackGate_State_Restarter_Hook, true);
+
 #if MANIA_USE_PLUS
     Mod.RegisterStateHook(PBL_Player_Input_P1, PBL_Player_Input_P1_Hook, true);
 
@@ -167,6 +171,7 @@ void InitModAPI(void)
     MOD_REGISTER_OBJ_OVERLOAD_MSV(UFO_HUD, Mod_UFO_HUD, NULL, NULL, NULL, UFO_HUD_Draw, NULL, UFO_HUD_StageLoad, NULL, NULL, NULL);
     MOD_REGISTER_OBJ_OVERLOAD_MSV(UFO_Player, Mod_UFO_Player, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
+    MOD_REGISTER_OBJ_OVERLOAD_MSV(TimeAttackGate, Mod_TimeAttackGate, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
     
 #if MANIA_USE_PLUS
     MOD_REGISTER_OBJ_OVERLOAD_MSV(PBL_HUD, Mod_PBL_HUD, NULL, NULL, NULL, PBL_HUD_Draw, NULL, PBL_HUD_StageLoad, NULL, NULL, NULL);

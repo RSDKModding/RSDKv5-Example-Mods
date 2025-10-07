@@ -65,7 +65,7 @@ bool32 Player_CanTransform(EntityPlayer *player)
 }
 
 #if MANIA_USE_PLUS
-bool32 Player_CanSwap(EntityPlayer *player)
+bool32 Player_CanSwap(EntityPlayer *player, bool32 checkSwapNow)
 {
     EntityPlayer *sidekick = RSDK_GET_ENTITY(SLOT_PLAYER2, Player);
     if (!sidekick->classID)
@@ -74,17 +74,15 @@ bool32 Player_CanSwap(EntityPlayer *player)
     if (Player->cantSwap || player->drawGroup == 2 || !SceneInfo->timeEnabled)
         return false;
 
-    if (Player->respawnTimer) {
-        return false;
-    }
-
     if (player->state == Player_State_Death || player->state == Player_State_Drown) {
         if (sidekick->state == Player_State_Death || sidekick->state == Player_State_Drown || sidekick->state == Player_State_EncoreRespawn
             || sidekick->state == Player_State_Static) {
             return false;
         }
     }
-    else {
+    else if (checkSwapNow) {
+        if (Player->respawnTimer)
+            return false;
         if (player->state != Player_State_Ground && player->state != Player_State_Roll)
             return false;
         if (sidekick->state != Player_State_Ground && sidekick->state != Player_State_Roll)
@@ -122,7 +120,7 @@ bool32 Player_Input_P1_Hook(bool32 skippedState)
         bool32 canSwap = globals->gameMode == MODE_TIMEATTACK && TimeAttackGate->started;
 #if MANIA_USE_PLUS
         if (globals->gameMode == MODE_ENCORE)
-            canSwap = Player_CanSwap(self);
+            canSwap = Player_CanSwap(self, true);
 #endif
 
         int32 jumpX = ScreenInfo->center.x;

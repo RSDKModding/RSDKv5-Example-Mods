@@ -127,7 +127,7 @@ void HUD_DrawTouchControls(void)
     bool32 canSwap = globals->gameMode == MODE_TIMEATTACK && TimeAttackGate->started;
 #if MANIA_USE_PLUS
     if (globals->gameMode == MODE_ENCORE)
-        canSwap = canJump && !HUD->swapCooldown && Player_CheckValidState(player) && Player_CanSwap(player);
+        canSwap = canJump && !HUD->swapCooldown && Player_CheckValidState(player) && Player_CanSwap(player, false);
 #endif
 
     bool32 canPause = canMove;
@@ -296,24 +296,24 @@ void HUD_DrawTouchControls(void)
     }
 #endif
 
+    bool32 canPressSwap = true;
+#if MANIA_USE_PLUS
+    if (globals->gameMode == MODE_ENCORE)
+        canPressSwap = Player_CanSwap(player, true);
+#endif
+
     if (canSwap) {
         if ((SceneInfo->state & 3) == ENGINESTATE_REGULAR) {
             if (Mod_HUD->swapAlpha[playerID] < opacity)
                 Mod_HUD->swapAlpha[playerID] += 4;
 
-            bool32 showPressed = true;
-#if MANIA_USE_PLUS
-            if (globals->gameMode == MODE_ENCORE)
-                showPressed = player->onGround;
-#endif
-
-            if (showPressed && ControllerInfo[player->controllerID].keyY.down) {
-                self->alpha                        = opacity;
+            if (ControllerInfo[player->controllerID].keyY.down) {
+                self->alpha                        = opacity / (2 - canPressSwap);
                 Mod_HUD->dpadTouchAnimator.frameID = 4;
                 RSDK.DrawSprite(&Mod_HUD->dpadTouchAnimator, &swapPos, true);
             }
             else {
-                self->alpha                   = Mod_HUD->swapAlpha[playerID];
+                self->alpha                   = Mod_HUD->swapAlpha[playerID] / (2 - canPressSwap);
                 Mod_HUD->dpadAnimator.frameID = 4;
                 RSDK.DrawSprite(&Mod_HUD->dpadAnimator, &swapPos, true);
             }
@@ -326,7 +326,7 @@ void HUD_DrawTouchControls(void)
         if (Mod_HUD->swapAlpha[playerID] > 0)
             Mod_HUD->swapAlpha[playerID] -= 4;
 
-        self->alpha = Mod_HUD->swapAlpha[playerID];
+        self->alpha = Mod_HUD->swapAlpha[playerID] / (2 - canPressSwap);
         if (self->alpha > 0) {
             Mod_HUD->dpadAnimator.frameID = 4;
             RSDK.DrawSprite(&Mod_HUD->dpadAnimator, &swapPos, true);

@@ -465,7 +465,7 @@ extern StateMachine(ERZStart_State_PlayerRebound);
 // Extra Entity Functions
 bool32 Player_CanTransform(EntityPlayer *player);
 #if MANIA_USE_PLUS
-bool32 Player_CanSwap(EntityPlayer *player);
+bool32 Player_CanSwap(EntityPlayer *player, bool32 checkSwapNow);
 #endif
 bool32 Player_Input_P1_Hook(bool32 skippedState);
 

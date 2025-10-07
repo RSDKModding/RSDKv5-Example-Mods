@@ -75,7 +75,6 @@ bool32 Player_CanSwap(EntityPlayer *player)
         return false;
 
     if (Player->respawnTimer) {
-        Player->respawnTimer = 240;
         return false;
     }
 
